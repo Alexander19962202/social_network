@@ -8,9 +8,9 @@ const MyPosts = () => {
             My posts:
             <button>Add post</button>
             <div>
-                <Post/>
-                <Post/>
-                <Post/>
+                <Post message='How I learned Infra Hard' likeCount='30'/>
+                <Post message='How I learned Torba Black' likeCount='1'/>
+                <Post message='About Gimbarr in 2011' likeCount='0'/>
             </div>
         </div>
     );
