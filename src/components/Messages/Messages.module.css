@@ -7,23 +7,6 @@
     padding: 10px;
 }
 
-.dialogItems .dialog {
-
-}
-
-.dialog a {
-    color: black;
-    text-decoration: none;
-}
-
-.dialog a.active {
-    color: slategray;
-}
-
 .messageItems {
     padding: 10px;
-}
-
-.messageItems .message {
-
 }
