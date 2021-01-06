@@ -4,7 +4,7 @@ import {NavLink} from "react-router-dom";
 import Message from "./Message/Message";
 import Dialog from "./Dialog/Dialog";
 
-const Messages = () => {
+const Messages = (props) => {
     let dialogsData = [
         {name: 'Anna', id: 1},
         {name: 'Valera', id: 2},
