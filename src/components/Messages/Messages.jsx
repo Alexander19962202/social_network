@@ -5,21 +5,36 @@ import Message from "./Message/Message";
 import Dialog from "./Dialog/Dialog";
 
 const Messages = () => {
+    let dialogsData = [
+        {name: 'Anna', id: 1},
+        {name: 'Valera', id: 2},
+        {name: 'Daniil', id: 3},
+        {name: 'Sergey', id: 4},
+        {name: 'Andrey', id: 5},
+        {name: 'Boris', id: 6}
+    ];
+    let messageData = [
+        {message: 'Hello!'},
+        {message: 'Hi!'},
+        {message: 'How are you?'},
+        {message: 'Good!!!'}
+    ];
+
     return (
         <div className={classes.messages}>
             <div className={classes.dialogItems}>
-                <Dialog name='Anna' id='1'/>
-                <Dialog name='Valera' id='2'/>
-                <Dialog name='Daniil' id='3'/>
-                <Dialog name='Sergey' id='4'/>
-                <Dialog name='Andrey' id='5'/>
-                <Dialog name='Viktor' id='6'/>
-                <Dialog name='Boris' id='7'/>
+                <Dialog name={dialogsData[0].name} id={dialogsData[0].id}/>
+                <Dialog name={dialogsData[1].name} id={dialogsData[1].id}/>
+                <Dialog name={dialogsData[2].name} id={dialogsData[2].id}/>
+                <Dialog name={dialogsData[3].name} id={dialogsData[3].id}/>
+                <Dialog name={dialogsData[4].name} id={dialogsData[4].id}/>
+                <Dialog name={dialogsData[5].name} id={dialogsData[5].id}/>
             </div>
             <div className={classes.messageItems}>
-                <Message message='Hello!'/>
-                <Message message='Hi!'/>
-                <Message message='How are you?'/>
+                <Message message={messageData[0].message}/>
+                <Message message={messageData[1].message}/>
+                <Message message={messageData[2].message}/>
+                <Message message={messageData[3].message}/>
             </div>
         </div>
     );
