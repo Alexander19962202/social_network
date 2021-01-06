@@ -1,8 +1,8 @@
 .navbar {
-  grid-area: n;
-  background-color: black;
+    grid-area: n;
+    background-color: black;
 }
 
 .item {
-  color: white;;
+    color: white;;
 }
