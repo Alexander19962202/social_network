@@ -1,0 +1,14 @@
+.messagesField {
+    display: grid;
+    grid-template-columns: 10fr 2fr;
+}
+
+.textarea {
+    width: 700px;
+    height: 30px;
+}
+
+.button {
+    width: 60px;
+    height: 30px
+}
