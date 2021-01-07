@@ -13,7 +13,7 @@ const MessagesBlock = (props) => {
             <div>
                 {messageItems}
             </div>
-            <MessagesField/>
+            <MessagesField sendMessage={props.sendMessage}/>
         </div>
     );
 }

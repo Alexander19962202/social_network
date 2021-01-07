@@ -1,12 +1,12 @@
 import React from "react";
 import classes from './MessagesField.module.css'
 
-const MessagesField = () => {
+const MessagesField = (props) => {
 
     let messageText = React.createRef();
     let sendMessage = () => {
         let text = messageText.current.value;
-        alert(text);
+        props.sendMessage(text);
     };
 
     return (

@@ -1,9 +1,9 @@
 let state = {
     profilePage: {
         myPostsData: [
-            {text: 'How I learned Infra Hard', likeCount: 11},
-            {text: 'How I learned Torba Black', likeCount: 22},
-            {text: 'About Gimbarr in 2011', likeCount: 33}
+            {id: 1, text: 'How I learned Infra Hard', likeCount: 11},
+            {id: 2, text: 'How I learned Torba Black', likeCount: 22},
+            {id: 3, text: 'About Gimbarr in 2011', likeCount: 33}
         ]
     },
     messagesPage: {
@@ -32,7 +32,24 @@ let state = {
 
     },
     sideBar: {}
-};
+}
+
+export let addPost = (text) => {
+    let newPost = {
+        id: 4,
+        text: text,
+        likeCount: 0
+    };
+
+    state.profilePage.myPostsData.push(newPost);
+}
+
+export let sendMessage = (message) => {
+    let newMessage = { message: message };
+
+    state.messagesPage.messagesData.push(newMessage);
+    debugger;
+}
 
 export default state;
 
