@@ -7,6 +7,7 @@ const MessagesField = (props) => {
     let sendMessage = () => {
         let text = messageText.current.value;
         props.sendMessage(text);
+        messageText.current.value = '';
     };
 
     return (
