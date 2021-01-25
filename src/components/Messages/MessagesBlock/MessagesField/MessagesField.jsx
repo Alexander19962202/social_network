@@ -5,11 +5,11 @@ const MessagesField = (props) => {
 
     let messageTextField = React.createRef();
     let on_sendMessage = () => {
-        props.sendMessage();
+        props.dispatch( { type: 'SEND_MESSAGE' } );
     };
     let on_updateNewMessageText = () => {
         let newText = messageTextField.current.value;
-        props.updateNewMessageText(newText);
+        props.dispatch( { type: 'UPDATE_NEW_MESSAGE_TEXT', newMessageTextValue: newText } );
     }
 
     return (

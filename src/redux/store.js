@@ -65,39 +65,42 @@ let store = {
     {
         return this._state;
     },
+    dispatch(action)
+    {
+        if(action.type === 'UPDATE_NEW_POST_TEXT')
+        {
+            this._state.profilePage.profilePageData.myPostsData.newPostText = action.newPostTextValue;
+            this.rerenderEntireTree(this._state);
+        }
+        else if(action.type === 'ADD_POST')
+        {
+            let newPost = {
+                id: 4,
+                text: this._state.profilePage.profilePageData.myPostsData.newPostText,
+                likeCount: 0
+            };
+
+            this._state.profilePage.profilePageData.myPostsData.myPostStateItems.push(newPost);
+            this._state.profilePage.profilePageData.myPostsData.newPostText = '';
+            this.rerenderEntireTree(this._state);
+        }
+        else if(action.type === 'UPDATE_NEW_MESSAGE_TEXT')
+        {
+            this._state.messagesPage.messagesPageData.messagesData.newMessageText = action.newMessageTextValue;
+            this.rerenderEntireTree(this._state);
+        }
+        else if(action.type === 'SEND_MESSAGE')
+        {
+            let newMessage = {message: this._state.messagesPage.messagesPageData.messagesData.newMessageText};
+
+            this._state.messagesPage.messagesPageData.messagesData.messageStateItems.push(newMessage);
+            this._state.messagesPage.messagesPageData.messagesData.newMessageText = '';
+            this.rerenderEntireTree(this._state);
+        }
+    },
     rerenderEntireTree()
     {
         console.log("State changed!");
-    },
-    updateNewPostText(newPostText)
-    {
-        this._state.profilePage.profilePageData.myPostsData.newPostText = newPostText;
-        this.rerenderEntireTree(this._state);
-    },
-    addPost()
-    {
-        let newPost = {
-            id: 4,
-            text: this._state.profilePage.profilePageData.myPostsData.newPostText,
-            likeCount: 0
-        };
-
-        this._state.profilePage.profilePageData.myPostsData.myPostStateItems.push(newPost);
-        this._state.profilePage.profilePageData.myPostsData.newPostText = '';
-        this.rerenderEntireTree(this._state);
-    },
-    updateNewMessageText(newMessageText)
-    {
-        this._state.messagesPage.messagesPageData.messagesData.newMessageText = newMessageText;
-        this.rerenderEntireTree(this._state);
-    },
-    sendMessage()
-    {
-        let newMessage = {message: this._state.messagesPage.messagesPageData.messagesData.newMessageText};
-
-        this._state.messagesPage.messagesPageData.messagesData.messageStateItems.push(newMessage);
-        this._state.messagesPage.messagesPageData.messagesData.newMessageText = '';
-        this.rerenderEntireTree(this._state);
     },
     subscribe(observer)
     {
