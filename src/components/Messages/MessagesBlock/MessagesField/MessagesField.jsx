@@ -1,6 +1,6 @@
 import React from "react";
 import classes from './MessagesField.module.css'
-import {sendMessageActionCreator, updateNewMessageTextActionCreator} from "../../../../redux/store";
+import {sendMessageActionCreator, updateNewMessageTextActionCreator} from "../../../../redux/messagespage_reducer";
 
 const MessagesField = (props) => {
 

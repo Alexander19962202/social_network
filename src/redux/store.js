@@ -1,7 +1,10 @@
-const ADD_POST = 'ADD_POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
-const SEND_MESSAGE = 'SEND_MESSAGE';
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE_NEW_MESSAGE_TEXT';
+import profilePage_reducer from "./profilepage_reducer";
+import messagesPage_reducer from "./messagespage_reducer";
+import newsPage_reducer from "./newspage_reducer";
+import musicPage_reducer from "./musicpage_reducer";
+import {act} from "@testing-library/react";
+import settingsPage_reducer from "./settingspage_reducer";
+import sideBar_reducer from "./sidebar_reducer";
 
 let store = {
     _state: {
@@ -71,36 +74,14 @@ let store = {
     },
     dispatch(action)
     {
-        if(action.type === UPDATE_NEW_POST_TEXT)
-        {
-            this._state.profilePage.profilePageData.myPostsData.newPostText = action.newPostTextValue;
-            this.rerenderEntireTree(this._state);
-        }
-        else if(action.type === ADD_POST)
-        {
-            let newPost = {
-                id: 4,
-                text: this._state.profilePage.profilePageData.myPostsData.newPostText,
-                likeCount: 0
-            };
+        this._state.profilePage = profilePage_reducer(this._state.profilePage, action);
+        this._state.messagesPage = messagesPage_reducer(this._state.messagesPage, action);
+        this._state.newsPage = newsPage_reducer(this._state.newsPage, action);
+        this._state.musicPage = musicPage_reducer(this._state.musicPage, action);
+        this._state.settingsPage = settingsPage_reducer(this._state.settingsPage, action);
+        this._state.sideBar = sideBar_reducer(this._state.sideBar, action);
 
-            this._state.profilePage.profilePageData.myPostsData.myPostStateItems.push(newPost);
-            this._state.profilePage.profilePageData.myPostsData.newPostText = '';
-            this.rerenderEntireTree(this._state);
-        }
-        else if(action.type === UPDATE_NEW_MESSAGE_TEXT)
-        {
-            this._state.messagesPage.messagesPageData.messagesData.newMessageText = action.newMessageTextValue;
-            this.rerenderEntireTree(this._state);
-        }
-        else if(action.type === SEND_MESSAGE)
-        {
-            let newMessage = {message: this._state.messagesPage.messagesPageData.messagesData.newMessageText};
-
-            this._state.messagesPage.messagesPageData.messagesData.messageStateItems.push(newMessage);
-            this._state.messagesPage.messagesPageData.messagesData.newMessageText = '';
-            this.rerenderEntireTree(this._state);
-        }
+        this.rerenderEntireTree(this._state);
     },
     rerenderEntireTree()
     {
@@ -111,11 +92,6 @@ let store = {
         this.rerenderEntireTree = observer;
     }
 };
-
-export const addPostActionCreator = () => ({ type: ADD_POST })
-export const updateNewPostTextActionCreator = (newText) => ({ type: UPDATE_NEW_POST_TEXT, newPostTextValue: newText })
-export const sendMessageActionCreator = () => ({ type: SEND_MESSAGE })
-export const updateNewMessageTextActionCreator = (newText) => ({ type: UPDATE_NEW_MESSAGE_TEXT, newMessageTextValue: newText })
 
 export default store;
 
