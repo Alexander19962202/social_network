@@ -8,19 +8,18 @@ const MyPosts = (props) => {
     let myPostItems =
         props.myPostsData.myPostStateItems.map(post => <Post text={post.text} likeCount={post.likeCount}/>);
 
-    let newPostTextField = React.createRef();
     let on_addPost = () => {
         props.dispatch( addPostActionCreator() );
     }
-    let on_updateNewPostText = () => {
-        let newText = newPostTextField.current.value;
+    let on_updateNewPostText = (e) => {
+        let newText = e.target.value;
         props.dispatch( updateNewPostTextActionCreator(newText) );
     }
 
     return (
         <div className={classes.postBlock}>
             <h3>My posts:</h3>
-            <textarea ref={newPostTextField} value={props.myPostsData.newPostText} onChange={on_updateNewPostText}/>
+            <textarea placeholder='Enter new post' value={props.myPostsData.newPostText} onChange={on_updateNewPostText}/>
             <div>
                 <button onClick={on_addPost}>Add post</button>
             </div>

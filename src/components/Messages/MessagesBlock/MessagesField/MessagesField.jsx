@@ -16,7 +16,7 @@ const MessagesField = (props) => {
     return (
         <div className={classes.messagesField}>
             <div className={classes.textarea}>
-                <textarea ref={messageTextField} className={classes.textarea} value={props.newMessageText} onChange={on_updateNewMessageText}/>
+                <textarea placeholder='Enter new message' ref={messageTextField} className={classes.textarea} value={props.newMessageText} onChange={on_updateNewMessageText}/>
             </div>
             <div>
                 <button className={classes.button} onClick={on_sendMessage}>Send</button>
