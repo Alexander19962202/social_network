@@ -71,12 +71,12 @@ let store = {
     },
     dispatch(action)
     {
-        if(action.type === 'UPDATE_NEW_POST_TEXT')
+        if(action.type === UPDATE_NEW_POST_TEXT)
         {
             this._state.profilePage.profilePageData.myPostsData.newPostText = action.newPostTextValue;
             this.rerenderEntireTree(this._state);
         }
-        else if(action.type === 'ADD_POST')
+        else if(action.type === ADD_POST)
         {
             let newPost = {
                 id: 4,
@@ -88,12 +88,12 @@ let store = {
             this._state.profilePage.profilePageData.myPostsData.newPostText = '';
             this.rerenderEntireTree(this._state);
         }
-        else if(action.type === 'UPDATE_NEW_MESSAGE_TEXT')
+        else if(action.type === UPDATE_NEW_MESSAGE_TEXT)
         {
             this._state.messagesPage.messagesPageData.messagesData.newMessageText = action.newMessageTextValue;
             this.rerenderEntireTree(this._state);
         }
-        else if(action.type === 'SEND_MESSAGE')
+        else if(action.type === SEND_MESSAGE)
         {
             let newMessage = {message: this._state.messagesPage.messagesPageData.messagesData.newMessageText};
 
