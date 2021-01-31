@@ -1,4 +1,8 @@
-const settingsPage_reducer = (state, action) => {
+let initialState = {
+
+}
+
+const settingsPage_reducer = (state = initialState, action) => {
 
     return state;
 }

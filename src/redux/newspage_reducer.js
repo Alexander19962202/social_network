@@ -1,4 +1,8 @@
-const newsPage_reducer = (state, action) => {
+let initialState = {
+
+}
+
+const newsPage_reducer = (state = initialState, action) => {
 
     return state;
 }
