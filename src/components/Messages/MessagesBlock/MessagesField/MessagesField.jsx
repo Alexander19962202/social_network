@@ -1,16 +1,15 @@
 import React from "react";
 import classes from './MessagesField.module.css'
-import {sendMessageActionCreator, updateNewMessageTextActionCreator} from "../../../../redux/messagespage_reducer";
 
 const MessagesField = (props) => {
 
     let messageTextField = React.createRef();
     let on_sendMessage = () => {
-        props.dispatch( sendMessageActionCreator() );
+        props.on_sendMessage();
     };
     let on_updateNewMessageText = () => {
         let newText = messageTextField.current.value;
-        props.dispatch( updateNewMessageTextActionCreator(newText) );
+        props.on_updateNewMessageText(newText);
     }
 
     return (

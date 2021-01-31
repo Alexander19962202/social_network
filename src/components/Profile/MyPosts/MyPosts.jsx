@@ -9,11 +9,11 @@ const MyPosts = (props) => {
         props.myPostsData.myPostStateItems.map(post => <Post text={post.text} likeCount={post.likeCount}/>);
 
     let on_addPost = () => {
-        props.dispatch( addPostActionCreator() );
+        props.on_addPost();
     }
     let on_updateNewPostText = (e) => {
         let newText = e.target.value;
-        props.dispatch( updateNewPostTextActionCreator(newText) );
+        props.on_updateNewPost(newText);
     }
 
     return (

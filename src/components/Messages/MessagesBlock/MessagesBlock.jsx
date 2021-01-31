@@ -1,7 +1,7 @@
 import React from "react";
 import classes from './MessagesBlock.module.css'
 import Message from "./Message/Message";
-import MessagesField from "./MessagesField/MessagesField";
+import MessagesFieldContainer from "./MessagesField/MessagesFieldContainer";
 
 const MessagesBlock = (props) => {
 
@@ -13,7 +13,7 @@ const MessagesBlock = (props) => {
             <div>
                 {messageItems}
             </div>
-            <MessagesField newMessageText={props.messagesData.newMessageText} dispatch={props.dispatch}/>
+            <MessagesFieldContainer newMessageText={props.messagesData.newMessageText} dispatch={props.dispatch}/>
         </div>
     );
 }
