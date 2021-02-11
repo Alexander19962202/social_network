@@ -6,9 +6,9 @@ const Profile = (props) => {
     return (
         <div>
             <ProfileInfo/>
-            <MyPostsContainer myPostsData={props.profilePage.profilePageData.myPostsData} dispatch={props.dispatch}/>
+            <MyPostsContainer />
         </div>
     );
-}
+};
 
 export default Profile;
