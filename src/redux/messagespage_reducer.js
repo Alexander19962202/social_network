@@ -48,14 +48,25 @@ let initialState = {
 const messagesPage_reducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case UPDATE_NEW_MESSAGE_TEXT:
-            state.messagesPageData.messagesData.newMessageText = action.newMessageTextValue;
-            return state;
-        case SEND_MESSAGE:
-            let newMessage = {message: state.messagesPageData.messagesData.newMessageText};
-            state.messagesPageData.messagesData.messageStateItems.push(newMessage);
-            state.messagesPageData.messagesData.newMessageText = '';
-            return state
+        case UPDATE_NEW_MESSAGE_TEXT: {
+            let stateCopy = {...state};
+            stateCopy.messagesPageData = {...state.messagesPageData};
+            stateCopy.messagesPageData.messagesData = {...state.messagesPageData.messagesData};
+
+            stateCopy.messagesPageData.messagesData.newMessageText = action.newMessageTextValue;
+            return stateCopy;
+        }
+        case SEND_MESSAGE: {
+            let stateCopy = {...state};
+            stateCopy.messagesPageData = {...state.messagesPageData};
+            stateCopy.messagesPageData.messagesData = {...state.messagesPageData.messagesData};
+            stateCopy.messagesPageData.messagesData.messageStateItems = [...state.messagesPageData.messagesData.messageStateItems];
+
+            let newMessage = {message: stateCopy.messagesPageData.messagesData.newMessageText};
+            stateCopy.messagesPageData.messagesData.messageStateItems.push(newMessage);
+            stateCopy.messagesPageData.messagesData.newMessageText = '';
+            return stateCopy;
+        }
         default:
             return state;
     }

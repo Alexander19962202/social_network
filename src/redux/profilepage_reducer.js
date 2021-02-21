@@ -16,20 +16,32 @@ let initialState = {
 
 const profilePage_reducer = (state = initialState, action) => {
     switch (action.type) {
-        case UPDATE_NEW_POST_TEXT:
-            state.profilePageData.myPostsData.newPostText = action.newPostTextValue;
-            return state;
-        case ADD_POST:
+        case UPDATE_NEW_POST_TEXT: {
+            let stateCopy = {...state};
+            stateCopy.profilePageData = {...state.profilePageData}
+            stateCopy.profilePageData.myPostsData = {...state.profilePageData.myPostsData};
+
+            stateCopy.profilePageData.myPostsData.newPostText = action.newPostTextValue;
+            return stateCopy;
+        }
+        case ADD_POST: {
+            let stateCopy = {...state};
+            stateCopy.profilePageData = {...state.profilePageData}
+            stateCopy.profilePageData.myPostsData = {...state.profilePageData.myPostsData};
+            stateCopy.profilePageData.myPostsData.myPostStateItems = [...state.profilePageData.myPostsData.myPostStateItems];
+
             let newPost = {
                 id: 4,
-                text: state.profilePageData.myPostsData.newPostText,
+                text: stateCopy.profilePageData.myPostsData.newPostText,
                 likeCount: 0
             };
-            state.profilePageData.myPostsData.myPostStateItems.push(newPost);
-            state.profilePageData.myPostsData.newPostText = '';
+            stateCopy.profilePageData.myPostsData.myPostStateItems.push(newPost);
+            stateCopy.profilePageData.myPostsData.newPostText = '';
+            return stateCopy;
+        }
+        default: {
             return state;
-        default:
-            return state;
+        }
     }
 };
 
