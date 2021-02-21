@@ -17,27 +17,30 @@ let initialState = {
 const profilePage_reducer = (state = initialState, action) => {
     switch (action.type) {
         case UPDATE_NEW_POST_TEXT: {
-            let stateCopy = {...state};
-            stateCopy.profilePageData = {...state.profilePageData}
-            stateCopy.profilePageData.myPostsData = {...state.profilePageData.myPostsData};
-
-            stateCopy.profilePageData.myPostsData.newPostText = action.newPostTextValue;
-            return stateCopy;
+            return  {
+                ...state,
+                profilePageData: {
+                    ...state.profilePageData,
+                    myPostsData: {
+                        ...state.profilePageData.myPostsData,
+                        newPostText: action.newPostTextValue
+                    }
+                },
+            };
         }
         case ADD_POST: {
-            let stateCopy = {...state};
-            stateCopy.profilePageData = {...state.profilePageData}
-            stateCopy.profilePageData.myPostsData = {...state.profilePageData.myPostsData};
-            stateCopy.profilePageData.myPostsData.myPostStateItems = [...state.profilePageData.myPostsData.myPostStateItems];
-
-            let newPost = {
-                id: 4,
-                text: stateCopy.profilePageData.myPostsData.newPostText,
-                likeCount: 0
+            let text = state.profilePageData.myPostsData.newPostText;
+            return  {
+                ...state,
+                profilePageData: {
+                    ...state.profilePageData.myPostsData,
+                    myPostsData: {
+                        ...state.profilePageData.myPostsData,
+                        myPostStateItems: [...state.profilePageData.myPostsData.myPostStateItems, { id: 4, text: text, likeCount: 0 }],
+                        newPostText: ''
+                    }
+                }
             };
-            stateCopy.profilePageData.myPostsData.myPostStateItems.push(newPost);
-            stateCopy.profilePageData.myPostsData.newPostText = '';
-            return stateCopy;
         }
         default: {
             return state;

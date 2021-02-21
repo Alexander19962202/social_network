@@ -6,7 +6,7 @@ import MessagesField from "./MessagesField/MessagesField";
 const MessagesBlock = (props) => {
 
     let messageItems =
-        props.messagesData.messageStateItems.map(m => <Message message={m.message}/>);
+        props.messagesData.messageStateItems.map(m => <Message message={m.message} id={m.id} key={m.id}/>);
 
     return (
         <div className={classes.messageBlock}>

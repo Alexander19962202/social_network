@@ -35,10 +35,10 @@ let initialState = {
         },
         messagesData: {
             messageStateItems: [
-                {message: 'Hello!'},
-                {message: 'Hi!'},
-                {message: 'How are you?'},
-                {message: 'Good!!!'}
+                {id: 1, message: 'Hello!'},
+                {id: 2, message: 'Hi!'},
+                {id: 3, message: 'How are you?'},
+                {id: 4, message: 'Good!!!'}
             ],
             newMessageText: ''
         }
@@ -49,23 +49,30 @@ const messagesPage_reducer = (state = initialState, action) => {
 
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_TEXT: {
-            let stateCopy = {...state};
-            stateCopy.messagesPageData = {...state.messagesPageData};
-            stateCopy.messagesPageData.messagesData = {...state.messagesPageData.messagesData};
-
-            stateCopy.messagesPageData.messagesData.newMessageText = action.newMessageTextValue;
-            return stateCopy;
+            return  {
+                ...state,
+                messagesPageData: {
+                    ...state.messagesPageData,
+                    messagesData: {
+                        ...state.messagesPageData.messagesData,
+                        newMessageText: action.newMessageTextValue
+                    }
+                }
+            };
         }
         case SEND_MESSAGE: {
-            let stateCopy = {...state};
-            stateCopy.messagesPageData = {...state.messagesPageData};
-            stateCopy.messagesPageData.messagesData = {...state.messagesPageData.messagesData};
-            stateCopy.messagesPageData.messagesData.messageStateItems = [...state.messagesPageData.messagesData.messageStateItems];
-
-            let newMessage = {message: stateCopy.messagesPageData.messagesData.newMessageText};
-            stateCopy.messagesPageData.messagesData.messageStateItems.push(newMessage);
-            stateCopy.messagesPageData.messagesData.newMessageText = '';
-            return stateCopy;
+            let text = state.messagesPageData.messagesData.newMessageText;
+            return {
+                ...state,
+                messagesPageData: {
+                    ...state.messagesPageData,
+                    messagesData: {
+                        ...state.messagesPageData.messagesData,
+                        messageStateItems: [...state.messagesPageData.messagesData.messageStateItems, { id: 5, message: text }],
+                        newMessageText: ''
+                    }
+                }
+            };
         }
         default:
             return state;
