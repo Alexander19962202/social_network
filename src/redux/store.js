@@ -2,7 +2,6 @@ import profilePage_reducer from "./profilepage_reducer";
 import messagesPage_reducer from "./messagespage_reducer";
 import newsPage_reducer from "./newspage_reducer";
 import musicPage_reducer from "./musicpage_reducer";
-import {act} from "@testing-library/react";
 import settingsPage_reducer from "./settingspage_reducer";
 import sideBar_reducer from "./sidebar_reducer";
 

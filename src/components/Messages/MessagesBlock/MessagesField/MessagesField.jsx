@@ -4,13 +4,14 @@ import classes from './MessagesField.module.css'
 const MessagesField = (props) => {
 
     let messageTextField = React.createRef();
+
     let on_sendMessage = () => {
         props.on_sendMessage();
     };
     let on_updateNewMessageText = () => {
         let newText = messageTextField.current.value;
         props.on_updateNewMessageText(newText);
-    }
+    };
 
     return (
         <div className={classes.messagesField}>
@@ -22,6 +23,6 @@ const MessagesField = (props) => {
             </div>
         </div>
     );
-}
+};
 
 export default MessagesField;

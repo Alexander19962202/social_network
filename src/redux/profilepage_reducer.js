@@ -12,7 +12,7 @@ let initialState = {
             newPostText: ''
         }
     }
-}
+};
 
 const profilePage_reducer = (state = initialState, action) => {
     switch (action.type) {
@@ -31,9 +31,9 @@ const profilePage_reducer = (state = initialState, action) => {
         default:
             return state;
     }
-}
+};
 
-export const addPostActionCreator = () => ({ type: ADD_POST })
-export const updateNewPostTextActionCreator = (newText) => ({ type: UPDATE_NEW_POST_TEXT, newPostTextValue: newText })
+export const addPostActionCreator = () => ({ type: ADD_POST });
+export const updateNewPostTextActionCreator = (newText) => ({ type: UPDATE_NEW_POST_TEXT, newPostTextValue: newText });
 
 export default profilePage_reducer;

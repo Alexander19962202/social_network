@@ -10,11 +10,11 @@ const MyPosts = (props) => {
 
     let on_addPost = () => {
         props.on_addPost();
-    }
+    };
     let on_updateNewPostText = (e) => {
         let newText = e.target.value;
         props.on_updateNewPost(newText);
-    }
+    };
 
     return (
         <div className={classes.postBlock}>

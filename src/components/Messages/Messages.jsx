@@ -1,13 +1,13 @@
 import React from 'react'
 import classes from'./Messages.module.css'
-import DialogsBlock from "./DialogsBlock/DialogsBlock";
-import MessagesBlock from "./MessagesBlock/MessagesBlock";
+import DialogsBlockContainer from "./DialogsBlock/DialogsBlockContainer";
+import MessageBlockContainer from "./MessagesBlock/MessageBlockContainer"
 
 const Messages = (props) => {
     return (
         <div className={classes.messages}>
-            <DialogsBlock />
-            <MessagesBlock />
+            <DialogsBlockContainer />
+            <MessageBlockContainer />
         </div>
     );
 };
