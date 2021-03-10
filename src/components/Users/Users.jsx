@@ -5,8 +5,7 @@ import userPhoto from '../../assets/images/ic_person_24px.svg'
 
 class Users extends React.Component {
 
-    constructor(props) {
-        super(props);
+    componentDidMount() {
         axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
             this.props.on_setUsers(response.data.items);
         });
