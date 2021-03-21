@@ -2,3 +2,21 @@
     width: 150px;
     height: 200px;
 }
+
+.pagesWidget {
+    background-color: white;
+}
+
+.pagesWidget span {
+    padding-right: 20px;
+}
+
+.pages {
+    padding-right: 20px;
+    color: grey;
+}
+
+.activePage {
+    color: red;
+}
+
