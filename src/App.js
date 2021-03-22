@@ -1,14 +1,14 @@
 import './App.css';
 import Header from "./ui/Header/Header";
 import NavBar from "./ui/NavBar/NavBar";
-import Profile from "./ui/Profile/Profile";
-import Messages from "./ui/Messages/Messages";
-import News from "./ui/News/News";
-import Music from "./ui/Music/Music";
-import Settings from "./ui/Settings/Settings";
+import Profile from "./ui/Modules/Profile/Profile";
+import Messages from "./ui/Modules/Messages/Messages";
+import News from "./ui/Modules/News/News";
+import Music from "./ui/Modules/Music/Music";
+import Settings from "./ui/Modules/Settings/Settings";
 import {BrowserRouter, Route} from 'react-router-dom'
 import React from "react";
-import UsersContainer from "./ui/Users/UsersContainer";
+import UsersContainer from "./ui/Modules/Users/UsersContainer";
 
 const App = (props) => {
 

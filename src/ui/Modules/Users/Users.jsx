@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './Users.module.css'
-import userPhoto from '../../assets/images/ic_person_24px.svg'
-import Preloader from "../widgets/Preloader";
+import userPhoto from '../../../assets/images/ic_person_24px.svg'
+import Preloader from "../../widgets/Preloader";
 
 let Users = (props) => {
 

@@ -68,11 +68,11 @@ const usersPage_reducer = (state = initialState, action) => {
     }
 };
 
-export const followAC = (userID) => ({ type: FOLLOW, userID: userID });
-export const unfollowAC = (userID) => ({ type: UNFOLLOW, userID: userID });
-export const setUsersAC = (users) => ({ type: SET_USERS, users: users });
-export const setTotalUsersCountAC = (count) => ({ type: SET_TOTAL_USERS_COUNT, count: count});
-export const setCurrentUsersPageAC = (page) => ({ type: SET_CURRENT_USERS_PAGE, page: page});
-export const setFetchingModeAC = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching: isFetching});
+export const follow = (userID) => ({ type: FOLLOW, userID: userID });
+export const unfollow = (userID) => ({ type: UNFOLLOW, userID: userID });
+export const setUsers = (users) => ({ type: SET_USERS, users: users });
+export const setTotalUsersCount = (count) => ({ type: SET_TOTAL_USERS_COUNT, count: count});
+export const setCurrentUsersPage = (page) => ({ type: SET_CURRENT_USERS_PAGE, page: page});
+export const setFetchingMode = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching: isFetching});
 
 export default usersPage_reducer;
