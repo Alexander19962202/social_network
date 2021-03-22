@@ -6,10 +6,10 @@ const SET_CURRENT_USERS_PAGE = 'SET_CURRENT_USERS_PAGE';
 
 let initialState = {
     users: [],
-    pageSize: 100,
+    pageSize: 10,
     totalUsersCount: 0,
     currentUsersPage: 1,
-    pagesRange: 10
+    pagesRange: 20
 };
 
 const usersPage_reducer = (state = initialState, action) => {
