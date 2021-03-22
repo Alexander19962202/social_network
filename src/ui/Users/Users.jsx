@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './Users.module.css'
 import userPhoto from '../../assets/images/ic_person_24px.svg'
+import Preloader from "../widgets/Preloader";
 
 let Users = (props) => {
 
@@ -22,13 +23,16 @@ let Users = (props) => {
                 {
                     pages.map(p => {
                         return (<span className={p === props.currentUsersPage && classes.activePage}
-                                      onClick={(e) => {props.on_currentPageChanged(p);}}>{p}</span>)
+                                      onClick={(e) => {
+                                          props.on_currentPageChanged(p);
+                                      }}>{p}</span>)
                     })
                 }
             </div>
-            <div>
-                {
-                    props.users.map(u => <div key={u.id}>
+            {props.isFetching ? <Preloader/> :
+                <div>
+                    {
+                        props.users.map(u => <div key={u.id}>
                     <span>
                         <div>
                             <img src={u.photos.small === null ? userPhoto : u.photos.small}
@@ -37,7 +41,7 @@ let Users = (props) => {
                         <div>{u.name}</div>
                         <div>{u.status}</div>
                     </span>
-                        <span>
+                            <span>
                             <div>
                             {
                                 u.followed ?
@@ -50,12 +54,13 @@ let Users = (props) => {
                             }
                             </div>
                         </span>
-                        <span>
+                            <span>
                             <div>{"u.location.country} / {u.location.city"}</div>
                         </span>
-                    </div>)
-                }
-            </div>
+                        </div>)
+                    }
+                </div>
+            }
         </div>
     );
 };

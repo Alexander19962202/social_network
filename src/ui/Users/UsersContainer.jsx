@@ -6,25 +6,30 @@ import {
     unfollowAC,
     setUsersAC,
     setTotalUsersCountAC,
-    setCurrentUsersPage
+    setCurrentUsersPageAC,
+    setFetchingModeAC
 } from "../../redux/userspage_reducer";
 import * as axios from "axios";
 
 class UsersContainer extends React.Component {
 
     componentDidMount() {
+        this.props.on_setFetchingMode(true);
         axios.get('https://social-network.samuraijs.com/api/1.0/users?page=' + String(this.props.currentUsersPage) + '&count=' + String(this.props.pageSize))
             .then(response => {
                 this.props.on_setUsers(response.data.items);
                 this.props.on_setTotalUsersCount(response.data.totalCount);
+                this.props.on_setFetchingMode(false);
             });
     }
 
     on_currentPageChanged = (pageNumber) => {
         this.props.on_setCurrentUsersPage(pageNumber);
+        this.props.on_setFetchingMode(true);
         axios.get('https://social-network.samuraijs.com/api/1.0/users?page=' + String(this.props.currentUsersPage) + '&count=' + String(this.props.pageSize))
             .then(response => {
                 this.props.on_setUsers(response.data.items);
+                this.props.on_setFetchingMode(false);
             });
     }
 
@@ -38,6 +43,7 @@ class UsersContainer extends React.Component {
                    on_follow={this.props.on_follow}
                    on_unfollow={this.props.on_unfollow}
                    on_currentPageChanged={this.on_currentPageChanged}
+                   isFetching={this.props.isFetching}
             />
         );
     }
@@ -49,7 +55,8 @@ let mapStateToProps = (state) => {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentUsersPage: state.usersPage.currentUsersPage,
-        pagesRange: state.usersPage.pagesRange
+        pagesRange: state.usersPage.pagesRange,
+        isFetching: state.usersPage.isFetching
     }
 };
 
@@ -68,7 +75,10 @@ let mapDispatchToProps = (dispatch) => {
             dispatch(setTotalUsersCountAC(count))
         },
         on_setCurrentUsersPage: (page) => {
-            dispatch(setCurrentUsersPage(page))
+            dispatch(setCurrentUsersPageAC(page))
+        },
+        on_setFetchingMode: (isFetching) => {
+            dispatch(setFetchingModeAC(isFetching))
         }
     }
 };
