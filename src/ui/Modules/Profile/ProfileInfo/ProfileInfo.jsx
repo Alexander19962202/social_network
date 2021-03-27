@@ -1,15 +1,22 @@
 import React from 'react';
 import classes from './ProfileInfo.module.css';
+import Preloader from "../../../widgets/Preloader";
 
-const ProfileInfo = () => {
+const ProfileInfo = (props) => {
+    debugger;
+    if(!props.profileInfoData.userProfile)
+        return (
+            <Preloader/>
+        );
     return (
         <div>
             <div className={classes.profileLogo}>
-                <img src='https://cs309821.vk.me/v309821389/8138/taqZMGEXKgo.jpg'/>
+                <img src={props.profileInfoData.userProfile.photos.large}/>
             </div>
             <div className={classes.descriptionBlock}>
-                <img src='https://sun1-14.userapi.com/impf/c849228/v849228610/19cd41/WsTFkn32rmI.jpg?size=200x0&quality=96&crop=1,319,1213,1213&sign=4eed9454f39b203c3bff8b36633be047&ava=1'/>
-                Alexander Evstafiadi
+                <img src={props.profileInfoData.userProfile.photos.small}/>
+                <div>{props.profileInfoData.userProfile.fullName}</div>
+                <div>{props.profileInfoData.userProfile.aboutMe}</div>
             </div>
         </div>
     );
