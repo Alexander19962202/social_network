@@ -1,5 +1,5 @@
 import './App.css';
-import Header from "./ui/Header/Header";
+import HeaderContainer from "./ui/Header/HeaderContainer";
 import NavBar from "./ui/NavBar/NavBar";
 import ProfileContainer from "./ui/Modules/Profile/ProfileContainer";
 import Messages from "./ui/Modules/Messages/Messages";
@@ -14,7 +14,7 @@ const App = () => {
     return (
         <BrowserRouter>
             <div className="app-wrapper">
-                <Header />
+                <HeaderContainer />
                 <NavBar />
                 <div className='app-wrapper-content'>
                     <Route path='/profile' render={ () => <ProfileContainer /> }/>
