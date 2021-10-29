@@ -3,7 +3,7 @@ import classes from './ProfileInfo.module.css';
 import Preloader from "../../../widgets/Preloader";
 
 const ProfileInfo = (props) => {
-    debugger;
+
     if(!props.profileInfoData.userProfile)
         return (
             <Preloader/>
