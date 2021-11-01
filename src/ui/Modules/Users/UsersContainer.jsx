@@ -9,18 +9,16 @@ import {
     setCurrentUsersPage,
     setFetchingMode
 } from "../../../redux/userspage_reducer";
-import * as axios from "axios";
+import {usersAPI} from "../../Api/Api";
 
 class UsersContainer extends React.Component {
 
     componentDidMount() {
         this.props.setFetchingMode(true);
-        axios.get('https://social-network.samuraijs.com/api/1.0/users?page=' + String(this.props.currentUsersPage) + '&count=' + String(this.props.pageSize), {
-            withCredentials: true
-        })
-            .then(response => {
-                this.props.setUsers(response.data.items);
-                this.props.setTotalUsersCount(response.data.totalCount);
+        usersAPI.getUsers(this.props.currentUsersPage, this.props.pageSize)
+            .then(data => {
+                this.props.setUsers(data.items);
+                this.props.setTotalUsersCount(data.totalCount);
                 this.props.setFetchingMode(false);
             });
     }
@@ -28,14 +26,12 @@ class UsersContainer extends React.Component {
     on_currentPageChanged = (pageNumber) => {
         this.props.setCurrentUsersPage(pageNumber);
         this.props.setFetchingMode(true);
-        axios.get('https://social-network.samuraijs.com/api/1.0/users?page=' + String(this.props.currentUsersPage) + '&count=' + String(this.props.pageSize), {
-            withCredentials:true
-        })
-            .then(response => {
-                this.props.setUsers(response.data.items);
+        usersAPI.getUsers(this.props.currentUsersPage, this.props.pageSize)
+            .then(data => {
+                this.props.setUsers(data.items);
                 this.props.setFetchingMode(false);
             });
-    }
+    };
 
     render() {
         return (
