@@ -47,16 +47,5 @@ export const usersAPI = {
                 return response.data;
             });
     }
-    //
-    // axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
-    //     withCredentials: true,
-    //     headers: {
-    //         "API-KEY" : "41a301f3-1510-488a-b73d-f4713384558e"
-    //     }
-    // })
-    //     .then(response => {
-    //         if(response.data.resultCode === 0)
-    //             props.on_unfollow(u.id);
-    //     });
 };
 
