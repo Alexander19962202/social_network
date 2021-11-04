@@ -9,6 +9,7 @@ import Settings from "./ui/Modules/Settings/Settings";
 import {BrowserRouter, Route} from 'react-router-dom'
 import React from "react";
 import UsersContainer from "./ui/Modules/Users/UsersContainer";
+import LoginDialog from "./ui/LoginDialog/LoginDialog";
 
 const App = () => {
     return (
@@ -17,6 +18,7 @@ const App = () => {
                 <HeaderContainer />
                 <NavBar />
                 <div className='app-wrapper-content'>
+                    <Route path='/login' render={ () => <LoginDialog/> }/>
                     <Route path='/profile/:userID?' render={ () => <ProfileContainer /> }/>
                     <Route path='/messages' render={ () => <Messages /> }/>
                     <Route path='/news' render={ () => <News /> }/>
