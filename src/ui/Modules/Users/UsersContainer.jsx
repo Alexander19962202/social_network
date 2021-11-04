@@ -4,34 +4,17 @@ import Users from "./Users"
 import {
     follow,
     unfollow,
-    setUsers,
-    setTotalUsersCount,
-    setCurrentUsersPage,
-    setFetchingMode,
-    setFollowingProgress
+    getUsers
 } from "../../../redux/userspage_reducer";
-import {usersAPI} from "../../Api/Api";
 
 class UsersContainer extends React.Component {
 
     componentDidMount() {
-        this.props.setFetchingMode(true);
-        usersAPI.getUsers(this.props.currentUsersPage, this.props.pageSize)
-            .then(data => {
-                this.props.setUsers(data.items);
-                this.props.setTotalUsersCount(data.totalCount);
-                this.props.setFetchingMode(false);
-            });
+        this.props.getUsers(this.props.currentUsersPage, this.props.pageSize);
     }
 
     on_currentPageChanged = (pageNumber) => {
-        this.props.setCurrentUsersPage(pageNumber);
-        this.props.setFetchingMode(true);
-        usersAPI.getUsers(this.props.currentUsersPage, this.props.pageSize)
-            .then(data => {
-                this.props.setUsers(data.items);
-                this.props.setFetchingMode(false);
-            });
+        this.props.getUsers(pageNumber, this.props.pageSize);
     };
 
     render() {
@@ -46,7 +29,6 @@ class UsersContainer extends React.Component {
                    on_currentPageChanged={this.on_currentPageChanged}
                    isFetching={this.props.isFetching}
                    usersFollowing={this.props.usersFollowing}
-                   setFollowingProgress={this.props.setFollowingProgress}
             />
         );
     }
@@ -54,7 +36,7 @@ class UsersContainer extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        users:  state.usersPage.users,
+        users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentUsersPage: state.usersPage.currentUsersPage,
@@ -64,4 +46,4 @@ let mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps, {follow, unfollow, setUsers, setTotalUsersCount, setCurrentUsersPage, setFetchingMode, setFollowingProgress})(UsersContainer);
+export default connect(mapStateToProps, {follow, unfollow, getUsers})(UsersContainer);

@@ -13,39 +13,34 @@ const instance = axios.create({
 export const usersAPI = {
 
     getUsers(currentPage = 1, pageSize = 10) {
-        return instance.get(`users?page=${currentPage}&count=${pageSize}`)
-            .then(response => {
-                return response.data;
-            });
+        return instance.get(`users?page=${currentPage}&count=${pageSize}`).then(response => {
+            return response.data;
+        });
     },
 
-    authMe() {
-        return instance.get('auth/me')
-            .then(response => {
-                return response.data;
-            });
-    },
-
-
-    getProfile(userID){
-        return instance.get('profile/' + userID)
-            .then(response => {
-                return response.data;
-            });
+    getProfile(userID) {
+        return instance.get('profile/' + userID).then(response => {
+            return response.data;
+        });
     },
 
     follow(userID) {
-        return instance.post('follow/' + userID, {})
-            .then(response => {
-                return response.data;
-            });
+        return instance.post('follow/' + userID, {}).then(response => {
+            return response.data;
+        });
     },
 
     unFollow(userID) {
-        return instance.delete('follow/' + userID)
-            .then(response => {
-                return response.data;
-            });
+        return instance.delete('follow/' + userID).then(response => {
+            return response.data;
+        });
     }
 };
 
+export const authAPI = {
+    authMe() {
+        return instance.get('auth/me').then(response => {
+            return response.data;
+        });
+    }
+};
