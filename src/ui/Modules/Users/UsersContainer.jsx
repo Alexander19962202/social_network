@@ -6,6 +6,7 @@ import {
     unfollow,
     getUsers
 } from "../../../redux/userspage_reducer";
+import withAuthRedirect from "../../../HOC/withAuthRedirect";
 
 class UsersContainer extends React.Component {
 
@@ -46,4 +47,6 @@ let mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps, {follow, unfollow, getUsers})(UsersContainer);
+const WithAuthRedirectComponent = withAuthRedirect(UsersContainer);
+
+export default connect(mapStateToProps, {follow, unfollow, getUsers})(WithAuthRedirectComponent);
