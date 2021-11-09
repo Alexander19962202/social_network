@@ -7,6 +7,7 @@ import musicPage_reducer from "./musicpage_reducer";
 import settingsPage_reducer from "./settingspage_reducer";
 import usersPage_reducer from "./userspage_reducer";
 import thunkMiddleware from "redux-thunk";
+import { reducer as formReducer } from 'redux-form'
 
 let reducers = combineReducers({
     auth: auth_reducer,
@@ -15,7 +16,8 @@ let reducers = combineReducers({
     newsPage: newsPage_reducer,
     musicPage: musicPage_reducer,
     settingsPage: settingsPage_reducer,
-    usersPage: usersPage_reducer
+    usersPage: usersPage_reducer,
+    form: formReducer
 });
 
 let store = createStore(reducers, applyMiddleware(thunkMiddleware));
