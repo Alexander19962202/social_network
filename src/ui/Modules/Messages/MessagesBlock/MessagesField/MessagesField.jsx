@@ -1,27 +1,32 @@
 import React from "react";
 import classes from './MessagesField.module.css'
+import {Field, reduxForm} from "redux-form";
+
+const AddMessagesForm = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <div className={classes.messagesField}>
+                <div className={classes.textarea}>
+                    <Field placeholder='Enter new message' className={classes.textarea} component={'textarea'} name={'messageText'}/>
+                </div>
+                <div>
+                    <button className={classes.button}>Send</button>
+                </div>
+            </div>
+        </form>
+    )
+};
+
+let AddMessagesReduxForm = reduxForm({form: "MessagesSendMessage"})(AddMessagesForm);
 
 const MessagesField = (props) => {
 
-    let messageTextField = React.createRef();
-
-    let on_sendMessage = () => {
-        props.on_sendMessage();
-    };
-    let on_updateNewMessageText = () => {
-        let newText = messageTextField.current.value;
-        props.on_updateNewMessageText(newText);
+    let on_sendMessage = (formData) => {
+        props.on_sendMessage(formData.messageText);
     };
 
     return (
-        <div className={classes.messagesField}>
-            <div className={classes.textarea}>
-                <textarea placeholder='Enter new message' ref={messageTextField} className={classes.textarea} value={props.newMessageText} onChange={on_updateNewMessageText}/>
-            </div>
-            <div>
-                <button className={classes.button} onClick={on_sendMessage}>Send</button>
-            </div>
-        </div>
+       <AddMessagesReduxForm onSubmit={on_sendMessage}/>
     );
 };
 

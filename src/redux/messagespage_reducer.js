@@ -1,5 +1,4 @@
 const SEND_MESSAGE = 'SEND_MESSAGE';
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE_NEW_MESSAGE_TEXT';
 
 let initialState = {
     messagesPageData: {
@@ -40,7 +39,6 @@ let initialState = {
                 {id: 3, message: 'How are you?'},
                 {id: 4, message: 'Good!!!'}
             ],
-            newMessageText: ''
         }
     }
 };
@@ -48,28 +46,15 @@ let initialState = {
 const messagesPage_reducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case UPDATE_NEW_MESSAGE_TEXT: {
-            return  {
-                ...state,
-                messagesPageData: {
-                    ...state.messagesPageData,
-                    messagesData: {
-                        ...state.messagesPageData.messagesData,
-                        newMessageText: action.newMessageTextValue
-                    }
-                }
-            };
-        }
         case SEND_MESSAGE: {
-            let text = state.messagesPageData.messagesData.newMessageText;
+            let text = action.messageText;
             return {
                 ...state,
                 messagesPageData: {
                     ...state.messagesPageData,
                     messagesData: {
                         ...state.messagesPageData.messagesData,
-                        messageStateItems: [...state.messagesPageData.messagesData.messageStateItems, { id: 5, message: text }],
-                        newMessageText: ''
+                        messageStateItems: [...state.messagesPageData.messagesData.messageStateItems, { id: 5, message: text }]
                     }
                 }
             };
@@ -79,7 +64,6 @@ const messagesPage_reducer = (state = initialState, action) => {
     }
 };
 
-export const sendMessage = () => ({ type: SEND_MESSAGE });
-export const updateNewMessageText = (newText) => ({ type: UPDATE_NEW_MESSAGE_TEXT, newMessageTextValue: newText });
+export const sendMessage = (messageText) => ({ type: SEND_MESSAGE, messageText });
 
 export default messagesPage_reducer;

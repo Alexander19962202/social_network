@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux"
 import MessagesBlock from "./MessagesBlock";
-import {sendMessage, updateNewMessageText} from "../../../../redux/messagespage_reducer";
+import {sendMessage} from "../../../../redux/messagespage_reducer";
 
 let mapStateToProps = (state) => {
     return {
@@ -9,6 +9,6 @@ let mapStateToProps = (state) => {
     }
 };
 
-const MessageBlockContainer = connect(mapStateToProps, {sendMessage, updateNewMessageText})(MessagesBlock);
+const MessageBlockContainer = connect(mapStateToProps, {sendMessage})(MessagesBlock);
 
 export default MessageBlockContainer;
