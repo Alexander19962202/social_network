@@ -21,7 +21,7 @@ const auth_reducer = (state = initialState, action) => {
                     id: action.authUserData.id,
                     login: action.authUserData.login,
                     email: action.authUserData.email,
-                    isAuth: true
+                    isAuth: action.isAuth
                 }
             }
         }
@@ -30,14 +30,32 @@ const auth_reducer = (state = initialState, action) => {
     }
 };
 
-const setAuthUserDataSuccess = (authUserData) => ({ type: SET_AUTH_USER_DATA, authUserData: authUserData });
+const setAuthUserDataSuccess = (authUserData, isAuth) => ({ type: SET_AUTH_USER_DATA, authUserData: authUserData, isAuth});
 
-export const setAuthMe = () => {
+export const getAuthUserData = () => {
     return (dispatch) => {
         authAPI.authMe().then(data => {
             if (data.resultCode === 0)
-                dispatch(setAuthUserDataSuccess(data.data));
+                dispatch(setAuthUserDataSuccess(data.data, true));
         });
+    }
+};
+
+export const login = (email, password, rememberMe) => {
+    return (dispatch) => {
+        authAPI.login(email, password,rememberMe).then(response => {
+            if(response.data.resultCode === 0)
+                dispatch(getAuthUserData())
+        })
+    }
+};
+
+export const logout = () => {
+    return (dispatch) => {
+        authAPI.logout().then(response => {
+            if(response.data.resultCode === 0)
+                dispatch(setAuthUserDataSuccess({}, false));
+        })
     }
 };
 
