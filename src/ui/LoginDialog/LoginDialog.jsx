@@ -5,6 +5,7 @@ import {Input} from "../widgets/controls/FormControl/FormControl";
 import {connect} from "react-redux";
 import {login} from "../../redux/auth_reducer";
 import Redirect from "react-router-dom/es/Redirect";
+import style from "./../LoginDialog/LoginDialog.module.css"
 
 const LoginForm = (props) => {
     return (
@@ -20,6 +21,11 @@ const LoginForm = (props) => {
                     <Field component={Input} name={"rememberMe"} type={"checkbox"}/> remember me
                 </span>
             </div>
+            {props.error &&
+                <div className={style.formSummaryError}>
+                    {props.error}
+                </div>
+            }
             <div>
                 <button>Login</button>
             </div>
@@ -27,7 +33,7 @@ const LoginForm = (props) => {
     )
 };
 
-const LoginReduxForm =  reduxForm({form: 'login'})(LoginForm);
+const LoginReduxForm =  reduxForm({form: 'Login'})(LoginForm);
 
 const Login = (props) => {
     const onSubmit = (formData) => {

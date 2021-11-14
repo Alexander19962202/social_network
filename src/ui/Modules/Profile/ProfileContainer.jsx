@@ -9,9 +9,10 @@ import {compose} from "redux";
 class ProfileContainer extends React.Component {
 
     componentDidMount() {
+        debugger
         let userID = this.props.match.params.userID;
         if (!userID)
-            userID = 16064;
+            userID = this.props.userID;
         this.props.getProfile(userID);
         this.props.getProfileStatus(userID)
     }
@@ -27,6 +28,8 @@ let mapStateToProps = (state) => {
     return {
         profileInfoData: state.profilePage.profilePageData.profileInfoData,
         myPostsData: state.profilePage.profilePageData.myPostsData,
+        isAuth: state.auth.authUserData.isAuth,
+        userID: state.auth.authUserData.id
     }
 };
 
