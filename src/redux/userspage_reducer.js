@@ -92,7 +92,7 @@ const setFollowingProgress = (isFollowing, userID) => ({
     userID: userID
 });
 
-export const getUsers = (currentUsersPage, pageSize) => {
+export const requestUsers = (currentUsersPage, pageSize) => {
     return (dispatch) => {
         dispatch(setFetchingMode(true));
         dispatch(setCurrentUsersPage(currentUsersPage));
