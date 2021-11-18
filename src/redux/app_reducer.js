@@ -19,17 +19,14 @@ const appReducer = (state = initialState, action) => {
     }
 };
 
-
 const initializedSuccess = () => ({type: INITIALIZED_SUCCESS});
 
 export const initializeApp = () => (dispatch) => {
-    debugger
     let promise = dispatch(getAuthUserData());
     //dispatch(somethingelse());
     //dispatch(somethingelse());
     Promise.all([promise])
         .then(() => {
-            debugger
             dispatch(initializedSuccess());
         });
 };
