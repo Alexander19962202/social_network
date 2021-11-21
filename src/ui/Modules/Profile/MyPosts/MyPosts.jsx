@@ -7,6 +7,13 @@ import {Textarea} from "../../../widgets/controls/FormControl/FormControl";
 
 const maxLength10 = maxLengthCreator(10);
 
+/**
+ * @details Для оптимизации можно использовать memo, PureComponent или переопределить shouldComponentDidUpdate
+ * @param props
+ * @returns {*}
+ * @constructor
+ */
+
 const MyPostsForm  = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
@@ -22,7 +29,7 @@ const MyPostsForm  = (props) => {
 
 const MyPostsReduxForm = reduxForm({form: "ProfileAddNewPostForm"})(MyPostsForm);
 
-const MyPosts = (props) => {
+const MyPosts = React.memo((props) => {
 
     let myPostItems =
         props.myPostsData.myPostStateItems.map(post => <Post text={post.text} likeCount={post.likeCount} id={post.id} key={post.id}/>);
@@ -40,6 +47,6 @@ const MyPosts = (props) => {
             </div>
         </div>
     );
-}
+});
 
 export default MyPosts;
