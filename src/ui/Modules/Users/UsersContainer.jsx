@@ -19,11 +19,13 @@ import {
 class UsersContainer extends React.Component {
 
     componentDidMount() {
-        this.props.requestUsers(this.props.currentUsersPage, this.props.pageSize);
+        const {currentUsersPage, pageSize} = this.props;
+        this.props.requestUsers(currentUsersPage, pageSize);
     }
 
     on_currentPageChanged = (pageNumber) => {
-        this.props.requestUsers(pageNumber, this.props.pageSize);
+        const {pageSize} = this.props;
+        this.props.requestUsers(pageNumber, pageSize);
     };
 
     render() {
