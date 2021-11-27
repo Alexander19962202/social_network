@@ -4,7 +4,7 @@ import {required} from "../../utils/validators/validators";
 import {createField, Input} from "../widgets/controls/FormControl/FormControl";
 import {connect} from "react-redux";
 import {login} from "../../redux/auth_reducer";
-import Redirect from "react-router-dom/es/Redirect";
+import {Redirect} from "react-router-dom";
 import style from "./../LoginDialog/LoginDialog.module.css"
 
 const LoginForm = (props) => {
