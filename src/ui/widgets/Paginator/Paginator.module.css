@@ -1,15 +1,12 @@
 
-.pagesWidget {
+.paginator {
+    margin: 10px;
     background-color: white;
 }
 
-.pagesWidget span {
-    padding-right: 20px;
-}
-
-.pages {
-    padding-right: 20px;
-    color: grey;
+.pageNumber {
+    padding: 2px;
+    border: 1px solid grey;
 }
 
 .activePage {

@@ -1,31 +1,45 @@
-import React from 'react'
-import classes from './Paginator.module.css'
+import React, {useState} from 'react'
+import styles from './Paginator.module.css'
+import cn from "classnames";
 
-let Paginator = (props) => {
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+let Paginator = ({totalItemsCount, pageSize, currentItemsPage, on_currentPageChanged, pagesRange = 10}) => {
+    let pagesCount = Math.ceil(totalItemsCount / pageSize);
     let pages = [];
-    let halfPagesRange = Math.ceil(props.pagesRange / 2);
-    let firstPage = props.currentUsersPage > halfPagesRange ? (props.currentUsersPage - halfPagesRange) : 1;
-    let lastPage = props.currentUsersPage > halfPagesRange ? (props.currentUsersPage + halfPagesRange) : props.currentUsersPage + (2 * halfPagesRange - 1);
-    for (let i = firstPage; i <= lastPage; i++) {
+    for (let i = 1; i <= pagesCount; i++) {
         pages.push(i);
-        if (i === pagesCount) {
-            break;
-        }
     }
-    debugger
-    return (
-        <div className={classes.pagesWidget}>
-            {
-                pages.map(p => {
-                    return (<span className={p === props.currentUsersPage && classes.activePage}
+    let pagesPortionsCount = Math.ceil(pagesCount / pagesRange);
+    let [portionNumber, setPortionNumber] = useState(1);
+    let leftPortionPageNumber = Math.ceil((portionNumber - 1) * pagesRange + 1);
+    let rightPortionPageNumber = Math.ceil(portionNumber * pagesRange);
+
+    return <div className={styles.paginator}>
+        {
+            portionNumber > 1 &&
+            <button onClick={() => {
+                setPortionNumber(portionNumber - 1);
+                on_currentPageChanged(leftPortionPageNumber - pagesRange);
+            }}>PREV</button>
+        }
+        {
+            pages
+                .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
+                .map(p => {
+                    return (<span className={ cn({[styles.activePage]: currentItemsPage === p}, styles.pageNumber) }
+                                  key={p}
                                   onClick={(e) => {
-                                      props.on_currentPageChanged(p);
+                                      on_currentPageChanged(p);
                                   }}>{p}</span>)
                 })
-            }
-        </div>
-    )
+        }
+        {
+            portionNumber < pagesPortionsCount &&
+            <button onClick={() => {
+                setPortionNumber(portionNumber + 1);
+                on_currentPageChanged(leftPortionPageNumber + pagesRange);
+            }}>NEXT</button>
+        }
+    </div>
 };
 
 export default Paginator;
