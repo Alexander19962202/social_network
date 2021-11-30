@@ -4,7 +4,7 @@ import NavBar from "./ui/NavBar/NavBar";
 import News from "./ui/Modules/News/News";
 import Music from "./ui/Modules/Music/Music";
 import Settings from "./ui/Modules/Settings/Settings";
-import {BrowserRouter, Route, withRouter} from "react-router-dom";
+import {HashRouter, Route, withRouter} from "react-router-dom";
 import React from "react";
 import UsersContainer from "./ui/Modules/Users/UsersContainer";
 import LoginDialog from "./ui/LoginDialog/LoginDialog";
@@ -57,11 +57,11 @@ let AppContainer = compose(
 
 let SocialNetworkApp = (props) => {
     return <React.StrictMode>
-        <BrowserRouter>
+        <HashRouter>
             <Provider store={store}>
                 <AppContainer/>
             </Provider>
-        </BrowserRouter>
+        </HashRouter>
     </React.StrictMode>
 };
 
