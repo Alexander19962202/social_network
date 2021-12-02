@@ -1,5 +1,5 @@
 import React from 'react';
-import {Field, reduxForm} from "redux-form";
+import {reduxForm} from "redux-form";
 import {required} from "../../utils/validators/validators";
 import {createField, Input} from "../widgets/controls/FormControl/FormControl";
 import {connect} from "react-redux";

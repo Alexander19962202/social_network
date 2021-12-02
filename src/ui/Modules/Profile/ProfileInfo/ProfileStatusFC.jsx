@@ -24,16 +24,12 @@ const ProfileStatusFC = (props) => {
 
     return (
         <div>
+            <b>Status: </b>
             { !editMode &&
-            <div>
                 <span onDoubleClick={ activateEditMode }>{props.status || "-------"}</span>
-            </div>
             }
-            {editMode &&
-            <div>
-                <input onChange={onStatusChange} autoFocus={true} onBlur={ deactivateEditMode }
-                       value={status} />
-            </div>
+            { editMode &&
+                <input onChange={onStatusChange} autoFocus={true} onBlur={ deactivateEditMode } value={status} />
             }
         </div>
     )
