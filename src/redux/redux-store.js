@@ -1,14 +1,14 @@
 import {applyMiddleware, combineReducers, compose, createStore} from "redux";
-import auth_reducer from "./auth_reducer";
-import profilePage_reducer from "./profilepage_reducer";
-import messagesPage_reducer from "./messagespage_reducer";
-import newsPage_reducer from "./newspage_reducer"
-import musicPage_reducer from "./musicpage_reducer";
-import settingsPage_reducer from "./settingspage_reducer";
-import usersPage_reducer from "./userspage_reducer";
+import auth_reducer from "./reducers/auth_reducer";
+import profilePage_reducer from "./reducers/profilepage_reducer";
+import messagesPage_reducer from "./reducers/messagespage_reducer";
+import newsPage_reducer from "./reducers/newspage_reducer"
+import musicPage_reducer from "./reducers/musicpage_reducer";
+import settingsPage_reducer from "./reducers/settingspage_reducer";
+import usersPage_reducer from "./reducers/userspage_reducer";
 import thunkMiddleware from "redux-thunk";
 import { reducer as formReducer } from 'redux-form'
-import app_reducer from "./app_reducer";
+import app_reducer from "./reducers/app_reducer";
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 let reducers = combineReducers({

@@ -5,7 +5,7 @@ import {
     follow,
     unfollow,
     requestUsers
-} from "../../../redux/userspage_reducer";
+} from "../../../redux/reducers/userspage_reducer";
 import {compose} from "redux";
 import {
     getCurrentPage,
@@ -14,7 +14,7 @@ import {
     getPageSize, getPagesRange,
     getTotalUsersCount,
     getUsers
-} from "../../../redux/users_selector";
+} from "../../../redux/selectors/users_selector";
 
 class UsersContainer extends React.Component {
 

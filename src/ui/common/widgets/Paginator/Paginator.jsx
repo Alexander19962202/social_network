@@ -13,7 +13,7 @@ let Paginator = ({totalItemsCount, pageSize, currentItemsPage, on_currentPageCha
     let leftPortionPageNumber = Math.ceil((portionNumber - 1) * pagesRange + 1);
     let rightPortionPageNumber = Math.ceil(portionNumber * pagesRange);
 
-    return <div className={styles.paginator}>
+    return <div className={cn(styles.paginator)}>
         {
             portionNumber > 1 &&
             <button onClick={() => {

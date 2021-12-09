@@ -1,14 +1,13 @@
 import React from 'react';
 import {reduxForm} from "redux-form";
 import {required} from "../../utils/validators/validators";
-import {createField, Input} from "../widgets/controls/FormControl/FormControl";
+import {createField, Input} from "../common/widgets/FormControl/FormControl";
 import {connect} from "react-redux";
-import {login} from "../../redux/auth_reducer";
+import {login} from "../../redux/reducers/auth_reducer";
 import {Redirect} from "react-router-dom";
 import style from "./../LoginDialog/LoginDialog.module.css"
 
 const LoginForm = ({handleSubmit, error, captchaURL}) => {
-    debugger
     return (
         <form onSubmit={handleSubmit}>
             {createField('Email', 'email', [required], Input)}

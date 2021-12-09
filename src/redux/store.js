@@ -1,9 +1,9 @@
-import profilePage_reducer from "./profilepage_reducer";
-import messagesPage_reducer from "./messagespage_reducer";
-import newsPage_reducer from "./newspage_reducer";
-import musicPage_reducer from "./musicpage_reducer";
-import settingsPage_reducer from "./settingspage_reducer";
-import sideBar_reducer from "./sidebar_reducer";
+import profilePage_reducer from "./reducers/profilepage_reducer";
+import messagesPage_reducer from "./reducers/messagespage_reducer";
+import newsPage_reducer from "./reducers/newspage_reducer";
+import musicPage_reducer from "./reducers/musicpage_reducer";
+import settingsPage_reducer from "./reducers/settingspage_reducer";
+import sideBar_reducer from "./reducers/sidebar_reducer";
 
 let store = {
     _state: {
