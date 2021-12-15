@@ -1,8 +1,8 @@
 {
-  "name": "social_network",
+  "name": "web-sowa-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://alexander19962202.github.io/social_network",
+  "homepage": "https://alexander19962202.github.io/web-sowa-app",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.8",
     "@testing-library/react": "^11.2.2",
