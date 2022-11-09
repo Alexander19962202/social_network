@@ -1,7 +1,7 @@
 import React from "react";
 import classes from './MessagesField.module.css'
 import {Field, reduxForm} from "redux-form";
-import {maxLengthCreator, required} from "../../../../../utils/validators/validators";
+import {maxLengthCreator, required} from "../../../../common/validators/validators";
 import {Textarea} from "../../../../common/widgets/FormControl/FormControl";
 
 const maxLength30 = maxLengthCreator(30);

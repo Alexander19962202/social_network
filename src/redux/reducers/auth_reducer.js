@@ -1,4 +1,4 @@
-import {authAPI, securityAPI} from "../../Api/Api";
+import {authAPI, securityAPI} from "../../api/Api";
 import {stopSubmit} from "redux-form";
 
 const AUTH_KEY = 'AUTH/';
