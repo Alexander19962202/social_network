@@ -1,4 +1,4 @@
-import {profileAPI} from "../../Api/Api";
+import {profileAPI} from "../../api/Api";
 import {stopSubmit} from "redux-form";
 import {setGlobalError} from "./app_reducer";
 
