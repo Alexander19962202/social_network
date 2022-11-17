@@ -1,10 +1,10 @@
 import React from 'react';
 import {reduxForm} from "redux-form";
-import {required} from "../../utils/validators/validators";
+import {required} from "../common/validators/validators";
 import {createField, Input} from "../common/widgets/FormControl/FormControl";
 import {connect} from "react-redux";
 import {login} from "../../redux/reducers/auth_reducer";
-import {Redirect} from "react-router-dom";
+import {Navigate} from "react-router-dom";
 import style from "./../LoginDialog/LoginDialog.module.css"
 
 const LoginForm = ({handleSubmit, error, captchaURL}) => {
@@ -35,7 +35,7 @@ const Login = (props) => {
         props.login(formData.email, formData.password, formData.rememberMe, formData.captcha);
     };
     if (props.isAuth) {
-        return <Redirect to={"/profile"} />
+        return <Navigate to={"/profile"} />
     }
 
     return <div>

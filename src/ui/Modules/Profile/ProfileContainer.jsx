@@ -1,46 +1,57 @@
-import React from "react";
+import React, {useEffect, useRef} from "react";
 import {connect} from "react-redux"
 import Profile from "./Profile";
-import {getProfile, getProfileStatus, updateProfileStatus, savePhoto, saveProfile} from "../../../redux/reducers/profilepage_reducer";
-import {withRouter} from "react-router-dom";
-import withAuthRedirect from "../../../HOC/withAuthRedirect";
+import {
+    getProfile,
+    getProfileStatus,
+    updateProfileStatus,
+    savePhoto,
+    saveProfile
+} from "../../../redux/reducers/profilepage_reducer";
+import withAuthRedirect from "../../common/hoc/withAuthRedirect";
 import {compose} from "redux";
+import {Outlet, useNavigate, useParams} from "react-router-dom";
+import usePrevious from "../../common/hook/use-previous";
 
-class ProfileContainer extends React.Component {
+const ProfileContainer = (props) => {
+    const params = useParams()
+    const navigate = useNavigate()
+    const mounted = useRef(false)
 
-    refreshProfile()
-    {
-        let userID = this.props.match.params.userID;
+    const refreshProfile = () => {
+        console.log('refresh')
+        let userID = params?.userID
         if (!userID) {
-            userID = this.props.userID;
+            userID = props.userID;
             if (!userID) {
-                this.props.history.push("/login");
+                navigate("/login");
             }
         }
-        this.props.getProfile(userID);
-        this.props.getProfileStatus(userID)
+        props.getProfile(userID);
+        props.getProfileStatus(userID)
     }
+    const prevParams = usePrevious(params)
 
-    componentDidMount() {
-        this.refreshProfile();
-    }
-
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.props.match.params.userID !== prevProps.match.params.userID ) {
-            this.refreshProfile();
+    useEffect(() => {
+        if (((!isNaN(+prevParams?.userID ) || !isNaN(+params.userID)) && +prevParams?.userID !== +params.userID) || !mounted.current) {
+            refreshProfile()
+            if (!mounted.current) {
+                mounted.current = true
+            }
         }
-    }
+    }, [params])
 
-    render() {
-        return (
-            <Profile profileInfoData={this.props.profileInfoData}
-                     myPostsData={this.props.myPostsData}
-                     updateProfileStatus={this.props.updateProfileStatus}
-                     isOwner={!this.props.match.params.userID}
-                     savePhoto={this.props.savePhoto}
-                     saveProfile={this.props.saveProfile}/>
-        );
-    }
+    return (
+        <div>
+            <Profile profileInfoData={props.profileInfoData}
+                     myPostsData={props.myPostsData}
+                     updateProfileStatus={props.updateProfileStatus}
+                     isOwner={!params?.userID}
+                     savePhoto={props.savePhoto}
+                     saveProfile={props.saveProfile}/>
+            <Outlet/>
+        </div>
+    );
 }
 
 let mapStateToProps = (state) => {
@@ -54,7 +65,6 @@ let mapStateToProps = (state) => {
 
 export default compose(
     connect(mapStateToProps, {getProfile, getProfileStatus, updateProfileStatus, savePhoto, saveProfile}),
-    withAuthRedirect,
-    withRouter
+    withAuthRedirect
 )
 (ProfileContainer);
