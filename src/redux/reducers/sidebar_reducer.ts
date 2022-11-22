@@ -2,7 +2,7 @@ let initialState = {
 
 }
 
-const sideBar_reducer = (state = initialState, action) => {
+const sideBar_reducer = (state = initialState, action: any) => {
 
     return state;
 }

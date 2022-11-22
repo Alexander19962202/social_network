@@ -2,7 +2,7 @@ let initialState = {
 
 }
 
-const newsPage_reducer = (state = initialState, action) => {
+const newsPage_reducer = (state = initialState, action: any) => {
 
     return state;
 }

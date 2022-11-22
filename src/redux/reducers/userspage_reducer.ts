@@ -18,7 +18,7 @@ let initialState = {
     usersFollowing: []
 };
 
-const usersPage_reducer = (state = initialState, action) => {
+const usersPage_reducer = (state = initialState, action: any) => {
 
     switch (action.type) {
         case FOLLOW: {
@@ -70,20 +70,39 @@ const usersPage_reducer = (state = initialState, action) => {
     }
 };
 
-const followSuccess = (userID) => ({type: FOLLOW, userID: userID});
-const unfollowSuccess = (userID) => ({type: UNFOLLOW, userID: userID});
-const setUsers = (users) => ({type: SET_USERS, users: users});
-const setTotalUsersCount = (count) => ({type: SET_TOTAL_USERS_COUNT, count: count});
-const setCurrentUsersPage = (page) => ({type: SET_CURRENT_USERS_PAGE, page: page});
-const setFetchingMode = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching: isFetching});
+const followSuccess = (userID: any) => ({
+    type: FOLLOW,
+    userID: userID
+});
+const unfollowSuccess = (userID: any) => ({
+    type: UNFOLLOW,
+    userID: userID
+});
+const setUsers = (users: any) => ({
+    type: SET_USERS,
+    users: users
+});
+const setTotalUsersCount = (count: any) => ({
+    type: SET_TOTAL_USERS_COUNT,
+    count: count
+});
+const setCurrentUsersPage = (page: any) => ({
+    type: SET_CURRENT_USERS_PAGE,
+    page: page
+});
+const setFetchingMode = (isFetching: any) => ({
+    type: TOGGLE_IS_FETCHING,
+    isFetching: isFetching
+});
+// @ts-expect-error TS(7006): Parameter 'isFollowing' implicitly has an 'any' ty... Remove this comment to see the full error message
 const setFollowingProgress = (isFollowing, userID) => ({
     type: TOGGLE_IS_FOLLOWING_PROGRESS,
     isFollowing: isFollowing,
     userID: userID
 });
 
-export const requestUsers = (currentUsersPage, pageSize) => {
-    return (dispatch) => {
+export const requestUsers = (currentUsersPage: any, pageSize: any) => {
+    return (dispatch: any) => {
         dispatch(setFetchingMode(true));
         dispatch(setCurrentUsersPage(currentUsersPage));
         usersAPI.getUsers(currentUsersPage, pageSize).then(data => {
@@ -91,29 +110,29 @@ export const requestUsers = (currentUsersPage, pageSize) => {
             dispatch(setTotalUsersCount(data.totalCount));
             dispatch(setFetchingMode(false));
         });
-    }
+    };
 };
 
-export const follow = (userID) => {
-    return (dispatch) => {
+export const follow = (userID: any) => {
+    return (dispatch: any) => {
         dispatch(setFollowingProgress(true, userID));
         usersAPI.follow(userID).then(data => {
             if (data.resultCode === 0)
                 dispatch(followSuccess(userID));
             dispatch(setFollowingProgress(false, userID));
         });
-    }
+    };
 };
 
-export const unfollow = (userID) => {
-    return (dispatch) => {
+export const unfollow = (userID: any) => {
+    return (dispatch: any) => {
         dispatch(setFollowingProgress(true, userID));
         usersAPI.unFollow(userID).then(data => {
             if (data.resultCode === 0)
                 dispatch(unfollowSuccess(userID));
             dispatch(setFollowingProgress(false, userID));
         });
-    }
+    };
 };
 
 export default usersPage_reducer;

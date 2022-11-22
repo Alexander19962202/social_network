@@ -43,7 +43,7 @@ let initialState = {
     }
 };
 
-const messagesPage_reducer = (state = initialState, action) => {
+const messagesPage_reducer = (state = initialState, action: any) => {
 
     switch (action.type) {
         case SEND_MESSAGE: {
@@ -64,6 +64,9 @@ const messagesPage_reducer = (state = initialState, action) => {
     }
 };
 
-export const sendMessage = (messageText) => ({ type: SEND_MESSAGE, messageText });
+export const sendMessage = (messageText: any) => ({
+    type: SEND_MESSAGE,
+    messageText
+});
 
 export default messagesPage_reducer;

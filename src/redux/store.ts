@@ -71,22 +71,25 @@ let store = {
     {
         return this._state;
     },
-    dispatch(action)
+    dispatch(action: any)
     {
+        // @ts-expect-error TS(2322): Type '{ profilePageData: { myPostsData: { myPostSt... Remove this comment to see the full error message
         this._state.profilePage = profilePage_reducer(this._state.profilePage, action);
+        // @ts-expect-error TS(2322): Type '{ messagesPageData: { messagesData: { messag... Remove this comment to see the full error message
         this._state.messagesPage = messagesPage_reducer(this._state.messagesPage, action);
         this._state.newsPage = newsPage_reducer(this._state.newsPage, action);
         this._state.musicPage = musicPage_reducer(this._state.musicPage, action);
         this._state.settingsPage = settingsPage_reducer(this._state.settingsPage, action);
         this._state.sideBar = sideBar_reducer(this._state.sideBar, action);
 
+        // @ts-expect-error TS(2554): Expected 0 arguments, but got 1.
         this.rerenderEntireTree(this._state);
     },
     rerenderEntireTree()
     {
         console.log("State changed!");
     },
-    subscribe(observer)
+    subscribe(observer: any)
     {
         this.rerenderEntireTree = observer;
     }

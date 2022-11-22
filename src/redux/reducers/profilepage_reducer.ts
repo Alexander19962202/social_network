@@ -1,4 +1,5 @@
 import {profileAPI} from "../../api/Api";
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'redu... Remove this comment to see the full error message
 import {stopSubmit} from "redux-form";
 import {setGlobalError} from "./app_reducer";
 
@@ -24,7 +25,7 @@ let initialState = {
     }
 };
 
-const profilePage_reducer = (state = initialState, action) => {
+const profilePage_reducer = (state = initialState, action: any) => {
     switch (action.type) {
         case ADD_POST: {
             let text = action.postText;
@@ -89,6 +90,7 @@ const profilePage_reducer = (state = initialState, action) => {
                     profileInfoData: {
                         ...state.profilePageData.profileInfoData,
                         userProfile: {
+                            // @ts-expect-error TS(2698): Spread types may only be created from object types... Remove this comment to see the full error message
                             ...state.profilePageData.profileInfoData.userProfile,
                             photos: action.photos
                         }
@@ -104,29 +106,44 @@ const profilePage_reducer = (state = initialState, action) => {
     }
 };
 
-export const addPost = (postText) => ({type: ADD_POST, postText: postText});
-export const deletePost = (postID) => ({type: DELETE_POST, postID});
-const setUserProfile = (userProfile) => ({type: SET_USER_PROFILE, userProfile: userProfile});
-const setStatus = (status) => ({type: SET_STATUS, status: status});
-const savePhotoSuccess = (photos) => ({type: SAVE_PHOTO, photos});
+export const addPost = (postText: any) => ({
+    type: ADD_POST,
+    postText: postText
+});
+export const deletePost = (postID: any) => ({
+    type: DELETE_POST,
+    postID
+});
+const setUserProfile = (userProfile: any) => ({
+    type: SET_USER_PROFILE,
+    userProfile: userProfile
+});
+const setStatus = (status: any) => ({
+    type: SET_STATUS,
+    status: status
+});
+const savePhotoSuccess = (photos: any) => ({
+    type: SAVE_PHOTO,
+    photos
+});
 
-export const getProfile = (userID) => {
-    return (dispatch) => {
+export const getProfile = (userID: any) => {
+    return (dispatch: any) => {
         profileAPI.getProfile(userID).then(data => {
             dispatch(setUserProfile(data));
         });
-    }
+    };
 };
 
-export const getProfileStatus = (userID) => {
-    return (dispatch) => {
+export const getProfileStatus = (userID: any) => {
+    return (dispatch: any) => {
         profileAPI.getUserStatus(userID).then(response => {
             dispatch(setStatus(response.data));
         })
-    }
+    };
 };
 
-export const updateProfileStatus = (newStatus) => async (dispatch) => {
+export const updateProfileStatus = (newStatus: any) => async (dispatch: any) => {
     try {
         const response = await profileAPI.updateStatus(newStatus);
         if (response.data.resultCode === 0)
@@ -138,7 +155,7 @@ export const updateProfileStatus = (newStatus) => async (dispatch) => {
     }
 };
 
-export const savePhoto = (file) => async (dispatch) => {
+export const savePhoto = (file: any) => async (dispatch: any) => {
     let response = await profileAPI.savePhoto(file);
 
     if (response.data.resultCode === 0) {
@@ -146,7 +163,7 @@ export const savePhoto = (file) => async (dispatch) => {
     }
 };
 
-export const saveProfile = (profile) => async (dispatch, getState) => {
+export const saveProfile = (profile: any) => async (dispatch: any, getState: any) => {
     const userId = getState().auth.authUserData.id;
     const response = await profileAPI.saveProfile(profile);
 

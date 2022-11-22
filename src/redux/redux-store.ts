@@ -7,6 +7,7 @@ import musicPage_reducer from "./reducers/musicpage_reducer";
 import settingsPage_reducer from "./reducers/settingspage_reducer";
 import usersPage_reducer from "./reducers/userspage_reducer";
 import thunkMiddleware from "redux-thunk";
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'redu... Remove this comment to see the full error message
 import { reducer as formReducer } from 'redux-form'
 import app_reducer from "./reducers/app_reducer";
 import { composeWithDevTools } from 'redux-devtools-extension';
@@ -25,6 +26,7 @@ let reducers = combineReducers({
 
 //const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE || compose;
 let store = createStore(reducers, composeWithDevTools(applyMiddleware(thunkMiddleware)));
+// @ts-expect-error TS(2339): Property '__store__' does not exist on type 'Windo... Remove this comment to see the full error message
 window.__store__ = store;
 
 export default store;

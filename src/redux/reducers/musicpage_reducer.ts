@@ -2,7 +2,7 @@ let initialState = {
 
 }
 
-const musicPage_reducer = (state = initialState, action) => {
+const musicPage_reducer = (state = initialState, action: any) => {
 
     return state;
 }

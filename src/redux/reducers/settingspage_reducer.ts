@@ -2,7 +2,7 @@ let initialState = {
 
 }
 
-const settingsPage_reducer = (state = initialState, action) => {
+const settingsPage_reducer = (state = initialState, action: any) => {
 
     return state;
 }

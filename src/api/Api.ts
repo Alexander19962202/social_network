@@ -4,6 +4,7 @@ const instance = axios.create({
     withCredentials: true,
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
     headers: {
+        // @ts-expect-error TS(2580): Cannot find name 'process'. Do you need to install... Remove this comment to see the full error message
         "API-KEY": process.env.REACT_APP_API_KEY
     }
 });
@@ -15,13 +16,13 @@ export const usersAPI = {
         });
     },
 
-    follow(userID) {
+    follow(userID: any) {
         return instance.post('follow/' + userID, {}).then(response => {
             return response.data;
         });
     },
 
-    unFollow(userID) {
+    unFollow(userID: any) {
         return instance.delete('follow/' + userID).then(response => {
             return response.data;
         });
@@ -29,21 +30,21 @@ export const usersAPI = {
 };
 
 export const profileAPI = {
-    getProfile(userID) {
+    getProfile(userID: any) {
         return instance.get('profile/' + userID).then(response => {
             return response.data;
         });
     },
 
-    getUserStatus(userID) {
+    getUserStatus(userID: any) {
         return instance.get('profile/status/' + userID);
     },
 
-    updateStatus(newStatus) {
+    updateStatus(newStatus: any) {
         return instance.put('profile/status', {status: newStatus});
     },
 
-    savePhoto(photoFile) {
+    savePhoto(photoFile: any) {
         const formData = new FormData();
         formData.append("image", photoFile);
 
@@ -53,7 +54,7 @@ export const profileAPI = {
             }
         });
     },
-    saveProfile(profile) {
+    saveProfile(profile: any) {
         return instance.put(`profile`, profile);
     }
 };
@@ -65,7 +66,7 @@ export const authAPI = {
         });
     },
 
-    login(email, password, rememberMe = false, captcha = null) {
+    login(email: any, password: any, rememberMe = false, captcha = null) {
         return instance.post('auth/login/', {email, password, rememberMe, captcha});
     },
 

@@ -9,7 +9,7 @@ let initialState = {
     globalError: ''
 };
 
-const appReducer = (state = initialState, action) => {
+const appReducer = (state = initialState, action: any) => {
     switch (action.type) {
         case INITIALIZED_SUCCESS:
             return {
@@ -28,13 +28,16 @@ const appReducer = (state = initialState, action) => {
 };
 
 const initializedSuccess = () => ({type: INITIALIZED_SUCCESS});
-export const setGlobalError = (error) => ({type: SET_GLOBAL_ERROR_MESSAGE, error})
+export const setGlobalError = (error: any) => ({
+    type: SET_GLOBAL_ERROR_MESSAGE,
+    error
+})
 
-export const resetGlobalError = () => (dispatch) => {
+export const resetGlobalError = () => (dispatch: any) => {
     dispatch(setGlobalError(''));
 };
 
-export const initializeApp = () => (dispatch) => {
+export const initializeApp = () => (dispatch: any) => {
     let promise = dispatch(getAuthUserData());
     //dispatch(somethingelse());
     //dispatch(somethingelse());
