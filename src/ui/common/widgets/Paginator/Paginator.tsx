@@ -20,11 +20,9 @@ let Paginator = ({
     let leftPortionPageNumber = Math.ceil((portionNumber - 1) * pagesRange + 1);
     let rightPortionPageNumber = Math.ceil(portionNumber * pagesRange);
 
-    // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     return <div className={cn(styles.paginator)}>
         {
             portionNumber > 1 &&
-            // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
             <button onClick={() => {
                 setPortionNumber(portionNumber - 1);
                 on_currentPageChanged(leftPortionPageNumber - pagesRange);
@@ -34,7 +32,6 @@ let Paginator = ({
             pages
                 .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
                 .map(p => {
-                    // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
                     return (<span className={ cn({[styles.activePage]: currentItemsPage === p}, styles.pageNumber) }
                                   key={p}
                                   onClick={(e) => {
@@ -44,7 +41,6 @@ let Paginator = ({
         }
         {
             portionNumber < pagesPortionsCount &&
-            // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
             <button onClick={() => {
                 setPortionNumber(portionNumber + 1);
                 on_currentPageChanged(leftPortionPageNumber + pagesRange);

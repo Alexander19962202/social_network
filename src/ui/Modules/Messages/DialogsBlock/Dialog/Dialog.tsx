@@ -6,17 +6,16 @@ import {NavLink} from "react-router-dom";
 const Dialog = (props: any) => {
     let path = '/messages/' + props.id;
     return (
-        // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         <div className={classes.dialog}>
-            // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
+            
             <div>
-                // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
+                
                 <img src={props.avatar}/>
             </div>
-            // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
+            
             <div>
-                // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
-                <NavLink to={path} activeClassName={classes.active}>{props.name}</NavLink>
+                
+                <NavLink to={path} className={(navData) => navData.isActive ? classes.active : ''}>{props.name}</NavLink>
             </div>
         </div>
     );

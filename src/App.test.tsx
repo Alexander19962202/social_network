@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// @ts-expect-error TS(6142): Module './App' was resolved to '/home/alexevs/pet_... Remove this comment to see the full error message
 import SocialNetworkApp from './App';
 import {unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
@@ -21,8 +20,8 @@ afterEach(() => {
 });
 
 it('renders without crashing', () => {
+  // eslint-disable-next-line testing-library/no-unnecessary-act
   act(() => {
-    // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     ReactDOM.render(<SocialNetworkApp />, container);
   });
 });

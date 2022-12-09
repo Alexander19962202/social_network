@@ -35,19 +35,14 @@ class ProfileStatus extends React.Component {
 
     render() {
         return (
-            // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
             <div>
                 {!this.state.editMode &&
-                // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
                 <div>
-                    // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
-                    <span onDoubleClick={this.activateEditMode}>{this.props.status || 'Status is empty'}</span>
+                    <span onDoubleClick={this.activateEditMode}>{'Status is empty'}</span>
                 </div>
                 }
                 {this.state.editMode &&
-                // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
                 <div>
-                    // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
                     <input onChange={this.onStatusChange} autoFocus={true} onBlur={this.deactivateEditMode.bind(this)} value={this.state.status}/>
                 </div>
                 }

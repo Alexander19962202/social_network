@@ -5,37 +5,24 @@ import {NavLink} from "react-router-dom";
 
 const NavBar = () => {
     return (
-        // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         <nav className={classes.navbar}>
-            // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
             <div className={classes.item}>
-                // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
-                <NavLink to='/profile' activeClassName={classes.activeLink}>Profile</NavLink>
+                <NavLink to='/profile' className={(navData) => navData.isActive ? classes.activeLink : ''}>Profile</NavLink>
             </div>
-            // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
             <div className={classes.item}>
-                // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
-                <NavLink to='/messages' activeClassName={classes.activeLink}>Messages</NavLink>
+                <NavLink to='/messages' className={(navData) => navData.isActive ? classes.activeLink : ''}>Messages</NavLink>
             </div>
-            // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
             <div className={classes.item}>
-                // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
-                <NavLink to='/news' activeClassName={classes.activeLink}>News</NavLink>
+                <NavLink to='/news' className={(navData) => navData.isActive ? classes.activeLink : ''}>News</NavLink>
             </div>
-            // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
             <div className={classes.item}>
-                // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
-                <NavLink to='/music' activeClassName={classes.activeLink}>Music</NavLink>
+                <NavLink to='/music' className={(navData) => navData.isActive ? classes.activeLink : ''}>Music</NavLink>
             </div>
-            // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
             <div className={classes.item}>
-                // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
-                <NavLink to='/users' activeClassName={classes.activeLink}>Users</NavLink>
+                <NavLink to='/users' className={(navData) => navData.isActive ? classes.activeLink : ''}>Users</NavLink>
             </div>
-            // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
             <div className={classes.item}>
-                // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
-                <NavLink to='/settings' activeClassName={classes.activeLink}>Settings</NavLink>
+                <NavLink to='/settings' className={(navData) => navData.isActive ? classes.activeLink : ''}>Settings</NavLink>
             </div>
         </nav>
     );

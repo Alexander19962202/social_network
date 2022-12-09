@@ -1,5 +1,4 @@
 import profilePage_reducer, {addPost, deletePost} from "./profilepage_reducer";
-import React from "react";
 
 let state = {
     profilePageData: {
@@ -36,8 +35,6 @@ it('message of new post should be correct', () => {
 
     // 2. action
     let newState = profilePage_reducer(state, action);
-
-    let test = newState.profilePageData.myPostsData.myPostStateItems[postLength];
 
     // 3. expectation
     expect(newState.profilePageData.myPostsData.myPostStateItems[postLength].text).toBe(postTest);
