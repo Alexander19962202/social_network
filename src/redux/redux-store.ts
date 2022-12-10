@@ -1,5 +1,5 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
-import auth_reducer from "./reducers/auth_reducer";
+import authReducer from "./reducers/auth/auth.reducer";
 import profilePage_reducer from "./reducers/profilepage_reducer";
 import messagesPage_reducer from "./reducers/messagespage_reducer";
 import newsPage_reducer from "./reducers/newspage_reducer"
@@ -12,7 +12,7 @@ import app_reducer from "./reducers/app_reducer";
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 let reducers = combineReducers({
-    auth: auth_reducer,
+    auth: authReducer,
     profilePage: profilePage_reducer,
     messagesPage: messagesPage_reducer,
     newsPage: newsPage_reducer,

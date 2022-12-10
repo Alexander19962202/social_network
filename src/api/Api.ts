@@ -65,7 +65,7 @@ export const authAPI = {
         });
     },
 
-    login(email: any, password: any, rememberMe = false, captcha = null) {
+    login(email: any, password: any, rememberMe = false, captcha: string | null = null) {
         return instance.post('auth/login/', {email, password, rememberMe, captcha});
     },
 

@@ -21,90 +21,85 @@ let ProfileContainerWithSuspense = withSuspense(ProfileContainer)
 let MessagesWithSuspense = withSuspense(Messages)
 
 class App extends React.Component<any, any> {
-    catchAllUnhandledErrors = (reason: any, promise: any) => {
-        alert("Some error occured");
-        //console.error(promiseRejectionEvent);
-    }
+  catchAllUnhandledErrors = () => {
+    alert("Some error occured");
+    //console.error(promiseRejectionEvent);
+  }
 
-    componentDidMount() {
-        this.props.initializeApp();
-        // @ts-expect-error TS(2769): No overload matches this call.
-        window.addEventListener("unhandledrejection", this.catchAllUnhandledErrors);
-    }
+  componentDidMount() {
+    this.props.initializeApp();
+    window.addEventListener("unhandledrejection", this.catchAllUnhandledErrors);
+  }
 
-    componentWillUnmount() {
-        // @ts-expect-error TS(2769): No overload matches this call.
-        window.removeEventListener("unhandledrejection", this.catchAllUnhandledErrors);
-    }
+  componentWillUnmount() {
+    window.removeEventListener("unhandledrejection", this.catchAllUnhandledErrors);
+  }
 
-    componentDidUpdate(prevProps: any, prevState: any, snapshot: any) {
-        if (this.props.globalError !== '')
-            setTimeout(() => {
-                this.props.resetGlobalError()
-            }, 5000);
-    }
+  componentDidUpdate() {
+    if (this.props.globalError !== '')
+      setTimeout(() => {
+        this.props.resetGlobalError()
+      }, 5000);
+  }
 
-    render() {
-        // @ts-ignore
-        if (!this.props.initialized) {
-            return <Preloader/>
-        }
-        return (
-            <div className="app-wrapper">
-                <HeaderContainer errorMessage={this.props.globalError}/>
-                
-                <NavBar/>
-                
-                <div className='app-wrapper-content'>
-                    
-                    <Routes>
-                        
-                        <Route path='/' element={<Navigate to={"/profile"}/>}/>
-                        
-                        <Route path='/login' element={<LoginDialog/>}/>
-                        
-                        <Route path='/profile' element={<ProfileContainerWithSuspense/>}/>
-                        
-                        <Route path='/profile/:userID' element={<ProfileContainerWithSuspense/>}/>
-                        
-                        <Route path='/messages' element={<MessagesWithSuspense/>}/>
-                        
-                        <Route path='/news' element={<News/>}/>
-                        
-                        <Route path='/music' element={<Music/>}/>
-                        
-                        <Route path='/settings' element={<Settings/>}/>
-                        
-                        <Route path='/users' element={<UsersContainer/>}/>
-                        
-                        <Route path='*' element={<div>404 NOT FOUND</div>}/>
-                    </Routes>
-                </div>
-            </div>
-        );
+  render() {
+    // @ts-ignore
+    if (!this.props.initialized) {
+      return <Preloader/>
     }
+    return (
+      <div className="app-wrapper">
+        <HeaderContainer errorMessage={this.props.globalError}/>
+
+        <NavBar/>
+
+        <div className='app-wrapper-content'>
+
+          <Routes>
+
+            <Route path='/' element={<Navigate to={"/profile"}/>}/>
+
+            <Route path='/login' element={<LoginDialog/>}/>
+
+            <Route path='/profile' element={<ProfileContainerWithSuspense/>}/>
+
+            <Route path='/profile/:userID' element={<ProfileContainerWithSuspense/>}/>
+
+            <Route path='/messages' element={<MessagesWithSuspense/>}/>
+
+            <Route path='/news' element={<News/>}/>
+
+            <Route path='/music' element={<Music/>}/>
+
+            <Route path='/settings' element={<Settings/>}/>
+
+            <Route path='/users' element={<UsersContainer/>}/>
+
+            <Route path='*' element={<div>404 NOT FOUND</div>}/>
+          </Routes>
+        </div>
+      </div>
+    );
+  }
 }
 
 const mapStateToProps = (state: any) => ({
-    initialized: state.app.initialized,
-    globalError: state.app.globalError
+  initialized: state.app.initialized,
+  globalError: state.app.globalError
 });
 
 let AppContainer = compose(
-    connect(mapStateToProps, {initializeApp, resetGlobalError}))
+  connect(mapStateToProps, {initializeApp, resetGlobalError}))
 (App);
 
-let SocialNetworkApp = (props: any) => {
-    return <React.StrictMode>
-        
-        <BrowserRouter>
-            
-            <Provider store={store}>
-                
-                <AppContainer/>
-            </Provider>
-        </BrowserRouter>
-    </React.StrictMode>
+let SocialNetworkApp = () => {
+  return <React.StrictMode>
+    <BrowserRouter>
+      <Provider store={store}>
+        <AppContainer/>
+      </Provider>
+    </BrowserRouter>
+  </React.StrictMode>
 };
 
 export default SocialNetworkApp;

@@ -1,4 +1,4 @@
-import {getAuthUserData} from "./auth_reducer";
+import {getAuthUserData} from "./auth/auth.thunks";
 
 const APP_KEY = 'APP/';
 const INITIALIZED_SUCCESS = APP_KEY + 'INITIALIZED_SUCCESS';

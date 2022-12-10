@@ -26,7 +26,7 @@ class ProfileStatus extends React.Component {
         this.setState( {status: e.currentTarget.value} );
     };
 
-    componentDidUpdate(prevProps: any, prevState: any) {
+    componentDidUpdate(prevProps: any) {
         // @ts-expect-error TS(2339): Property 'status' does not exist on type 'Readonly... Remove this comment to see the full error message
         if (prevProps.status !== this.props.status)
             // @ts-expect-error TS(2339): Property 'status' does not exist on type 'Readonly... Remove this comment to see the full error message

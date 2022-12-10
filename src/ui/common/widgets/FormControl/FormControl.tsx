@@ -4,7 +4,6 @@ import styles from "./FormControl.module.css";
 import {Field} from "redux-form";
 
 const FormControl =  ({
-    input,
     meta: {touched, error},
     children
 }: any) => {

@@ -34,7 +34,7 @@ let Paginator = ({
                 .map(p => {
                     return (<span className={ cn({[styles.activePage]: currentItemsPage === p}, styles.pageNumber) }
                                   key={p}
-                                  onClick={(e) => {
+                                  onClick={() => {
                                       on_currentPageChanged(p);
                                   }}>{p}</span>)
                 })
