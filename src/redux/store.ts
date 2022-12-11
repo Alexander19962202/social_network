@@ -1,9 +1,9 @@
-import profilePage_reducer from "./reducers/profilepage_reducer";
-import messagesPage_reducer from "./reducers/messagespage_reducer";
-import newsPage_reducer from "./reducers/newspage_reducer";
-import musicPage_reducer from "./reducers/musicpage_reducer";
-import settingsPage_reducer from "./reducers/settingspage_reducer";
-import sideBar_reducer from "./reducers/sidebar_reducer";
+import profilePage_reducer from "./reducers/profiles/profilepage_reducer";
+import messagesReducer from "./reducers/messages/messages.reducer";
+import newsPage_reducer from "./reducers/news/newspage_reducer";
+import musicPage_reducer from "./reducers/music/musicpage_reducer";
+import settingsPage_reducer from "./reducers/settings/settingspage_reducer";
+import sideBar_reducer from "./reducers/sidebar/sidebar_reducer";
 
 let store = {
     _state: {
@@ -76,7 +76,7 @@ let store = {
         // @ts-expect-error TS(2322): Type '{ profilePageData: { myPostsData: { myPostSt... Remove this comment to see the full error message
         this._state.profilePage = profilePage_reducer(this._state.profilePage, action);
         // @ts-expect-error TS(2322): Type '{ messagesPageData: { messagesData: { messag... Remove this comment to see the full error message
-        this._state.messagesPage = messagesPage_reducer(this._state.messagesPage, action);
+        this._state.messagesPage = messagesReducer(this._state.messagesPage, action);
         this._state.newsPage = newsPage_reducer(this._state.newsPage, action);
         this._state.musicPage = musicPage_reducer(this._state.musicPage, action);
         this._state.settingsPage = settingsPage_reducer(this._state.settingsPage, action);

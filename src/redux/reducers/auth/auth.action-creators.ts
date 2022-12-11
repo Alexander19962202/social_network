@@ -1,7 +1,7 @@
 import {
   AuthUserData,
-  GET_CAPTCHA_URL,
-  GetCaptchaUrlAction,
+  SET_CAPTCHA_URL,
+  SetCaptchaUrlAction,
   SET_AUTH_USER_DATA,
   SetAuthUserDataAction
 } from "./auth.types";
@@ -14,7 +14,7 @@ export const setAuthUserDataAC = (authUserData: AuthUserData | null, isAuth: boo
   }
 };
 
-export const getCaptchaUrlSuccess = (captchaURL: string): GetCaptchaUrlAction => ({
-  type: GET_CAPTCHA_URL,
+export const setCaptchaUrlAC = (captchaURL: string): SetCaptchaUrlAction => ({
+  type: SET_CAPTCHA_URL,
   captchaURL
 });

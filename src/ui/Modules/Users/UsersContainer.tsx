@@ -5,7 +5,7 @@ import {
     follow,
     unfollow,
     requestUsers
-} from "../../../redux/reducers/userspage_reducer";
+} from "../../../redux/reducers/users/userspage_reducer";
 import {compose} from "redux";
 import {
     getCurrentPage,

@@ -1,4 +1,4 @@
-import profilePage_reducer, {addPost, deletePost} from "./profilepage_reducer";
+import profilePage_reducer, {addPost, deletePost} from "../profiles/profilepage_reducer"
 
 let state = {
     profilePageData: {

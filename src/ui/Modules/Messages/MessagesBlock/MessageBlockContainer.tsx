@@ -1,6 +1,6 @@
 import {connect} from "react-redux"
 import MessagesBlock from "./MessagesBlock";
-import {sendMessage} from "../../../../redux/reducers/messagespage_reducer";
+import {sendMessage} from "../../../../redux/reducers/messages/messages.reducer";
 
 let mapStateToProps = (state: any) => {
     return {

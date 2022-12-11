@@ -1,6 +1,6 @@
-import {profileAPI} from "../../api/Api";
+import {profileAPI} from "../../../api/Api";
 import {stopSubmit} from "redux-form";
-import {setGlobalError} from "./app_reducer";
+import {setGlobalErrorAC} from "../app/app.action-creators";
 
 const ADD_POST = 'ADD_POST';
 const DELETE_POST = 'DELETE_POST';
@@ -150,7 +150,7 @@ export const updateProfileStatus = (newStatus: any) => async (dispatch: any) => 
     }
     catch (error)
     {
-        dispatch(setGlobalError("ERROR UPDATE STATUS FAILED"));
+        dispatch(setGlobalErrorAC("ERROR UPDATE STATUS FAILED"));
     }
 };
 

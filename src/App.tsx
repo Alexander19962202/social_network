@@ -11,7 +11,7 @@ import LoginDialog from "./ui/LoginDialog/LoginDialog";
 import Preloader from "./ui/common/widgets/Preloader/Preloader";
 import {compose} from "redux";
 import {connect, Provider} from "react-redux";
-import {initializeApp, resetGlobalError} from "./redux/reducers/app_reducer";
+import {initializeApp, resetGlobalError} from "./redux/reducers/app/app.thunks";
 import store from "./redux/redux-store";
 import {withSuspense} from "./ui/common/hoc/withSuspense";
 

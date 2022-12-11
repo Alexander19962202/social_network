@@ -1,7 +1,7 @@
 import {
   AuthAction,
   AuthState,
-  GET_CAPTCHA_URL,
+  SET_CAPTCHA_URL,
   SET_AUTH_USER_DATA,
 } from "./auth.types";
 import {initialState} from "./auth.initial-state";
@@ -14,7 +14,7 @@ const authReducer = (state: AuthState = initialState, action: AuthAction): AuthS
         authUserData: { ...action.authUserData }
       }
     }
-    case GET_CAPTCHA_URL: {
+    case SET_CAPTCHA_URL: {
       return {
         ...state,
         authUserData: {

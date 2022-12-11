@@ -1,7 +1,7 @@
 import {Dispatch} from "react";
-import {AuthAction, AuthThunk, GetCaptchaUrlAction, SetAuthUserDataAction} from "./auth.types";
+import {AuthAction, AuthThunk, SetCaptchaUrlAction, SetAuthUserDataAction} from "./auth.types";
 import {authAPI, securityAPI} from "../../../api/Api";
-import {getCaptchaUrlSuccess, setAuthUserDataAC} from "./auth.action-creators";
+import {setCaptchaUrlAC, setAuthUserDataAC} from "./auth.action-creators";
 import {FormAction, stopSubmit} from "redux-form";
 
 export const getAuthUserData = () => async (dispatch: Dispatch<SetAuthUserDataAction>) => {
@@ -30,8 +30,8 @@ export const logout = () => async (dispatch: Dispatch<SetAuthUserDataAction>) =>
     dispatch(setAuthUserDataAC(null, false));
 };
 
-export const getCaptchaUrl = () => async (dispatch: Dispatch<GetCaptchaUrlAction>) => {
+export const getCaptchaUrl = () => async (dispatch: Dispatch<SetCaptchaUrlAction>) => {
   const response = await securityAPI.getCaptchaUrl();
   const captchaUrl = response.data.url;
-  dispatch(getCaptchaUrlSuccess(captchaUrl));
+  dispatch(setCaptchaUrlAC(captchaUrl));
 }
