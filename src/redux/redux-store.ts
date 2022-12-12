@@ -1,10 +1,10 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
 import authReducer from "./reducers/auth/auth.reducer";
-import profilePage_reducer from "./reducers/profiles/profilepage_reducer";
+import profilesReducer from "./reducers/profiles/profiles.reducer";
 import messagesReducer from "./reducers/messages/messages.reducer";
-import newsPage_reducer from "./reducers/news/newspage_reducer"
-import musicPage_reducer from "./reducers/music/musicpage_reducer";
-import settingsPage_reducer from "./reducers/settings/settingspage_reducer";
+import newsReducer from "./reducers/news/news.reducer"
+import musicReducer from "./reducers/music/music.reducer";
+import settingsReducer from "./reducers/settings/settings.reducer";
 import usersPage_reducer from "./reducers/users/userspage_reducer";
 import thunkMiddleware from "redux-thunk";
 import { reducer as formReducer } from 'redux-form'
@@ -13,11 +13,11 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 let reducers = combineReducers({
     auth: authReducer,
-    profilePage: profilePage_reducer,
+    profilePage: profilesReducer,
     messagesPage: messagesReducer,
-    newsPage: newsPage_reducer,
-    musicPage: musicPage_reducer,
-    settingsPage: settingsPage_reducer,
+    newsPage: newsReducer,
+    musicPage: musicReducer,
+    settingsPage: settingsReducer,
     usersPage: usersPage_reducer,
     form: formReducer,
     app: appReducer

@@ -1,9 +1,9 @@
-import profilePage_reducer from "./reducers/profiles/profilepage_reducer";
+import profilesReducer from "./reducers/profiles/profiles.reducer";
 import messagesReducer from "./reducers/messages/messages.reducer";
-import newsPage_reducer from "./reducers/news/newspage_reducer";
-import musicPage_reducer from "./reducers/music/musicpage_reducer";
-import settingsPage_reducer from "./reducers/settings/settingspage_reducer";
-import sideBar_reducer from "./reducers/sidebar/sidebar_reducer";
+import newsReducer from "./reducers/news/news.reducer";
+import musicReducer from "./reducers/music/music.reducer";
+import settingsReducer from "./reducers/settings/settings.reducer";
+import sidebarReducer from "./reducers/sidebar/sidebar.reducer";
 
 let store = {
     _state: {
@@ -74,13 +74,13 @@ let store = {
     dispatch(action: any)
     {
         // @ts-expect-error TS(2322): Type '{ profilePageData: { myPostsData: { myPostSt... Remove this comment to see the full error message
-        this._state.profilePage = profilePage_reducer(this._state.profilePage, action);
+        this._state.profilePage = profilesReducer(this._state.profilePage, action);
         // @ts-expect-error TS(2322): Type '{ messagesPageData: { messagesData: { messag... Remove this comment to see the full error message
         this._state.messagesPage = messagesReducer(this._state.messagesPage, action);
-        this._state.newsPage = newsPage_reducer(this._state.newsPage, action);
-        this._state.musicPage = musicPage_reducer(this._state.musicPage, action);
-        this._state.settingsPage = settingsPage_reducer(this._state.settingsPage, action);
-        this._state.sideBar = sideBar_reducer(this._state.sideBar, action);
+        this._state.newsPage = newsReducer(this._state.newsPage, action);
+        this._state.musicPage = musicReducer(this._state.musicPage, action);
+        this._state.settingsPage = settingsReducer(this._state.settingsPage, action);
+        this._state.sideBar = sidebarReducer(this._state.sideBar, action);
 
         // @ts-expect-error TS(2554): Expected 0 arguments, but got 1.
         this.rerenderEntireTree(this._state);

@@ -2,7 +2,7 @@ let initialState = {
 
 }
 
-const sideBar_reducer = (state = initialState, action: any) => {
+const sidebarReducer = (state = initialState, action: any) => {
   switch (action.type) {
     default: {
       return state
@@ -10,4 +10,4 @@ const sideBar_reducer = (state = initialState, action: any) => {
   }
 }
 
-export default sideBar_reducer;
+export default sidebarReducer;

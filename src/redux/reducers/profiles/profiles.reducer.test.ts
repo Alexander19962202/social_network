@@ -1,4 +1,5 @@
-import profilePage_reducer, {addPost, deletePost} from "../profiles/profilepage_reducer"
+import profilesReducer from "./profiles.reducer"
+import {addPost, deletePost} from "./profiles.action-creators";
 
 let state = {
     profilePageData: {
@@ -22,7 +23,7 @@ it('length of posts should be incremented', () => {
     let action = addPost('VERY VERY NEW POST');
 
     // 2. action
-    let newState = profilePage_reducer(state, action);
+    let newState = profilesReducer(state, action);
 
     // 3. expectation
     expect(newState.profilePageData.myPostsData.myPostStateItems.length).toBe(postLength + 1);
@@ -30,11 +31,12 @@ it('length of posts should be incremented', () => {
 
 it('message of new post should be correct', () => {
     // 1. test data
+
     const postTest = "My post";
     let action = addPost(postTest);
 
     // 2. action
-    let newState = profilePage_reducer(state, action);
+    let newState = profilesReducer(state, action);
 
     // 3. expectation
     expect(newState.profilePageData.myPostsData.myPostStateItems[postLength].text).toBe(postTest);
@@ -46,7 +48,7 @@ it('after deleting length of messages should be decrement', () => {
     let action = deletePost(1);
 
     // 2. action
-    let newState = profilePage_reducer(state, action);
+    let newState = profilesReducer(state, action);
 
     // 3. expectation
     expect(newState.profilePageData.myPostsData.myPostStateItems.length).toBe(postLength - 1);
@@ -57,7 +59,7 @@ it(`after deleting length shouldn't be decrement if id is incorrect`, () => {
     let action = deletePost(postLength + 1);
 
     // 2. action
-    let newState = profilePage_reducer(state, action);
+    let newState = profilesReducer(state, action);
 
     // 3. expectation
     expect(newState.profilePageData.myPostsData.myPostStateItems.length).toBe(postLength );
