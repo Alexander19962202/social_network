@@ -19,13 +19,36 @@ export type AddPostAction = { type: ADD_POST_TYPE, postText: string };
 export type DeletePostAction = { type: DELETE_POST_TYPE, postID: number };
 export type SetUserProfileAction = { type: SET_USER_PROFILE_TYPE, userProfile: any };
 export type SetStatusAction = { type: SET_STATUS_TYPE, status: string }
-export type SavePhotoAction = { type: SAVE_PHOTO_TYPE, photos: any };
+export type SavePhotoAction = { type: SAVE_PHOTO_TYPE, photos: ProfilePhotos };
 export type ProfilesAction = AddPostAction | DeletePostAction | SetUserProfileAction | SetStatusAction | SavePhotoAction
 export type ProfilesThunk = Thunk<ProfilesAction>
 
 // ----- STATE TYPES -----
+export type ProfilePhotos = {
+  large: string,
+  small: string
+}
+
+export interface Profile {
+  fullName: string,
+  lookingForAJob: boolean,
+  lookingForAJobDescription: string,
+  aboutMe: string,
+  photos: ProfilePhotos,
+  contacts: {
+    facebook: string,
+    website: string,
+    vk: string,
+    twitter: string,
+    instagram: string,
+    youtube: string,
+    github: string,
+    mainLink: string,
+  }
+}
+
 export type ProfileInfoData = {
-  userProfile: any,
+  userProfile: Profile | null,
   status: string
 }
 

@@ -2,7 +2,7 @@ import {
   ADD_POST,
   AddPostAction,
   DELETE_POST,
-  DeletePostAction, SAVE_PHOTO, SavePhotoAction, SET_STATUS,
+  DeletePostAction, ProfilePhotos, SAVE_PHOTO, SavePhotoAction, SET_STATUS,
   SET_USER_PROFILE, SetStatusAction,
   SetUserProfileAction
 } from "./profiles.types";
@@ -27,7 +27,7 @@ export const setStatus = (status: string): SetStatusAction => ({
   status: status
 });
 
-export const savePhotoSuccess = (photos: any): SavePhotoAction => ({
+export const savePhotoSuccess = (photos: ProfilePhotos): SavePhotoAction => ({
   type: SAVE_PHOTO,
   photos
 });
