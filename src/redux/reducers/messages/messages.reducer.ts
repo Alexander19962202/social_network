@@ -16,8 +16,9 @@ const messagesReducer = (state = initialState, action: MessagesAction): Messages
         }
       };
     }
-    default:
+    default: {
       return state;
+    }
   }
 };
 

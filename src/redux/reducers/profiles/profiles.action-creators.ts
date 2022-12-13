@@ -2,7 +2,7 @@ import {
   ADD_POST,
   AddPostAction,
   DELETE_POST,
-  DeletePostAction, ProfilePhotos, SAVE_PHOTO, SavePhotoAction, SET_STATUS,
+  DeletePostAction, IProfile, ProfilePhotos, SAVE_PHOTO, SavePhotoAction, SET_STATUS,
   SET_USER_PROFILE, SetStatusAction,
   SetUserProfileAction
 } from "./profiles.types";
@@ -17,7 +17,7 @@ export const deletePost = (postID: number): DeletePostAction => ({
   postID
 });
 
-export const setUserProfile = (userProfile: any): SetUserProfileAction => ({
+export const setUserProfile = (userProfile: IProfile): SetUserProfileAction => ({
   type: SET_USER_PROFILE,
   userProfile: userProfile
 });

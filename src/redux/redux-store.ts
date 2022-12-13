@@ -5,7 +5,7 @@ import messagesReducer from "./reducers/messages/messages.reducer";
 import newsReducer from "./reducers/news/news.reducer"
 import musicReducer from "./reducers/music/music.reducer";
 import settingsReducer from "./reducers/settings/settings.reducer";
-import usersPage_reducer from "./reducers/users/userspage_reducer";
+import usersReducer from "./reducers/users/users.reducer";
 import thunkMiddleware from "redux-thunk";
 import { reducer as formReducer } from 'redux-form'
 import appReducer from "./reducers/app/app.reducer";
@@ -18,7 +18,7 @@ let reducers = combineReducers({
     newsPage: newsReducer,
     musicPage: musicReducer,
     settingsPage: settingsReducer,
-    usersPage: usersPage_reducer,
+    usersPage: usersReducer,
     form: formReducer,
     app: appReducer
 });

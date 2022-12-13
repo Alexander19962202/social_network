@@ -1,6 +1,6 @@
 import {
   ADD_POST,
-  DELETE_POST, Profile, ProfilesAction, ProfilesState,
+  DELETE_POST, IProfile, ProfilesAction, ProfilesState,
   SAVE_PHOTO,
   SET_STATUS,
   SET_USER_PROFILE
@@ -70,14 +70,13 @@ const profilesReducer = (state = initialState, action: ProfilesAction): Profiles
           profileInfoData: {
             ...state.profilePageData.profileInfoData,
             userProfile: {
-              ...(state.profilePageData.profileInfoData.userProfile as Profile),
+              ...(state.profilePageData.profileInfoData.userProfile as IProfile),
               photos: action.photos
             }
           }
         }
       }
     }
-
     default: {
       return state;
     }

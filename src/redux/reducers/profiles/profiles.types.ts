@@ -1,18 +1,18 @@
-// ----- ACTION TYPES -----
 import {Thunk} from "../common/common.types";
 
-export type ADD_POST_TYPE = 'PROFILE/ADD_POST';
-export type DELETE_POST_TYPE = 'PROFILE/DELETE_POST';
-export type SET_USER_PROFILE_TYPE = 'PROFILE/SET_USER_PROFILE';
-export type SET_STATUS_TYPE = 'PROFILE/SET_STATUS';
-export type SAVE_PHOTO_TYPE = 'PROFILE/SAVE_PHOTO';
+// ----- ACTION TYPES -----
+export type ADD_POST_TYPE = 'PROFILES/ADD_POST';
+export type DELETE_POST_TYPE = 'PROFILES/DELETE_POST';
+export type SET_USER_PROFILE_TYPE = 'PROFILES/SET_USER_PROFILE';
+export type SET_STATUS_TYPE = 'PROFILES/SET_STATUS';
+export type SAVE_PHOTO_TYPE = 'PROFILES/SAVE_PHOTO';
 
 // ----- ACTION TYPE CONSTS -----
-export const ADD_POST: ADD_POST_TYPE = 'PROFILE/ADD_POST';
-export const DELETE_POST: DELETE_POST_TYPE = 'PROFILE/DELETE_POST';
-export const SET_USER_PROFILE: SET_USER_PROFILE_TYPE = 'PROFILE/SET_USER_PROFILE';
-export const SET_STATUS: SET_STATUS_TYPE = 'PROFILE/SET_STATUS';
-export const SAVE_PHOTO: SAVE_PHOTO_TYPE = 'PROFILE/SAVE_PHOTO';
+export const ADD_POST: ADD_POST_TYPE = 'PROFILES/ADD_POST';
+export const DELETE_POST: DELETE_POST_TYPE = 'PROFILES/DELETE_POST';
+export const SET_USER_PROFILE: SET_USER_PROFILE_TYPE = 'PROFILES/SET_USER_PROFILE';
+export const SET_STATUS: SET_STATUS_TYPE = 'PROFILES/SET_STATUS';
+export const SAVE_PHOTO: SAVE_PHOTO_TYPE = 'PROFILES/SAVE_PHOTO';
 
 // ----- ACTIONS/THUNKS -----
 export type AddPostAction = { type: ADD_POST_TYPE, postText: string };
@@ -29,7 +29,7 @@ export type ProfilePhotos = {
   small: string
 }
 
-export interface Profile {
+export interface IProfile {
   fullName: string,
   lookingForAJob: boolean,
   lookingForAJobDescription: string,
@@ -48,7 +48,7 @@ export interface Profile {
 }
 
 export type ProfileInfoData = {
-  userProfile: Profile | null,
+  userProfile: IProfile | null,
   status: string
 }
 
