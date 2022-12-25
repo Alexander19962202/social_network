@@ -1,6 +1,6 @@
 import {connect} from "react-redux"
 import DialogsBlock from "./DialogsBlock";
-import withAuthRedirect from "../../../common/hoc/withAuthRedirect";
+import withAuthRedirect from "../../../common/hoc/with-auth-redirect";
 import {compose} from "redux";
 
 let mapStateToProps = (state: any) => {

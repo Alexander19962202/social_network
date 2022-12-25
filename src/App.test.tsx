@@ -4,7 +4,6 @@ import SocialNetworkApp from './App';
 import {unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
 
-
 let container: any = null;
 beforeEach(() => {
   // подготавливаем DOM-элемент, куда будем рендерить

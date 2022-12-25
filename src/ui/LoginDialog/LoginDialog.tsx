@@ -1,11 +1,10 @@
 import React from 'react';
 import {reduxForm} from "redux-form";
 import {required} from "../common/validators/validators";
-import {createField, Input} from "../common/widgets/FormControl/FormControl";
+import {createField, Input} from "../common/widgets/form-control/form-control";
 import {connect} from "react-redux";
 import {login} from "../../redux/reducers/auth/auth.thunks";
 import {Navigate} from "react-router-dom";
-// @ts-expect-error TS(2307): Cannot find module './../LoginDialog/LoginDialog.m... Remove this comment to see the full error message
 import style from "./../LoginDialog/LoginDialog.module.css"
 
 const LoginForm = ({
@@ -17,7 +16,7 @@ const LoginForm = ({
         <form onSubmit={handleSubmit}>
             {createField('Email', 'email', [required], Input)}
             {createField('Password', 'password', [required], Input, {type: 'password'})}
-            {createField(null, 'rememberMe', [], Input, {type: 'checkbox'}, 'remember me')}
+            {createField('', 'rememberMe', [], Input, {type: 'checkbox'}, 'remember me')}
             
             { captchaURL && <img src={captchaURL} />}
             { captchaURL &&  createField("Symbols from image", "captcha", [required], Input, {}) }

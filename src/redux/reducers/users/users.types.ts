@@ -47,6 +47,7 @@ export interface IUser {
 export type UsersState = {
   users: IUser[],
   pageSize: number,
+  pagesRange: number,
   totalUsersCount: number,
   currentUsersPage: number,
   isFetching: boolean,

@@ -1,7 +1,5 @@
 import React from 'react';
-// @ts-expect-error TS(2307): Cannot find module './Users.module.css' or its cor... Remove this comment to see the full error message
 import classes from './Users.module.css'
-// @ts-expect-error TS(2307): Cannot find module '../../../assets/images/ic_pers... Remove this comment to see the full error message
 import userPhoto from '../../../assets/images/ic_person_24px.svg'
 import {NavLink} from "react-router-dom";
 

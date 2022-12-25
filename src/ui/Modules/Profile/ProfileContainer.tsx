@@ -8,7 +8,7 @@ import {
   savePhoto,
   saveProfile
 } from "../../../redux/reducers/profiles/profiles.thunks";
-import withAuthRedirect from "../../common/hoc/withAuthRedirect";
+import withAuthRedirect from "../../common/hoc/with-auth-redirect";
 import {compose} from "redux";
 import {Outlet, useNavigate, useParams} from "react-router-dom";
 import usePrevious from "../../common/hook/use-previous";

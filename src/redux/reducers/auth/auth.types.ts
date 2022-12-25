@@ -19,7 +19,7 @@ export type AuthUserData = {
   id: number | null,
   login: string | null,
   email: string | null,
-  isAuth: boolean | null,
+  isAuth: boolean,
   captchaURL: string | null
 }
 export type AuthState = {

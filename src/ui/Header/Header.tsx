@@ -1,5 +1,4 @@
 import React from 'react';
-// @ts-expect-error TS(2307): Cannot find module './Header.module.css' or its co... Remove this comment to see the full error message
 import classes from './Header.module.css';
 import {NavLink} from "react-router-dom";
 

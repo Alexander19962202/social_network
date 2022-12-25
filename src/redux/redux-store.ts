@@ -11,7 +11,7 @@ import { reducer as formReducer } from 'redux-form'
 import appReducer from "./reducers/app/app.reducer";
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-let reducers = combineReducers({
+let rootReducer = combineReducers({
     auth: authReducer,
     profilePage: profilesReducer,
     messagesPage: messagesReducer,
@@ -23,7 +23,10 @@ let reducers = combineReducers({
     app: appReducer
 });
 
-let store = createStore(reducers, composeWithDevTools(applyMiddleware(thunkMiddleware)));
+export type RootReducer = typeof rootReducer;
+export type RootState = ReturnType<RootReducer>
+
+let store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunkMiddleware)));
 // @ts-expect-error TS(2339): Property '__store__' does not exist on type 'Windo... Remove this comment to see the full error message
 window.__store__ = store;
 

@@ -1,5 +1,4 @@
 import React from "react";
-// @ts-expect-error TS(2307): Cannot find module './MessagesBlock.module.css' or... Remove this comment to see the full error message
 import classes from './MessagesBlock.module.css'
 import Message from "./Message/Message";
 import MessagesField from "./MessagesField/MessagesField";

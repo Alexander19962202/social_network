@@ -1,10 +1,9 @@
 import React from 'react';
-// @ts-expect-error TS(2307): Cannot find module './MyPosts.module.css' or its c... Remove this comment to see the full error message
 import classes from './MyPosts.module.css'
 import Post from "./Post/Post";
 import {Field, reduxForm} from "redux-form";
 import {maxLengthCreator, required} from "../../../common/validators/validators";
-import {Textarea} from "../../../common/widgets/FormControl/FormControl";
+import {Textarea} from "../../../common/widgets/form-control/form-control";
 
 const maxLength10 = maxLengthCreator(10);
 

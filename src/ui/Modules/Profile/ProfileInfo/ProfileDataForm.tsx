@@ -1,10 +1,8 @@
 import React from "react";
-// @ts-expect-error TS(2307): Cannot find module './ProfileInfo.module.css' or i... Remove this comment to see the full error message
 import s from './ProfileInfo.module.css';
-import {createField, Input, Textarea} from "../../../common/widgets/FormControl/FormControl"
+import {createField, Input, Textarea} from "@src/ui/common/widgets/form-control/form-control"
 import {reduxForm} from "redux-form";
-// @ts-expect-error TS(2307): Cannot find module '../../../common/widgets/FormCo... Remove this comment to see the full error message
-import style from "../../../common/widgets/FormControl/FormControl.module.css"
+import style from "../../..//common/widgets/form-control/form-control.module.css"
 
 const ProfileDataForm = ({
                            handleSubmit,

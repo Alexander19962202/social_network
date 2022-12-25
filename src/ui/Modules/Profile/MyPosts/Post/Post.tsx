@@ -1,5 +1,4 @@
 import React from 'react';
-// @ts-expect-error TS(2307): Cannot find module './Post.module.css' or its corr... Remove this comment to see the full error message
 import classes from './Post.module.css'
 
 const Post = (props: any) => {

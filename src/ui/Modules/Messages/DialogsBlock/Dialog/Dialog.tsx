@@ -1,5 +1,4 @@
 import React from "react"
-// @ts-expect-error TS(2307): Cannot find module './Dialog.module.css' or its co... Remove this comment to see the full error message
 import classes from './Dialog.module.css'
 import {NavLink} from "react-router-dom";
 

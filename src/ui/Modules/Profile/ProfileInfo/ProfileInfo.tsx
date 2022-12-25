@@ -1,9 +1,7 @@
 import React, {useState} from 'react';
-// @ts-ignore
 import classes from './ProfileInfo.module.css';
-import Preloader from "../../../common/widgets/Preloader/Preloader";
+import Preloader from "../../../common/widgets/preloader/preloader";
 import ProfileStatusFC from "./ProfileStatusFC";
-// @ts-ignore
 import defaultPhoto from "./../../../../assets/images/ic_person_24px.svg"
 import ProfileDataFormReduxForm from "./ProfileDataForm";
 
