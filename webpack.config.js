@@ -29,7 +29,7 @@ const optimization = () => {
   return config
 }
 
-const filename = ext => isDev ? `[name].${ext}` : `[name].[hash].${ext}`
+const filename = ext => isDev ? `[name].${ext}` : `[name].[chunkhash].${ext}`
 
 const cssLoaders = extra => {
   const loaders = [
@@ -76,9 +76,17 @@ const plugins = () => {
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: path.resolve(__dirname, 'public/favicon.ico'),
+          from: path.resolve(__dirname, 'public', 'favicon.ico'),
+          to: path.resolve(__dirname, 'dist/public'),
+        },
+        {
+          from: path.resolve(__dirname, 'public', 'manifest.json'),
           to: path.resolve(__dirname, 'dist/public')
-        }
+        },
+        {
+          from: path.resolve(__dirname, 'public', '*.png'),
+          to: path.resolve(__dirname, 'dist/public'),
+        },
       ]
     }),
     new MiniCssExtractPlugin({
