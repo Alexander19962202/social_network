@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './NavBar.module.css'
+import classes from 'src/ui/nav-bar/nav-bar.module.css'
 import {NavLink} from "react-router-dom";
 
 const NavBar: React.FC = () => {

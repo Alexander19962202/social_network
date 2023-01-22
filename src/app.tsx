@@ -1,6 +1,6 @@
 import './app.css';
 import HeaderContainer from "./ui/header/header.container";
-import NavBar from "./ui/NavBar/NavBar";
+import NavBar from "./ui/nav-bar/nav-bar";
 import News from "./ui/Modules/News/News";
 import Music from "./ui/Modules/Music/Music";
 import Settings from "./ui/Modules/Settings/Settings";

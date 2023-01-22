@@ -3,9 +3,8 @@
   "version": "0.9.0",
   "author": "AlexEvs",
   "private": true,
-  "homepage": "https://a1exevs.github.io/sowa-web-client",
   "scripts": {
-    "dev": "react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "test:coverage": "react-scripts test --coverage --runInBand --watchAll=false",
