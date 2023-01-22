@@ -1,7 +1,7 @@
 import React from 'react'
 import {Navigate} from "react-router-dom";
 import {connect} from "react-redux";
-import {RootState} from "../../../redux/redux-store";
+import {RootState} from "src/redux/redux-store";
 
 type Props = {
   isAuth: boolean

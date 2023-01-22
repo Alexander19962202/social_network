@@ -1,19 +1,19 @@
-import './App.css';
-import HeaderContainer from "./ui/Header/HeaderContainer";
+import './app.css';
+import HeaderContainer from "./ui/header/header.container";
 import NavBar from "./ui/NavBar/NavBar";
 import News from "./ui/Modules/News/News";
 import Music from "./ui/Modules/Music/Music";
 import Settings from "./ui/Modules/Settings/Settings";
 import {BrowserRouter, Route, Routes, Navigate} from "react-router-dom";
 import React from "react";
-import UsersContainer from "@src/ui/Modules/Users/UsersContainer";
-import LoginDialog from "./ui/LoginDialog/LoginDialog";
-import Preloader from "./ui/common/widgets/preloader/preloader";
+import UsersContainer from "src/ui/Modules/Users/UsersContainer";
+import Preloader from "./ui/common/components/preloader/preloader";
 import {compose} from "redux";
 import {connect, Provider} from "react-redux";
 import {initializeApp, resetGlobalError} from "./redux/reducers/app/app.thunks";
 import store from "./redux/redux-store";
 import {withSuspense} from "./ui/common/hoc/with-suspense";
+import LoginDialogContainer from "src/ui/login-dialog/login-dialog.container";
 
 let ProfileContainer = React.lazy(() => import('./ui/Modules/Profile/ProfileContainer'));
 let Messages = React.lazy(() => import('./ui/Modules/Messages/Messages'));
@@ -53,7 +53,7 @@ class App extends React.Component<any, any> {
         <div className='app-wrapper-content'>
           <Routes>
             <Route path='/' element={<Navigate to={"/profile"}/>}/>
-            <Route path='/login' element={<LoginDialog/>}/>
+            <Route path='/login' element={<LoginDialogContainer/>}/>
             <Route path='/profile' element={<ProfileContainerWithSuspense/>}/>
             <Route path='/profile/:userID' element={<ProfileContainerWithSuspense/>}/>
             <Route path='/messages' element={<MessagesWithSuspense/>}/>

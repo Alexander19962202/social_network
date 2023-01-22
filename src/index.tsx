@@ -2,7 +2,7 @@ import React from 'react';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import ReactDOM from "react-dom";
-import SocialNetworkApp from "./App";
+import SocialNetworkApp from "./app";
 
 ReactDOM.render( <SocialNetworkApp/>, document.getElementById('root') );
 

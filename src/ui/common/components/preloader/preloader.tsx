@@ -1,6 +1,6 @@
 import React from 'react';
-import classes from '@src/ui/common/widgets/preloader/preloader.module.css'
-import preloader from '@src/assets/images/preloader.svg'
+import classes from 'src/ui/common/components/preloader/preloader.module.css'
+import preloader from 'src/assets/images/preloader.svg'
 
 let Preloader: React.FC = () => {
   return (

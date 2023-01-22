@@ -1,6 +1,6 @@
 import React from 'react';
-import Preloader from "../../common/widgets/preloader/preloader";
-import Paginator from "../../common/widgets/paginator/paginator";
+import Preloader from "../../common/components/preloader/preloader";
+import Paginator from "../../common/components/paginator/paginator";
 import User from "./User";
 
 let Users = (props: any) => {

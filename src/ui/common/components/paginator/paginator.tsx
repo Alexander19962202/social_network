@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import styles from './paginator.module.css'
+import styles from 'src/ui/common/components/paginator/paginator.module.css'
 import cn from "classnames";
 
 type PaginatorProps = {
@@ -13,7 +13,7 @@ type PaginatorProps = {
 let Paginator: React.FC<PaginatorProps> = ({
                                              totalItemsCount,
                                              pageSize,
-                                             currentItemsPage,
+                                             currentItemsPage = 1,
                                              on_currentPageChanged = (_: number) => {},
                                              pagesRange = 10
                                            }) => {

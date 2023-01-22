@@ -1,6 +1,6 @@
 import React from "react";
 import {create, ReactTestInstance} from "react-test-renderer";
-import Paginator from "./paginator";
+import Paginator from "src/ui/common/components/paginator/paginator";
 
 describe("preloader component tests", () => {
   test("pages count is 11 but should be showed only 10", () => {

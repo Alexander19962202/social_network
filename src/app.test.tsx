@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import SocialNetworkApp from './App';
+import SocialNetworkApp from './app';
 import {unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
+import mockAxios from 'jest-mock-axios';
 
 let container: any = null;
 beforeEach(() => {
@@ -16,11 +17,16 @@ afterEach(() => {
   unmountComponentAtNode(container);
   container.remove();
   container = null;
+  // cleaning up the mess left behind the previous test
+  mockAxios.reset();
 });
 
 it('renders without crashing', () => {
   // eslint-disable-next-line testing-library/no-unnecessary-act
   act(() => {
+    mockAxios.get.mockResolvedValue({ data: { resultCode: 0 }, resultCode: 0 });
+    mockAxios.post.mockResolvedValue({ data: {}, resultCode: 0 });
+
     ReactDOM.render(<SocialNetworkApp />, container);
   });
 });

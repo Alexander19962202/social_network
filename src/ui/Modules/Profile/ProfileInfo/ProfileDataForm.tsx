@@ -1,8 +1,8 @@
 import React from "react";
 import s from './ProfileInfo.module.css';
-import {createField, Input, Textarea} from "@src/ui/common/widgets/form-control/form-control"
+import {createField, Input, Textarea} from "src/ui/common/components/form-control/form-control"
 import {reduxForm} from "redux-form";
-import style from "../../..//common/widgets/form-control/form-control.module.css"
+import style from "../../../common/components/form-control/form-control.module.css"
 
 const ProfileDataForm = ({
                            handleSubmit,

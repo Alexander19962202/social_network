@@ -1,7 +1,7 @@
 import React, {ReactElement} from "react";
-import styles from "./form-control.module.css";
+import styles from "src/ui/common/components/form-control/form-control.module.css";
 import {Field} from "redux-form";
-import {Validator} from "../../validators/validators";
+import {Validator} from "src/ui/common/validators/validators";
 
 type FormControlProps = {
   meta: {
