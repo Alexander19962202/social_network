@@ -9,7 +9,7 @@ type Props = {
   errorMessage: string
 }
 
-const Header = (props: Props) => {
+const Header: React.FC<Props> = (props) => {
   return (
     <header className={classes.header}>
       <>

@@ -18,13 +18,13 @@ export type DialogsData = {
   dialogStateItems: DialogStateItem[]
 }
 
-export type messageStateItems = {
+export type MessageStateItems = {
   id: number,
   message: string
 }
 
 export type MessagesData = {
-  messageStateItems: messageStateItems[]
+  messageStateItems: MessageStateItems[]
 }
 
 export type MessagesPageData = {
