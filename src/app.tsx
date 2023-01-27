@@ -6,7 +6,7 @@ import MusicPage from "./ui/pages/music-page/music-page";
 import SettingsPage from "./ui/pages/settings-page/settings-page";
 import {BrowserRouter, Route, Routes, Navigate} from "react-router-dom";
 import React from "react";
-import UsersContainer from "src/ui/pages/users-page/UsersContainer";
+import UsersPageContainer from "src/ui/pages/users-page/users-page.container";
 import Preloader from "./ui/common/components/preloader/preloader";
 import {compose} from "redux";
 import {connect, Provider} from "react-redux";
@@ -60,7 +60,7 @@ class App extends React.Component<any, any> {
             <Route path='/news' element={<NewsPage/>}/>
             <Route path='/music' element={<MusicPage/>}/>
             <Route path='/settings' element={<SettingsPage/>}/>
-            <Route path='/users' element={<UsersContainer/>}/>
+            <Route path='/users' element={<UsersPageContainer/>}/>
             <Route path='*' element={<div>404 NOT FOUND</div>}/>
           </Routes>
         </div>
