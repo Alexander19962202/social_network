@@ -14,7 +14,7 @@ const connector = connect(mapStateToProps, {login})
 
 type Props = ConnectedProps<typeof connector>;
 
-const LoginDialogContainer = (props: Props) => {
+const LoginDialogContainer: React.FC<Props> = (props) => {
   const onSubmit = (formData: LoginData) => {
     props.login(formData.email, formData.password, formData?.rememberMe, formData?.captcha);
   };

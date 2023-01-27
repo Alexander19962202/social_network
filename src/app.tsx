@@ -15,10 +15,10 @@ import store from "./redux/redux-store";
 import {withSuspense} from "./ui/common/hoc/with-suspense";
 import LoginDialogContainer from "src/ui/login-dialog/login-dialog.container";
 
-let ProfileContainer = React.lazy(() => import('./ui/pages/profile-page/ProfileContainer'));
-let Messages = React.lazy(() => import('./ui/pages/messages-page/messages-page'));
-let ProfileContainerWithSuspense = withSuspense(ProfileContainer)
-let MessagesWithSuspense = withSuspense(Messages)
+let ProfilePage = React.lazy(() => import('./ui/pages/profile-page/profile-page.container'));
+let MessagesPage = React.lazy(() => import('./ui/pages/messages-page/messages-page'));
+let ProfileContainerWithSuspense = withSuspense(ProfilePage)
+let MessagesWithSuspense = withSuspense(MessagesPage)
 
 class App extends React.Component<any, any> {
   catchAllUnhandledErrors = () => {

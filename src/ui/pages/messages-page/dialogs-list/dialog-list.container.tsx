@@ -10,8 +10,10 @@ let mapStateToProps = (state: RootState) => {
   }
 };
 
-export default compose(
+const DialogsListContainer = compose(
   connect(mapStateToProps),
   withAuthRedirect
 )
 (DialogsList);
+
+export default DialogsListContainer;

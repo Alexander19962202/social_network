@@ -3,7 +3,7 @@ import {savePhotoSuccess, setStatus, setUserProfile} from "./profiles.action-cre
 import {setGlobalErrorAC} from "../app/app.action-creators";
 import {FormAction, stopSubmit} from "redux-form";
 import {Dispatch} from "react";
-import {ProfilesThunk, SavePhotoAction, SetStatusAction, SetUserProfileAction} from "./profiles.types";
+import {IProfile, ProfilesThunk, SavePhotoAction, SetStatusAction, SetUserProfileAction} from "./profiles.types";
 import {SetGlobalErrorMessageAction} from "../app/app.types";
 
 export const getProfile = (userID: number) => (dispatch: Dispatch<SetUserProfileAction>) => {
@@ -36,7 +36,7 @@ export const savePhoto = (file: any) => async (dispatch: Dispatch<SavePhotoActio
   }
 };
 
-export const saveProfile = (profile: any) => async (dispatch: Dispatch<ProfilesThunk | FormAction>, getState: any) => {
+export const saveProfile = (profile: IProfile) => async (dispatch: Dispatch<ProfilesThunk | FormAction>, getState: any) => {
   const userId = getState().auth.authUserData.id;
   const response = await profileAPI.saveProfile(profile);
 

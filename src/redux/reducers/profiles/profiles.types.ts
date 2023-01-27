@@ -29,22 +29,24 @@ export type ProfilePhotos = {
   small: string
 }
 
+export interface IProfileContacts extends Record<string, string>{
+  facebook: string,
+  website: string,
+  vk: string,
+  twitter: string,
+  instagram: string,
+  youtube: string,
+  github: string,
+  mainLink: string,
+}
+
 export interface IProfile {
   fullName: string,
   lookingForAJob: boolean,
   lookingForAJobDescription: string,
   aboutMe: string,
   photos: ProfilePhotos,
-  contacts: {
-    facebook: string,
-    website: string,
-    vk: string,
-    twitter: string,
-    instagram: string,
-    youtube: string,
-    github: string,
-    mainLink: string,
-  }
+  contacts: IProfileContacts
 }
 
 export type ProfileInfoData = {
