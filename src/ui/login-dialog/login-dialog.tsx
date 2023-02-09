@@ -11,9 +11,10 @@ export type LoginData = {
   captcha?: string
 }
 
+export type LoginDataKeys = Extract<keyof LoginData, string>
+
 type OwnProps = {
   captchaURL: string | null
-  onSubmit: (data: LoginData) => void;
 }
 
 const decorator = reduxForm<LoginData, OwnProps>({form: 'Login'})
@@ -27,12 +28,12 @@ const LoginDialog: React.FC<Props> = ({
               }) => {
   return (
     <form onSubmit={handleSubmit}>
-      {createField('Email', 'email', [required], Input)}
-      {createField('Password', 'password', [required], Input, {type: 'password'})}
-      {createField('', 'rememberMe', [], Input, {type: 'checkbox'}, 'remember me')}
+      {createField<LoginDataKeys>('Email', 'email', [required], Input)}
+      {createField<LoginDataKeys>('Password', 'password', [required], Input, {type: 'password'})}
+      {createField<LoginDataKeys>('', 'rememberMe', [], Input, {type: 'checkbox'}, 'remember me')}
 
       {captchaURL && <img src={captchaURL}/>}
-      {captchaURL && createField("Symbols from image", "captcha", [required], Input, {})}
+      {captchaURL && createField<LoginDataKeys>("Symbols from image", "captcha", [required], Input, {})}
       {error &&
         <div className={style.formSummaryError}>
           {error}

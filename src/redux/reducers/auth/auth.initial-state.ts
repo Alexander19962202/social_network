@@ -2,7 +2,7 @@ import {AuthState} from "./auth.types";
 
 export const initialState: AuthState = {
   authUserData: {
-    id: null,
+    id: 0,
     login: null,
     email: null,
     isAuth: false,

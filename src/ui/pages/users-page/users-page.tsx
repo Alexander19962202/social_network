@@ -11,8 +11,8 @@ type Props = {
   on_currentPageChanged: (pageNumber: number) => void
   pagesRange: number,
   users: IUser[],
-  on_follow: (userId: number) => void,
-  on_unfollow: (userId: number) => void,
+  on_follow: (userId: number) => Promise<void>,
+  on_unfollow: (userId: number) => Promise<void>,
   isFetching: boolean
   usersFollowing: number[]
 }
@@ -30,7 +30,7 @@ let UsersPage: React.FC<Props> = (props) => {
         <div>
           {
             props.users.map((u) => <UserItem user={u} on_follow={props.on_follow} on_unfollow={props.on_unfollow}
-                                                  usersFollowing={props.usersFollowing}/>)
+                                             usersFollowing={props.usersFollowing}/>)
           }
         </div>
       }

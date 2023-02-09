@@ -7,9 +7,10 @@ import {IProfile} from "src/redux/reducers/profiles/profiles.types";
 
 export type Profile = IProfile
 
+export type ProfileKeys = Extract<keyof Profile, string>
+
 type OwnProps = {
-  profile: Profile,
-  onSubmit: (data: Profile) => void;
+  profile: Profile
 }
 
 type Props = OwnProps & InjectedFormProps<Profile, OwnProps>;
@@ -28,23 +29,23 @@ const ProfileDataForm: React.FC<Props> = ({
     </div>
     }
     <div>
-      <b>Full name</b>: {createField("Full name", "fullName", [], Input)}
+      <b>Full name</b>: {createField<ProfileKeys>("Full name", "fullName", [], Input)}
     </div>
     <div>
-      <b>Looking for a job</b>: {createField("", "lookingForAJob", [], Input, {type: "checkbox"})}
+      <b>Looking for a job</b>: {createField<ProfileKeys>("", "lookingForAJob", [], Input, {type: "checkbox"})}
     </div>
     <div>
       <b>My professional skills</b>:
-      {createField("My professional skills", "lookingForAJobDescription", [], Textarea)}
+      {createField<ProfileKeys>("My professional skills", "lookingForAJobDescription", [], Textarea)}
     </div>
     <div>
       <b>About me</b>:
-      {createField("About me", "aboutMe", [], Textarea)}
+      {createField<ProfileKeys>("About me", "aboutMe", [], Textarea)}
     </div>
     <div>
-      <b>Contacts</b>: {Object.keys(profile.contacts).map(key => {
+      <b>Contacts</b>: {Object.keys(profile.contacts).map((key) => {
       return <div key={key} className={s.contact}>
-        <b>{key}: {createField(key, "contacts." + key, [], Input)}</b>
+        <b>{key}: {createField(key, 'contacts.' + key, [], Input)}</b>
       </div>
     })}
     </div>

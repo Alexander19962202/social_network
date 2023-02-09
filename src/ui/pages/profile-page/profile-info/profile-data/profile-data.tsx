@@ -1,6 +1,6 @@
 import ContactItem from "./contact-item/contact-item";
 import React from "react";
-import {IProfile} from "src/redux/reducers/profiles/profiles.types";
+import {IProfile, IProfileContacts} from "src/redux/reducers/profiles/profiles.types";
 
 type Props = {
   profile: IProfile,
@@ -35,7 +35,7 @@ const ProfileData: React.FC<Props> = ({profile, isOwner, goToEditMode}) => {
       <b>Contacts</b>:
       {
         Object.keys(profile.contacts)
-          .map((key)=> {return <ContactItem key={key} contactTitle={key} contactValue={profile.contacts[key]}/>})
+          .map((key)=> {return <ContactItem key={key} contactTitle={key} contactValue={profile.contacts[key as keyof IProfileContacts]}/>})
       }
     </div>
   </div>

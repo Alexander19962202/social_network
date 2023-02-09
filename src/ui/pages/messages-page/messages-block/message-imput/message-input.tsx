@@ -8,15 +8,11 @@ export type MessageData = {
   messageText: string
 }
 
-type OwnProps = {
-  onSubmit: (data: MessageData) => void;
-}
-
 const maxLength30 = maxLengthCreator(30);
 
-const decorator = reduxForm<MessageData, OwnProps>({form: "MessagesSendMessage"})
+const decorator = reduxForm<MessageData>({form: "MessagesSendMessage"})
 
-type Props = OwnProps & InjectedFormProps<MessageData, OwnProps>;
+type Props = InjectedFormProps<MessageData>;
 
 const MessageInput: React.FC<Props> = (props) => {
   return (

@@ -1,16 +1,15 @@
 import {
-  AuthUserData,
   SET_CAPTCHA_URL,
   SetCaptchaUrlAction,
   SET_AUTH_USER_DATA,
-  SetAuthUserDataAction
+  SetAuthUserDataAction, IAuthData
 } from "./auth.types";
 import {initialState} from "./auth.initial-state";
 
-export const setAuthUserDataAC = (authUserData: AuthUserData | null, isAuth: boolean): SetAuthUserDataAction => {
+export const setAuthUserDataAC = (authUserData: IAuthData | null, isAuth: boolean): SetAuthUserDataAction => {
   return {
     type: SET_AUTH_USER_DATA,
-    authUserData: authUserData ? {...authUserData, isAuth} : {...initialState.authUserData, isAuth},
+    authUserData: authUserData ? {...authUserData, isAuth, captchaURL: null} : {...initialState.authUserData, isAuth, captchaURL: null},
   }
 };
 

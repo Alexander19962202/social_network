@@ -9,13 +9,9 @@ export type PostData = {
   newPostText: string
 }
 
-type OwnProps = {
-  onSubmit: (data: PostData) => void;
-}
+type Props = InjectedFormProps<PostData>;
 
-type Props = OwnProps & InjectedFormProps<PostData, OwnProps>;
-
-const decorator = reduxForm<PostData, OwnProps>({form: "ProfileAddNewPostForm"})
+const decorator = reduxForm<PostData>({form: "ProfileAddNewPostForm"})
 
 const PostsInput: React.FC<Props> = (props) => {
   return (

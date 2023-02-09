@@ -9,9 +9,9 @@ import {IProfile, ProfileInfoData} from "../../../../redux/reducers/profiles/pro
 
 export type Props = {
   profileInfoData: ProfileInfoData,
-  updateProfileStatus: (newStatus: string) => void,
+  updateProfileStatus: (newStatus: string) => Promise<void>,
   isOwner: boolean,
-  savePhoto: (file: any) => void,
+  savePhoto: (file: any) => Promise<void>,
   saveProfile: (profile: IProfile) => Promise<void>
 }
 

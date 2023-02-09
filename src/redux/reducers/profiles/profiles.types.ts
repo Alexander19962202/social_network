@@ -1,4 +1,4 @@
-import {Thunk} from "../common/common.types";
+import { Action } from 'redux';
 
 // ----- ACTION TYPES -----
 export type ADD_POST_TYPE = 'PROFILES/ADD_POST';
@@ -15,13 +15,12 @@ export const SET_STATUS: SET_STATUS_TYPE = 'PROFILES/SET_STATUS';
 export const SAVE_PHOTO: SAVE_PHOTO_TYPE = 'PROFILES/SAVE_PHOTO';
 
 // ----- ACTIONS/THUNKS -----
-export type AddPostAction = { type: ADD_POST_TYPE, postText: string };
-export type DeletePostAction = { type: DELETE_POST_TYPE, postID: number };
-export type SetUserProfileAction = { type: SET_USER_PROFILE_TYPE, userProfile: any };
-export type SetStatusAction = { type: SET_STATUS_TYPE, status: string }
-export type SavePhotoAction = { type: SAVE_PHOTO_TYPE, photos: ProfilePhotos };
+export type AddPostAction = Action<ADD_POST_TYPE> & { postText: string };
+export type DeletePostAction = Action<DELETE_POST_TYPE> & { postID: number };
+export type SetUserProfileAction = Action<SET_USER_PROFILE_TYPE> & { userProfile: any };
+export type SetStatusAction = Action<SET_STATUS_TYPE> & { status: string }
+export type SavePhotoAction = Action<SAVE_PHOTO_TYPE> & { photos: ProfilePhotos };
 export type ProfilesAction = AddPostAction | DeletePostAction | SetUserProfileAction | SetStatusAction | SavePhotoAction
-export type ProfilesThunk = Thunk<ProfilesAction>
 
 // ----- STATE TYPES -----
 export type ProfilePhotos = {
@@ -29,7 +28,7 @@ export type ProfilePhotos = {
   small: string
 }
 
-export interface IProfileContacts extends Record<string, string>{
+export interface IProfileContacts {
   facebook: string,
   website: string,
   vk: string,
@@ -47,6 +46,7 @@ export interface IProfile {
   aboutMe: string,
   photos: ProfilePhotos,
   contacts: IProfileContacts
+  userId: number
 }
 
 export type ProfileInfoData = {

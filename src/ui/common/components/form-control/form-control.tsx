@@ -1,22 +1,14 @@
-import React, {ReactElement} from "react";
+import React from "react";
 import styles from "src/ui/common/components/form-control/form-control.module.css";
-import {Field} from "redux-form";
+import {Field, WrappedFieldMetaProps, WrappedFieldProps} from "redux-form";
 import {Validator} from "src/ui/common/validators/validators";
 
 type FormControlProps = {
-  meta: {
-    touched: boolean,
-    error: string | undefined
-  }
-  children: ReactElement
+  meta: WrappedFieldMetaProps
+  children: React.ReactNode
 }
 
-type InputProps = {
-  input: any,
-  meta: any
-}
-
-const FormControl: React.FC<FormControlProps> = ({meta: {touched, error}, children}: FormControlProps) => {
+const FormControl: React.FC<FormControlProps> = ({meta: {touched, error}, children}) => {
   const hasError = touched && error;
   return (
     <div className={styles.formControl + " " + (hasError ? styles.error : "")}>
@@ -26,23 +18,26 @@ const FormControl: React.FC<FormControlProps> = ({meta: {touched, error}, childr
   )
 };
 
-export const Textarea: React.FC<InputProps> = (props: InputProps) => {
+export const Textarea: React.FC<WrappedFieldProps> = (props) => {
   const {input, meta, ...restProps} = props;
   return <FormControl {...props}><textarea {...input} {...restProps} /></FormControl>
 };
 
-export const Input: React.FC<InputProps> = (props: InputProps) => {
+export const Input: React.FC<WrappedFieldProps> = (props) => {
   const {input, meta, ...restProps} = props;
   return <FormControl {...props}><input {...input} {...restProps} /></FormControl>
 };
 
-export const createField = (placeholder: string, name: string, validators: Validator[], component: React.FC<InputProps>, props = {}, text = "") => (
-  <div>
-    <Field placeholder={placeholder} name={name}
-      validate={validators}
-      component={component}
-      {...props}
-    />
-    {text}
-  </div>
-);
+export const createField = function <KeysType extends string>(placeholder: string, name: KeysType, validators: Validator[], component: React.FC<WrappedFieldProps>, props = {}, text = "") {
+  return (
+    <div>
+      <Field placeholder={placeholder}
+             name={name}
+             validate={validators}
+             component={component}
+             {...props}
+      />
+      {text}
+    </div>
+  )
+}

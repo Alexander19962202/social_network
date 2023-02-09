@@ -1,17 +1,16 @@
-import {Dispatch} from "react";
 import {InitializedSuccessAction, SetGlobalErrorMessageAction} from "./app.types";
 import {initializedSuccessAC, setGlobalErrorAC} from "./app.action-creators";
-import {AuthThunk} from "../auth/auth.types";
 import {getAuthUserData} from "../auth/auth.thunks";
+import {AppAsyncThunkAction, AppThunkAction} from "../common/common.types";
 
-export const resetGlobalError = () => (dispatch: Dispatch<SetGlobalErrorMessageAction>) => {
+export const resetGlobalError = (): AppThunkAction<SetGlobalErrorMessageAction> => (dispatch) => {
   dispatch(setGlobalErrorAC(''));
 };
 
-export const initializeApp = () => (dispatch: Dispatch<AuthThunk | InitializedSuccessAction>) => {
+export const initializeApp = (): AppAsyncThunkAction<InitializedSuccessAction> => (dispatch) => {
   let promise = dispatch(getAuthUserData());
-
-  Promise.all([promise])
+  dispatch(initializedSuccessAC());
+  return Promise.all([promise])
     .then(() => {
       dispatch(initializedSuccessAC());
     });
