@@ -14,14 +14,12 @@ import {Outlet, useNavigate, useParams} from "react-router-dom";
 import usePrevious from "src/ui/common/hook/use-previous";
 import {RootState} from "src/redux/redux-store";
 
-let mapStateToProps = (state: RootState) => {
-  return {
-    profileInfoData: state.profilePage.profilePageData.profileInfoData,
-    myPostsData: state.profilePage.profilePageData.myPostsData,
-    isAuth: state.auth.authUserData.isAuth,
-    userID: state.auth.authUserData.id
-  }
-};
+let mapStateToProps = (state: RootState) => ({
+  profileInfoData: state.profilePage.profilePageData.profileInfoData,
+  myPostsData: state.profilePage.profilePageData.myPostsData,
+  isAuth: state.auth.authUserData.isAuth,
+  userID: state.auth.authUserData.id
+});
 
 const connector = connect(mapStateToProps, {getProfile, getProfileStatus, updateProfileStatus, savePhoto, saveProfile})
 
@@ -43,7 +41,7 @@ const ProfilePageContainer: React.FC<Props> = (props) => {
     props.getProfile(userID as number);
     props.getProfileStatus(userID as number)
   }
-  const prevParams = usePrevious(params, { userID: '' })
+  const prevParams = usePrevious(params, {userID: ''})
 
   useEffect(() => {
     const userIdChanged = !!((
@@ -62,10 +60,10 @@ const ProfilePageContainer: React.FC<Props> = (props) => {
   return (
     <div>
       <ProfilePage profileInfoData={props.profileInfoData}
-        updateProfileStatus={props.updateProfileStatus}
-        isOwner={!params?.userID}
-        savePhoto={props.savePhoto}
-        saveProfile={props.saveProfile}/>
+                   updateProfileStatus={props.updateProfileStatus}
+                   isOwner={!params?.userID}
+                   savePhoto={props.savePhoto}
+                   saveProfile={props.saveProfile}/>
       <Outlet/>
     </div>
   );

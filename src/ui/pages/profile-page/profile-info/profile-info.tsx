@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import classes from 'src/ui/pages/profile-page/profile-info/profile-info.module.css';
 import Preloader from "src/ui/common/components/preloader/preloader";
 import ProfileStatus from "src/ui/pages/profile-page/profile-info/profile-status/profile-status";
@@ -11,7 +11,7 @@ export type Props = {
   profileInfoData: ProfileInfoData,
   updateProfileStatus: (newStatus: string) => Promise<void>,
   isOwner: boolean,
-  savePhoto: (file: any) => Promise<void>,
+  savePhoto: (file: File) => Promise<void>,
   saveProfile: (profile: IProfile) => Promise<void>
 }
 
@@ -25,8 +25,8 @@ const ProfileInfo: React.FC<Props> = (props) => {
       <Preloader/>
     );
 
-  const onMainPhotoSelected = (e: any) => {
-    if (e.target.files.length) {
+  const onMainPhotoSelected = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files?.length) {
       props.savePhoto(e.target.files[0]);
     }
   };

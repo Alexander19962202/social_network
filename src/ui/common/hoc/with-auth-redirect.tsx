@@ -8,18 +8,18 @@ let mapStateToPropsForRedirect = (state: RootState) => ({
 });
 
 const connector = connect(mapStateToPropsForRedirect)
-
 export type WithAuthRedirectProps = ConnectedProps<typeof connector>
 
-const withAuthRedirect = (Component: React.FC<any>) => {
-  const RedirectComponent: React.FC<WithAuthRedirectProps> = (props) => {
+function withAuthRedirect(WrappedComponent: React.ComponentType<any>) {
+  const RedirectComponent: React.FC<React.ComponentProps<typeof WrappedComponent> & WithAuthRedirectProps> = (props) => {
     if (!props.isAuth) {
       return <Navigate to='/login'/>
     }
-    return <Component {...props}/>
+    
+    return <WrappedComponent {...props as any}/>
   }
 
-  return connect(mapStateToPropsForRedirect)(RedirectComponent);
-};
+  return connector(RedirectComponent);
+}
 
 export default withAuthRedirect;

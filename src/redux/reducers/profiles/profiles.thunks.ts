@@ -35,7 +35,7 @@ export const updateProfileStatus = (newStatus: string): AppAsyncThunkAction<SetS
   }
 };
 
-export const savePhoto = (file: any): AppAsyncThunkAction<SavePhotoAction> => async (dispatch) => {
+export const savePhoto = (file: File): AppAsyncThunkAction<SavePhotoAction> => async (dispatch) => {
   let response = await profileAPI.setProfilePhoto(file);
   if (response.resultCode === ResultCode.OK) {
     dispatch(savePhotoSuccess(response.data.photos));

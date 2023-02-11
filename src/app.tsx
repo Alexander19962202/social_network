@@ -8,10 +8,9 @@ import {BrowserRouter, Route, Routes, Navigate} from "react-router-dom";
 import React from "react";
 import UsersPageContainer from "src/ui/pages/users-page/users-page.container";
 import Preloader from "./ui/common/components/preloader/preloader";
-import {compose} from "redux";
-import {connect, Provider} from "react-redux";
+import {connect, ConnectedProps, Provider} from "react-redux";
 import {initializeApp, resetGlobalError} from "./redux/reducers/app/app.thunks";
-import store from "./redux/redux-store";
+import store, {RootState} from "./redux/redux-store";
 import {withSuspense} from "./ui/common/hoc/with-suspense";
 import LoginDialogContainer from "src/ui/login-dialog/login-dialog.container";
 
@@ -20,7 +19,14 @@ let MessagesPage = React.lazy(() => import('./ui/pages/messages-page/messages-pa
 let ProfileContainerWithSuspense = withSuspense(ProfilePage)
 let MessagesWithSuspense = withSuspense(MessagesPage)
 
-class App extends React.Component<any, any> {
+const mapStateToProps = (state: RootState) => ({
+  initialized: state.app.initialized,
+  globalError: state.app.globalError
+});
+const connector = connect(mapStateToProps, {initializeApp, resetGlobalError})
+type Props = ConnectedProps<typeof connector>
+
+class App extends React.Component<Props> {
   catchAllUnhandledErrors = () => {
     alert("Some error occured");
     //console.error(promiseRejectionEvent);
@@ -69,14 +75,7 @@ class App extends React.Component<any, any> {
   }
 }
 
-const mapStateToProps = (state: any) => ({
-  initialized: state.app.initialized,
-  globalError: state.app.globalError
-});
-
-let AppContainer = compose(
-  connect(mapStateToProps, {initializeApp, resetGlobalError}))
-(App);
+let AppContainer = connector(App);
 
 let SocialNetworkApp = () => {
   return <React.StrictMode>

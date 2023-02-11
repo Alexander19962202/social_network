@@ -53,7 +53,7 @@ export const profileAPI = {
     return instance.put<SetProfileStatusResponse>('profile/status', {status: newStatus}).then((response) => response.data)
   },
 
-  setProfilePhoto(photoFile: any) {
+  setProfilePhoto(photoFile: File) {
     const formData = new FormData();
     formData.append("image", photoFile);
 
