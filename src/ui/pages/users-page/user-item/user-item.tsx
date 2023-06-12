@@ -32,13 +32,15 @@ const UserItem: React.FC<Props> = ({
         <div>
           {
             user.followed ?
-              <button disabled={usersFollowing.some((id: any) => id === user.id)}
-                      onClick={() => {
-                        on_unfollow(user.id);
-                      }}>
+              <button
+                disabled={usersFollowing.some((id) => id === user.id)}
+                onClick={() => {
+                  on_unfollow(user.id);
+                }}
+              >
                 UNFOLLOW
               </button> :
-              <button disabled={usersFollowing.some((id: any) => id === user.id)}
+              <button disabled={usersFollowing.some((id) => id === user.id)}
                       onClick={() => {
                         on_follow(user.id);
                       }}>

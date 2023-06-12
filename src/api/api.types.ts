@@ -1,6 +1,6 @@
-import {IUser} from "../redux/reducers/users/users.types";
-import {IProfile, ProfilePhotos} from "../redux/reducers/profiles/profiles.types";
-import {IAuthData} from "../redux/reducers/auth/auth.types";
+import {IUser} from "src/redux/reducers/users/users.types";
+import {IProfile, ProfilePhotos} from "src/redux/reducers/profiles/profiles.types";
+import {IAuthData} from "src/redux/reducers/auth/auth.types";
 
 export enum ResultCode {
   OK = 0,
@@ -25,12 +25,14 @@ export type GetUsersResponse = {
 }
 export type FollowResponse = CommonResponse<{}>
 export type UnfollowResponse = CommonResponse<{}>
+
 // Profiles API
 export type GetProfileResponse = IProfile
 export type GetProfileStatus = string
 export type SetProfileStatusResponse = CommonResponse<{}>
 export type SetProfilePhotoResponse = CommonResponse<{ photos: ProfilePhotos }>
 export type SetProfileResponse = CommonResponse<{}>
+
 //Auth API
 export type AuthMeResponse = CommonResponse<IAuthData>
 export type LoginResponse = CommonResponse<{ userId: string }>

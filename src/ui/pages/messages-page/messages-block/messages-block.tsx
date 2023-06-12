@@ -11,7 +11,7 @@ type Props = {
 
 const MessagesBlock: React.FC<Props> = (props) => {
   let messageItems =
-    props.messagesData.messageStateItems.map((m: any) => <MessageItem message={m.message} id={m.id} key={m.id}/>);
+    props.messagesData.messageStateItems.map((m) => <MessageItem message={m.message} id={m.id} key={m.id}/>);
 
   return (
     <div className={classes.messageBlock}>

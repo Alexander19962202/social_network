@@ -1,14 +1,14 @@
-export type Validator = (value: any) => string | undefined
+import {Validator} from "redux-form";
 
-export const required: Validator = (value: string | number | undefined) => {
+export const required: Validator = (value) => {
   if (value) {
     return undefined;
   }
   return "Field is required";
 };
 
-export const maxLengthCreator = (maxLength: number): Validator => (value: string) => {
-  if (value.length > maxLength) {
+export const maxLengthCreator = (maxLength: number): Validator => (value) => {
+  if (value?.length && value.length > maxLength) {
     return `Max length is ${maxLength} symbols`;
   }
   return undefined;

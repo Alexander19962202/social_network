@@ -1,5 +1,5 @@
 import {createSelector} from "reselect";
-import {RootState} from "../redux-store";
+import {RootState} from "src/redux/redux-store";
 
 const getUsersSelector = (state: RootState) => state.usersPage.users.filter((u) => u.id > 0)
 export const getUsers = createSelector(getUsersSelector, (users) => users.filter(() => true))

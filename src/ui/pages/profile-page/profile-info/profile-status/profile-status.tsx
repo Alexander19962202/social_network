@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 
 type Props = {
   status: string,
@@ -29,7 +29,7 @@ const ProfileStatus: React.FC<Props> = (props) => {
     props.updateProfileStatus(status);
   };
 
-  const onStatusChange = (e: any) => {
+  const onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
     setStatus(e.currentTarget.value);
   };
 

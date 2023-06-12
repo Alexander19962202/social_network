@@ -9,7 +9,7 @@ type Props = {
 
 const DialogsList: React.FC<Props> = (props) => {
   let dialogItems =
-    props.dialogsData.dialogStateItems.map((d: any) => <DialogItem name={d.name} id={d.id} avatar={d.avatar} key={d.id}/>);
+    props.dialogsData.dialogStateItems.map((d) => <DialogItem name={d.name} id={d.id} avatar={d.avatar} key={d.id}/>);
 
   return (
     <div className={classes.dialogsBlock}>
