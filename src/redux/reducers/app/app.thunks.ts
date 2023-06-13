@@ -1,16 +1,14 @@
-import {InitializedSuccessAction, SetGlobalErrorMessageAction} from "./app.types";
-import {initializedSuccessAC, setGlobalErrorAC} from "./app.action-creators";
-import {getAuthUserData} from "../auth/auth.thunks";
-import {AppAsyncThunkAction, AppThunkAction} from "../common/common.types";
+import {InitializedSuccessAction, SetGlobalErrorMessageAction} from "src/redux/reducers/app/app.types";
+import {initializedSuccessAC, setGlobalErrorAC} from "src/redux/reducers/app/app.action-creators";
+import {getAuthUserData} from "src/redux/reducers/auth/auth.thunks";
+import {AppAsyncThunkAction, AppThunkAction} from "src/redux/reducers/common/common.types";
 
 export const resetGlobalError = (): AppThunkAction<SetGlobalErrorMessageAction> => (dispatch) => {
   dispatch(setGlobalErrorAC(''));
 };
 
 export const initializeApp = (): AppAsyncThunkAction<InitializedSuccessAction> => (dispatch) => {
-  let promise = dispatch(getAuthUserData());
-  dispatch(initializedSuccessAC());
-  return Promise.all([promise])
+  return Promise.all([dispatch(getAuthUserData())])
     .then(() => {
       dispatch(initializedSuccessAC());
     });
