@@ -10,7 +10,7 @@ import {
 } from "src/redux/reducers/profiles/profiles.thunks";
 import withAuthRedirect, {WithAuthRedirectProps} from "src/ui/common/hoc/with-auth-redirect";
 import {compose} from "redux";
-import {Outlet, useNavigate, useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import usePrevious from "src/ui/common/hook/use-previous";
 import {RootState} from "src/redux/redux-store";
 
@@ -38,8 +38,8 @@ const ProfilePageContainer: React.FC<Props> = (props) => {
         navigate("/login");
       }
     }
-    props.getProfile(userID as number);
-    props.getProfileStatus(userID as number)
+    props.getProfile(userID);
+    props.getProfileStatus(userID)
   }
   const prevParams = usePrevious(params, {userID: ''})
 
@@ -64,7 +64,6 @@ const ProfilePageContainer: React.FC<Props> = (props) => {
                    isOwner={!params?.userID}
                    savePhoto={props.savePhoto}
                    saveProfile={props.saveProfile}/>
-      <Outlet/>
     </div>
   );
 }
