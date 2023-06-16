@@ -1,4 +1,4 @@
-let initialState = {}
+let initialState = {};
 
 const newsReducer = (state = initialState, action: any) => {
   switch (action.type) {
@@ -6,6 +6,6 @@ const newsReducer = (state = initialState, action: any) => {
       return state;
     }
   }
-}
+};
 
 export default newsReducer;

@@ -1,5 +1,5 @@
-import {MessagesAction, MessagesState, SEND_MESSAGE} from "./messages.types";
-import {initialState} from "./messages.initial-state";
+import { MessagesAction, MessagesState, SEND_MESSAGE } from './messages.types';
+import { initialState } from './messages.initial-state';
 
 const messagesReducer = (state = initialState, action: MessagesAction): MessagesState => {
   switch (action.type) {
@@ -11,9 +11,9 @@ const messagesReducer = (state = initialState, action: MessagesAction): Messages
           ...state.messagesPageData,
           messagesData: {
             ...state.messagesPageData.messagesData,
-            messageStateItems: [...state.messagesPageData.messagesData.messageStateItems, {id: 5, message: text}]
-          }
-        }
+            messageStateItems: [...state.messagesPageData.messagesData.messageStateItems, { id: 5, message: text }],
+          },
+        },
       };
     }
     default: {

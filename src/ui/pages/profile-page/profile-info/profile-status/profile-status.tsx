@@ -1,12 +1,12 @@
-import React, {ChangeEvent, useEffect, useState} from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 
 type Props = {
-  status: string,
-  updateProfileStatus: (newStatus: string) => void
-  isOwner: boolean
-}
+  status: string;
+  updateProfileStatus: (newStatus: string) => void;
+  isOwner: boolean;
+};
 
-const ProfileStatus: React.FC<Props> = (props) => {
+const ProfileStatus: React.FC<Props> = props => {
   let [editMode, setEditMode] = useState(false);
   let [status, setStatus] = useState(props.status);
 
@@ -16,7 +16,7 @@ const ProfileStatus: React.FC<Props> = (props) => {
 
   const activateEditMode = () => {
     if (!props.isOwner) {
-      return
+      return;
     }
     setEditMode(true);
   };
@@ -24,7 +24,7 @@ const ProfileStatus: React.FC<Props> = (props) => {
   const deactivateEditMode = () => {
     setEditMode(false);
     if (!props.isOwner) {
-      return
+      return;
     }
     props.updateProfileStatus(status);
   };
@@ -36,14 +36,10 @@ const ProfileStatus: React.FC<Props> = (props) => {
   return (
     <div>
       <b>Status: </b>
-      {!editMode &&
-        <span onDoubleClick={activateEditMode}>{props.status || "-------"}</span>
-      }
-      {editMode &&
-        <input onChange={onStatusChange} autoFocus={true} onBlur={deactivateEditMode} value={status}/>
-      }
+      {!editMode && <span onDoubleClick={activateEditMode}>{props.status || '-------'}</span>}
+      {editMode && <input onChange={onStatusChange} autoFocus={true} onBlur={deactivateEditMode} value={status} />}
     </div>
-  )
+  );
 };
 
 export default ProfileStatus;

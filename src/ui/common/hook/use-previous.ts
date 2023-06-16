@@ -1,4 +1,4 @@
-import {useEffect, useRef} from "react";
+import { useEffect, useRef } from 'react';
 
 const usePrevious = <T>(value: T, initialValue: T) => {
   const ref = useRef<T>(initialValue);
@@ -6,6 +6,6 @@ const usePrevious = <T>(value: T, initialValue: T) => {
     ref.current = value;
   });
   return ref.current;
-}
+};
 
 export default usePrevious;

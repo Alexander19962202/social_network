@@ -1,21 +1,21 @@
-import profilesReducer from "./profiles.reducer"
-import {addPost, deletePost} from "./profiles.action-creators";
-import {ProfilesState} from "./profiles.types";
+import profilesReducer from './profiles.reducer';
+import { addPost, deletePost } from './profiles.action-creators';
+import { ProfilesState } from './profiles.types';
 
 let state: ProfilesState = {
   profilePageData: {
     profileInfoData: {
       userProfile: null,
-      status: ""
+      status: '',
     },
     myPostsData: {
       myPostStateItems: [
-        {id: 1, text: 'How I learned Infra Hard', likeCount: 11},
-        {id: 2, text: 'How I learned Torba Black', likeCount: 22},
-        {id: 3, text: 'About Gimbarr in 2011', likeCount: 33}
-      ]
-    }
-  }
+        { id: 1, text: 'How I learned Infra Hard', likeCount: 11 },
+        { id: 2, text: 'How I learned Torba Black', likeCount: 22 },
+        { id: 3, text: 'About Gimbarr in 2011', likeCount: 33 },
+      ],
+    },
+  },
 };
 const postLength = state.profilePageData.myPostsData.myPostStateItems.length;
 
@@ -33,7 +33,7 @@ it('length of posts should be incremented', () => {
 it('message of new post should be correct', () => {
   // 1. test data
 
-  const postTest = "My post";
+  const postTest = 'My post';
   let action = addPost(postTest);
 
   // 2. action
@@ -42,7 +42,6 @@ it('message of new post should be correct', () => {
   // 3. expectation
   expect(newState.profilePageData.myPostsData.myPostStateItems[postLength].text).toBe(postTest);
 });
-
 
 it('after deleting length of messages should be decrement', () => {
   // 1. test data

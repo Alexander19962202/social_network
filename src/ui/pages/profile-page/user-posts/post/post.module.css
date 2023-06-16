@@ -1,10 +1,10 @@
 .item {
-    color:saddlebrown;
-    padding: 10px;
+  color: saddlebrown;
+  padding: 10px;
 }
 
 .item img {
-    width: 40px;
-    height: 40px;
-    border-radius: 30px;
+  width: 40px;
+  height: 40px;
+  border-radius: 30px;
 }

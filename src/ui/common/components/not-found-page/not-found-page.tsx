@@ -6,7 +6,7 @@ const NotFoundPage: React.FC = () => {
       <label>Ooops!!!</label>
       <div>404 NOT FOUND</div>
     </div>
-  )
+  );
 };
 
 export default NotFoundPage;

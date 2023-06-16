@@ -1,4 +1,4 @@
-import {AuthState} from "./auth.types";
+import { AuthState } from './auth.types';
 
 export const initialState: AuthState = {
   authUserData: {
@@ -6,6 +6,6 @@ export const initialState: AuthState = {
     login: null,
     email: null,
     isAuth: false,
-    captchaURL: null
-  }
+    captchaURL: null,
+  },
 };
