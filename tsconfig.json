@@ -41,6 +41,6 @@
     "**/*.old.ts",
     "**/*.old.tsx",
     "**/*.spec.ts",
-    "**/*.spec.ts"
+    "**/*.spec.tsx"
   ]
 }

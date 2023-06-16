@@ -37,7 +37,7 @@ const ProfileInfo: React.FC<Props> = props => {
   return (
     <div>
       <div>
-        <img alt='' src={profileInfoData.userProfile.photos.large || defaultPhoto} className={classes.mainPhoto} />
+        <img alt="" src={profileInfoData.userProfile.photos.large || defaultPhoto} className={classes.mainPhoto} />
         {props.isOwner && <input type={'file'} onChange={onMainPhotoSelected} />}
       </div>
       <div className={classes.descriptionBlock}>
@@ -48,7 +48,7 @@ const ProfileInfo: React.FC<Props> = props => {
         />
       </div>
       <div className={classes.descriptionBlock}>
-        <img alt='' src={profileInfoData.userProfile.photos.small || defaultPhoto} className={classes.secondPhoto} />
+        <img alt="" src={profileInfoData.userProfile.photos.small || defaultPhoto} className={classes.secondPhoto} />
         {editMode ? (
           <ProfileDataForm
             initialValues={profileInfoData.userProfile}

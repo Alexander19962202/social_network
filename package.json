@@ -18,6 +18,7 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "1.9.5",
     "@sentry/react": "7.55.2",
     "axios": "1.4.0",
     "classnames": "2.3.2",

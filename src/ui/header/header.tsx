@@ -13,7 +13,10 @@ const Header: React.FC<Props> = props => {
   return (
     <header className={classes.header}>
       <>
-        <img alt='' src="https://yt3.ggpht.com/a/AATXAJzn-DRRHOx_J9XtPlDYbNjK3eJSVRlvzgZZCMmUmQ=s900-c-k-c0x00ffffff-no-rj" />
+        <img
+          alt=""
+          src="https://yt3.ggpht.com/a/AATXAJzn-DRRHOx_J9XtPlDYbNjK3eJSVRlvzgZZCMmUmQ=s900-c-k-c0x00ffffff-no-rj"
+        />
         <span className={classes.error}>{props.errorMessage}</span>
       </>
       <div className={classes.loginBlock}>

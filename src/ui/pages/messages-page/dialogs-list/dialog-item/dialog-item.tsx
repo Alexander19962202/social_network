@@ -13,7 +13,7 @@ const DialogItem: React.FC<Props> = props => {
   return (
     <div className={classes.dialog}>
       <div>
-        <img alt='' src={props.avatar} />
+        <img alt="" src={props.avatar} />
       </div>
       <div>
         <NavLink to={path} className={navData => (navData.isActive ? classes.active : '')}>

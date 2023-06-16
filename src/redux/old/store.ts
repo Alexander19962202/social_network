@@ -1,9 +1,9 @@
-import profilesReducer from './reducers/profiles/profiles.reducer';
-import messagesReducer from './reducers/messages/messages.reducer';
-import newsReducer from './reducers/news/news.reducer';
-import musicReducer from './reducers/music/music.reducer';
-import settingsReducer from './reducers/settings/settings.reducer';
-import sidebarReducer from './reducers/sidebar/sidebar.reducer';
+import profilesReducer from '../reducers/profiles/profiles.reducer';
+import messagesReducer from '../reducers/messages/messages.reducer';
+import newsReducer from '../reducers/news/news.reducer';
+import musicReducer from '../reducers/music/music.reducer';
+import settingsReducer from '../reducers/settings/settings.reducer';
+import sidebarReducer from '../reducers/sidebar/sidebar.reducer';
 
 let store = {
   _state: {

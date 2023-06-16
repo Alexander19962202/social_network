@@ -17,7 +17,11 @@ const UserItem: React.FC<Props> = ({ user, on_follow, on_unfollow, usersFollowin
       <span>
         <div>
           <NavLink to={'/profile/' + user.id}>
-            <img alt='' className={classes.userPhoto} src={user.photos.small === null ? userPhoto : user.photos.small} />
+            <img
+              alt=""
+              className={classes.userPhoto}
+              src={user.photos.small === null ? userPhoto : user.photos.small}
+            />
           </NavLink>
         </div>
         <div>{user.name}</div>

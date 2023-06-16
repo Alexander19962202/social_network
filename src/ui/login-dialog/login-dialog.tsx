@@ -28,7 +28,7 @@ const LoginDialog: React.FC<Props> = ({ handleSubmit, error, captchaURL }) => {
       {createField<LoginDataKeys>('Password', 'password', [required], Input, { type: 'password' })}
       {createField<LoginDataKeys>('', 'rememberMe', [], Input, { type: 'checkbox' }, 'remember me')}
 
-      {captchaURL && <img alt='' src={captchaURL} />}
+      {captchaURL && <img alt="" src={captchaURL} />}
       {captchaURL && createField<LoginDataKeys>('Symbols from image', 'captcha', [required], Input, {})}
       {error && <div className={style.formSummaryError}>{error}</div>}
 
