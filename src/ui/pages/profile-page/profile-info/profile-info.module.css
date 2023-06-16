@@ -1,17 +1,17 @@
 .descriptionBlock {
-    padding: 10px;
+  padding: 10px;
 }
 
 .mainPhoto {
-    max-width: 200px;
-    min-width: 150px;
+  max-width: 200px;
+  min-width: 150px;
 }
 
 .secondPhoto {
-    max-width: 150px;
-    min-width: 100px;
+  max-width: 150px;
+  min-width: 100px;
 }
 
 .contact {
-    padding-left: 10px;
+  padding-left: 10px;
 }

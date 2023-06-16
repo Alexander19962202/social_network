@@ -1,29 +1,31 @@
-import React from "react";
-import {connect, ConnectedProps} from "react-redux"
-import Header from "src/ui/header/header";
-import {logout} from "src/redux/reducers/auth/auth.thunks";
-import {RootState} from "src/redux/redux-store";
+import React from 'react';
+import { connect, ConnectedProps } from 'react-redux';
+import Header from 'src/ui/header/header';
+import { logout } from 'src/redux/reducers/auth/auth.thunks';
+import { RootState } from 'src/redux/redux-store';
 
 type OwnProps = {
-  errorMessage: string
-}
+  errorMessage: string;
+};
 
 let mapStateToProps = (state: RootState) => {
   return {
-    authUserData: state.auth.authUserData
-  }
+    authUserData: state.auth.authUserData,
+  };
 };
 
-const connector = connect(
-  mapStateToProps, {logout}
-)
+const connector = connect(mapStateToProps, { logout });
 
-type Props = ConnectedProps<typeof connector> & OwnProps
+type Props = ConnectedProps<typeof connector> & OwnProps;
 
 class HeaderContainer extends React.Component<Props> {
   render() {
     return (
-      <Header errorMessage={this.props.errorMessage} authUserData={this.props.authUserData} logout={this.props.logout}/>
+      <Header
+        errorMessage={this.props.errorMessage}
+        authUserData={this.props.authUserData}
+        logout={this.props.logout}
+      />
     );
   }
 }

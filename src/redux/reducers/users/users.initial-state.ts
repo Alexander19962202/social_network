@@ -1,4 +1,4 @@
-import {UsersState} from "./users.types";
+import { UsersState } from './users.types';
 
 export const initialState: UsersState = {
   users: [],
@@ -7,5 +7,5 @@ export const initialState: UsersState = {
   totalUsersCount: 0,
   currentUsersPage: 1,
   isFetching: false,
-  usersFollowing: []
+  usersFollowing: [],
 };

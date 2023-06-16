@@ -1,4 +1,4 @@
-let initialState = {}
+let initialState = {};
 
 const musicReducer = (state = initialState, action: any) => {
   switch (action.type) {
@@ -6,6 +6,6 @@ const musicReducer = (state = initialState, action: any) => {
       return state;
     }
   }
-}
+};
 
 export default musicReducer;

@@ -1,4 +1,4 @@
-let initialState = {}
+let initialState = {};
 
 const settingsReducer = (state = initialState, action: any) => {
   switch (action.type) {
@@ -6,6 +6,6 @@ const settingsReducer = (state = initialState, action: any) => {
       return state;
     }
   }
-}
+};
 
 export default settingsReducer;

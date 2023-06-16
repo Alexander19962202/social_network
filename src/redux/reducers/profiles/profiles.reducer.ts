@@ -1,11 +1,14 @@
 import {
   ADD_POST,
-  DELETE_POST, IProfile, ProfilesAction, ProfilesState,
+  DELETE_POST,
+  IProfile,
+  ProfilesAction,
+  ProfilesState,
   SAVE_PHOTO,
   SET_STATUS,
-  SET_USER_PROFILE
-} from "./profiles.types";
-import {initialState} from "./profiles.initial-state";
+  SET_USER_PROFILE,
+} from './profiles.types';
+import { initialState } from './profiles.initial-state';
 
 const profilesReducer = (state = initialState, action: ProfilesAction): ProfilesState => {
   switch (action.type) {
@@ -17,13 +20,16 @@ const profilesReducer = (state = initialState, action: ProfilesAction): Profiles
           ...state.profilePageData,
           myPostsData: {
             ...state.profilePageData.myPostsData,
-            myPostStateItems: [...state.profilePageData.myPostsData.myPostStateItems, {
-              id: 4,
-              text: text,
-              likeCount: 0
-            }]
-          }
-        }
+            myPostStateItems: [
+              ...state.profilePageData.myPostsData.myPostStateItems,
+              {
+                id: 4,
+                text: text,
+                likeCount: 0,
+              },
+            ],
+          },
+        },
       };
     }
     case DELETE_POST: {
@@ -33,10 +39,12 @@ const profilesReducer = (state = initialState, action: ProfilesAction): Profiles
           ...state.profilePageData,
           myPostsData: {
             ...state.profilePageData.myPostsData,
-            myPostStateItems: state.profilePageData.myPostsData.myPostStateItems.filter(post => post.id != action.postID)
-          }
-        }
-      }
+            myPostStateItems: state.profilePageData.myPostsData.myPostStateItems.filter(
+              post => post.id != action.postID,
+            ),
+          },
+        },
+      };
     }
     case SET_USER_PROFILE: {
       return {
@@ -45,10 +53,10 @@ const profilesReducer = (state = initialState, action: ProfilesAction): Profiles
           ...state.profilePageData,
           profileInfoData: {
             ...state.profilePageData.profileInfoData,
-            userProfile: action.userProfile
-          }
-        }
-      }
+            userProfile: action.userProfile,
+          },
+        },
+      };
     }
     case SET_STATUS: {
       return {
@@ -57,10 +65,10 @@ const profilesReducer = (state = initialState, action: ProfilesAction): Profiles
           ...state.profilePageData,
           profileInfoData: {
             ...state.profilePageData.profileInfoData,
-            status: action.status
-          }
-        }
-      }
+            status: action.status,
+          },
+        },
+      };
     }
     case SAVE_PHOTO: {
       return {
@@ -71,11 +79,11 @@ const profilesReducer = (state = initialState, action: ProfilesAction): Profiles
             ...state.profilePageData.profileInfoData,
             userProfile: {
               ...(state.profilePageData.profileInfoData.userProfile as IProfile),
-              photos: action.photos
-            }
-          }
-        }
-      }
+              photos: action.photos,
+            },
+          },
+        },
+      };
     }
     default: {
       return state;

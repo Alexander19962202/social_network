@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import SocialNetworkApp from 'src/app';
-import {unmountComponentAtNode } from "react-dom";
-import { act } from "react-dom/test-utils";
+import { unmountComponentAtNode } from 'react-dom';
+import { act } from 'react-dom/test-utils';
 import mockAxios from 'jest-mock-axios';
 
 describe('App', () => {
-  let container: HTMLDivElement | null
+  let container: HTMLDivElement | null;
   beforeEach(() => {
     // prepare DOM-element for rendering
-    container = document.createElement("div");
+    container = document.createElement('div');
     document.body.appendChild(container);
   });
 
@@ -33,4 +33,4 @@ describe('App', () => {
       ReactDOM.render(<SocialNetworkApp />, container);
     });
   });
-})
+});

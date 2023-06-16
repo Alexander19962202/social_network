@@ -1,13 +1,13 @@
 .paginator {
-    margin: 10px;
-    background-color: white;
+  margin: 10px;
+  background-color: white;
 }
 
 .pageNumber {
-    padding: 2px;
-    border: 1px solid grey;
+  padding: 2px;
+  border: 1px solid grey;
 }
 
 .activePage {
-    color: red;
+  color: red;
 }

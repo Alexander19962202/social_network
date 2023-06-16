@@ -1,15 +1,13 @@
-import {Action} from "redux";
+import { Action } from 'redux';
 
-let initialState = {
-
-}
+let initialState = {};
 
 const sidebarReducer = (state = initialState, action: Action) => {
   switch (action.type) {
     default: {
-      return state
+      return state;
     }
   }
-}
+};
 
 export default sidebarReducer;

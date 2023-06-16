@@ -1,21 +1,26 @@
-import axios from "axios"
-import {IProfile} from "src/redux/reducers/profiles/profiles.types";
+import axios from 'axios';
+import { IProfile } from 'src/redux/reducers/profiles/profiles.types';
 import {
   AuthMeResponse,
-  FollowResponse, GetCaptchaUrlResponse,
+  FollowResponse,
+  GetCaptchaUrlResponse,
   GetProfileResponse,
   GetProfileStatus,
-  GetUsersResponse, LoginResponse, LogoutResponse, SetProfilePhotoResponse, SetProfileResponse,
+  GetUsersResponse,
+  LoginResponse,
+  LogoutResponse,
+  SetProfilePhotoResponse,
+  SetProfileResponse,
   SetProfileStatusResponse,
-  UnfollowResponse
-} from "src/api/api.types";
+  UnfollowResponse,
+} from 'src/api/api.types';
 
 const instance = axios.create({
   withCredentials: true,
   baseURL: process.env.REACT_APP_BASE_URL,
   headers: {
-    "API-KEY": process.env.REACT_APP_API_KEY
-  }
+    'API-KEY': process.env.REACT_APP_API_KEY,
+  },
 });
 
 export const usersAPI = {
@@ -35,7 +40,7 @@ export const usersAPI = {
     return instance.delete<UnfollowResponse>(`follow/${userId}`).then(response => {
       return response.data;
     });
-  }
+  },
 };
 
 export const profileAPI = {
@@ -46,27 +51,31 @@ export const profileAPI = {
   },
 
   getProfileStatus(userId: number) {
-    return instance.get<GetProfileStatus>(`profile/status/${userId}`).then((response) => response.data)
+    return instance.get<GetProfileStatus>(`profile/status/${userId}`).then(response => response.data);
   },
 
   setProfileStatus(newStatus: string) {
-    return instance.put<SetProfileStatusResponse>('profile/status', {status: newStatus}).then((response) => response.data)
+    return instance
+      .put<SetProfileStatusResponse>('profile/status', { status: newStatus })
+      .then(response => response.data);
   },
 
   setProfilePhoto(photoFile: File) {
     const formData = new FormData();
-    formData.append("image", photoFile);
+    formData.append('image', photoFile);
 
-    return instance.put<SetProfilePhotoResponse>(`profile/photo`, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    }).then((response) => response.data);
+    return instance
+      .put<SetProfilePhotoResponse>(`profile/photo`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      .then(response => response.data);
   },
 
   setProfile(profile: IProfile) {
-    return instance.put<SetProfileResponse>(`profile`, profile).then((response) => response.data)
-  }
+    return instance.put<SetProfileResponse>(`profile`, profile).then(response => response.data);
+  },
 };
 
 export const authAPI = {
@@ -77,16 +86,18 @@ export const authAPI = {
   },
 
   login(email: string, password: string, rememberMe = false, captcha: string | null = null) {
-    return instance.post<LoginResponse>('auth/login/', {email, password, rememberMe, captcha}).then((response) => response.data)
+    return instance
+      .post<LoginResponse>('auth/login/', { email, password, rememberMe, captcha })
+      .then(response => response.data);
   },
 
   logout() {
-    return instance.delete<LogoutResponse>('auth/login').then((response) => response.data)
-  }
+    return instance.delete<LogoutResponse>('auth/login').then(response => response.data);
+  },
 };
 
 export const securityAPI = {
   getCaptchaUrl() {
-    return instance.get<GetCaptchaUrlResponse>(`security/get-captcha-url`).then((response) => response.data)
-  }
+    return instance.get<GetCaptchaUrlResponse>(`security/get-captcha-url`).then(response => response.data);
+  },
 };

@@ -1,7 +1,7 @@
 import { Action } from 'redux';
 
 // ----- ACTION TYPES -----
-import {ProfilePhotos} from "../profiles/profiles.types";
+import { ProfilePhotos } from '../profiles/profiles.types';
 
 export type FOLLOW_TYPE = 'USERS/FOLLOW';
 export type UNFOLLOW_TYPE = 'USERS/UNFOLLOW';
@@ -21,37 +21,41 @@ export const TOGGLE_IS_FETCHING: TOGGLE_IS_FETCHING_TYPE = 'USERS/TOGGLE_IS_FETC
 export const TOGGLE_IS_FOLLOWING_PROGRESS: TOGGLE_IS_FOLLOWING_PROGRESS_TYPE = 'USERS/TOGGLE_IS_FOLLOWING_PROGRESS';
 
 // ----- ACTIONS/THUNKS -----
-export type FollowAction = Action<FOLLOW_TYPE> & { userID: number }
-export type UnfollowAction = Action<UNFOLLOW_TYPE> & { userID: number }
-export type SetUsersAction = Action<SET_USERS_TYPE> & { users: any }
-export type SetTotalUsersCountAction = Action<SET_TOTAL_USERS_COUNT_TYPE> & { count: number }
-export type SetCurrentUsersPageAction = Action<SET_CURRENT_USERS_PAGE_TYPE> & { page: number }
-export type SetFetchingModeAction = Action<TOGGLE_IS_FETCHING_TYPE> & { isFetching: boolean }
-export type SetFollowingProgressAction = Action<TOGGLE_IS_FOLLOWING_PROGRESS_TYPE> & { isFollowing: boolean, userID: number }
-export type UsersAction =FollowAction
+export type FollowAction = Action<FOLLOW_TYPE> & { userID: number };
+export type UnfollowAction = Action<UNFOLLOW_TYPE> & { userID: number };
+export type SetUsersAction = Action<SET_USERS_TYPE> & { users: any };
+export type SetTotalUsersCountAction = Action<SET_TOTAL_USERS_COUNT_TYPE> & { count: number };
+export type SetCurrentUsersPageAction = Action<SET_CURRENT_USERS_PAGE_TYPE> & { page: number };
+export type SetFetchingModeAction = Action<TOGGLE_IS_FETCHING_TYPE> & { isFetching: boolean };
+export type SetFollowingProgressAction = Action<TOGGLE_IS_FOLLOWING_PROGRESS_TYPE> & {
+  isFollowing: boolean;
+  userID: number;
+};
+export type UsersAction =
+  | FollowAction
   | UnfollowAction
   | SetUsersAction
   | SetTotalUsersCountAction
   | SetCurrentUsersPageAction
   | SetFetchingModeAction
-  | SetFollowingProgressAction
+  | SetFollowingProgressAction;
 
 // ----- STATE TYPES -----
 export interface IUser {
-  followed: boolean
-  id: number
-  name: string
-  photos: ProfilePhotos
-  status: string | null
-  uniqueUrlName: string | null
+  followed: boolean;
+  id: number;
+  name: string;
+  photos: ProfilePhotos;
+  status: string | null;
+  uniqueUrlName: string | null;
 }
 
 export type UsersState = {
-  users: IUser[],
-  pageSize: number,
-  pagesRange: number,
-  totalUsersCount: number,
-  currentUsersPage: number,
-  isFetching: boolean,
-  usersFollowing: number[]
+  users: IUser[];
+  pageSize: number;
+  pagesRange: number;
+  totalUsersCount: number;
+  currentUsersPage: number;
+  isFetching: boolean;
+  usersFollowing: number[];
 };

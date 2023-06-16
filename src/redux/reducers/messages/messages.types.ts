@@ -7,34 +7,34 @@ export type SEND_MESSAGE_TYPE = 'MESSAGES/SEND_MESSAGE';
 export const SEND_MESSAGE: SEND_MESSAGE_TYPE = 'MESSAGES/SEND_MESSAGE';
 
 // ----- ACTIONS/THUNKS -----
-export type SendMessageAction = Action<SEND_MESSAGE_TYPE> & { messageText: string }
-export type MessagesAction = SendMessageAction
+export type SendMessageAction = Action<SEND_MESSAGE_TYPE> & { messageText: string };
+export type MessagesAction = SendMessageAction;
 
 // ----- STATE TYPES -----
 export type DialogStateItem = {
-  id: number,
-  name: string,
-  avatar: string
-}
+  id: number;
+  name: string;
+  avatar: string;
+};
 
 export type DialogsData = {
-  dialogStateItems: DialogStateItem[]
-}
+  dialogStateItems: DialogStateItem[];
+};
 
 export type MessageStateItems = {
-  id: number,
-  message: string
-}
+  id: number;
+  message: string;
+};
 
 export type MessagesData = {
-  messageStateItems: MessageStateItems[]
-}
+  messageStateItems: MessageStateItems[];
+};
 
 export type MessagesPageData = {
-  dialogsData: DialogsData,
-  messagesData: MessagesData
-}
+  dialogsData: DialogsData;
+  messagesData: MessagesData;
+};
 
 export type MessagesState = {
-  messagesPageData: MessagesPageData
-}
+  messagesPageData: MessagesPageData;
+};
