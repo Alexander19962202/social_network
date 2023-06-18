@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from 'src/ui/pages/messages-page/messages-block/messages-block.module.css';
 import MessageItem from 'src/ui/pages/messages-page/messages-block/message-item/message-item';
-import { MessagesData } from 'src/redux/reducers/messages/messages.types';
+import { MessagesData } from 'src/redux/slices/messages/messages.types';
 import MessageInputWrapper from 'src/ui/pages/messages-page/messages-block/message-imput/message-input.wrapper';
 
 type Props = {

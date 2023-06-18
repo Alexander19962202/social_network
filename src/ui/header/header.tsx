@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from 'src/ui/header/header.module.css';
 import { NavLink } from 'react-router-dom';
-import { IAuthUserData } from 'src/redux/reducers/auth/auth.types';
+import { IAuthUserData } from 'src/redux/slices/auth/auth.types';
 
 type Props = {
   authUserData: IAuthUserData;

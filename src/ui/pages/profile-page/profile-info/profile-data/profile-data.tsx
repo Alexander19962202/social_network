@@ -1,6 +1,6 @@
 import ContactItem from './contact-item/contact-item';
 import React from 'react';
-import { IProfile, IProfileContacts } from 'src/redux/reducers/profiles/profiles.types';
+import { IProfile, IProfileContacts } from 'src/redux/slices/profiles/profiles.types';
 
 type Props = {
   profile: IProfile;

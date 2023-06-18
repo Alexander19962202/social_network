@@ -1,5 +1,6 @@
-import { AuthAction, AuthState, SET_CAPTCHA_URL, SET_AUTH_USER_DATA } from './auth.types';
-import { initialState } from './auth.initial-state';
+import { initialState } from 'src/redux/slices/auth/auth.initial-state';
+import { AuthAction, SET_AUTH_USER_DATA, SET_CAPTCHA_URL } from 'src/redux/slices/auth/old/auth.types';
+import { AuthState } from 'src/redux/slices/auth/auth.types';
 
 const authReducer = (state = initialState, action: AuthAction): AuthState => {
   switch (action.type) {

@@ -7,7 +7,7 @@ import {
   updateProfileStatus,
   savePhoto,
   saveProfile,
-} from 'src/redux/reducers/profiles/profiles.thunks';
+} from 'src/redux/slices/profiles/profiles.thunks';
 import withAuthRedirect, { WithAuthRedirectProps } from 'src/ui/common/hoc/with-auth-redirect';
 import { compose } from 'redux';
 import { useNavigate, useParams } from 'react-router-dom';

@@ -1,36 +1,30 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import SocialNetworkApp from 'src/app';
-import { unmountComponentAtNode } from 'react-dom';
-import { act } from 'react-dom/test-utils';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom/client';
 import mockAxios from 'jest-mock-axios';
+import router from './router';
+import { RouterProvider } from 'react-router-dom';
+import { act } from 'react-test-renderer';
 
 describe('App', () => {
-  let container: HTMLDivElement | null;
+  let container;
+
   beforeEach(() => {
-    // prepare DOM-element for rendering
     container = document.createElement('div');
     document.body.appendChild(container);
   });
 
   afterEach(() => {
-    // clean after test
-    if (container) {
-      unmountComponentAtNode(container);
-      container.remove();
-      container = null;
-    }
-    // cleaning up the mess left behind the previous test
+    document.body.removeChild(container);
+    container = null;
     mockAxios.reset();
   });
 
   it('renders without crashing', () => {
-    // eslint-disable-next-line testing-library/no-unnecessary-act
-    act(() => {
-      mockAxios.get.mockResolvedValue({ data: { resultCode: 0 }, resultCode: 0 });
-      mockAxios.post.mockResolvedValue({ data: {}, resultCode: 0 });
+    mockAxios.get.mockResolvedValue({ data: { resultCode: 0 }, resultCode: 0 });
+    mockAxios.post.mockResolvedValue({ data: {}, resultCode: 0 });
 
-      ReactDOM.render(<SocialNetworkApp />, container);
+    act(() => {
+      ReactDOM.createRoot(container).render(<RouterProvider router={router} />);
     });
   });
 });

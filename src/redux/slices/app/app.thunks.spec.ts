@@ -1,8 +1,9 @@
-import { initializeApp, resetGlobalError } from 'src/redux/reducers/app/app.thunks';
-import { initializedSuccessAC, setGlobalErrorAC } from './app.action-creators';
-import { getAuthUserData } from 'src/redux/reducers/auth/auth.thunks';
+import { getAuthUserData } from '../auth/auth.thunks';
+import { initializeApp } from './app.thunks';
+import { appInitialized } from './app.slice';
+import clearAllMocks = jest.clearAllMocks;
 
-jest.mock('src/redux/reducers/auth/auth.thunks');
+jest.mock('src/redux/slices/auth/auth.thunks');
 
 describe('App Thunks', () => {
   const dispatchMock = jest.fn();
@@ -10,19 +11,7 @@ describe('App Thunks', () => {
   const getAuthUserDataMockFn = getAuthUserData as jest.MockedFn<any>;
 
   beforeEach(() => {
-    //clearAllMocks();
-  });
-
-  describe('App Thunk - resetGlobalError', () => {
-    it('should dispatch SetGlobalError Action with empty string', () => {
-      const thunk = resetGlobalError();
-      const action = setGlobalErrorAC('');
-
-      thunk(dispatchMock, getState, {});
-
-      expect(dispatchMock).toBeCalledTimes(1);
-      expect(dispatchMock).toBeCalledWith(action);
-    });
+    clearAllMocks();
   });
 
   describe('App Thunk - initializeApp', () => {
@@ -30,7 +19,7 @@ describe('App Thunks', () => {
       const thunk = initializeApp();
       const getAuthUserDataReturnData = { initialized: true };
       getAuthUserDataMockFn.mockReturnValue(getAuthUserDataReturnData);
-      const initializedAction = initializedSuccessAC();
+      const initializedAction = appInitialized();
       await thunk(dispatchMock, getState, {});
 
       expect(dispatchMock).toBeCalledTimes(2);

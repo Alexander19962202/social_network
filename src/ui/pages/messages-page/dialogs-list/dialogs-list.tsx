@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from 'src/ui/pages/messages-page/dialogs-list/dialog-list.module.css';
 import DialogItem from 'src/ui/pages/messages-page/dialogs-list/dialog-item/dialog-item';
-import { DialogsData } from 'src/redux/reducers/messages/messages.types';
+import { DialogsData } from 'src/redux/slices/messages/messages.types';
 
 type Props = {
   dialogsData: DialogsData;

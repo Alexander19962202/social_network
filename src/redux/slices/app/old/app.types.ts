@@ -12,9 +12,3 @@ export const SET_GLOBAL_ERROR_MESSAGE: SET_GLOBAL_ERROR_MESSAGE_TYPE = 'APP/SET_
 export type InitializedSuccessAction = Action<INITIALIZED_SUCCESS_TYPE>;
 export type SetGlobalErrorMessageAction = Action<SET_GLOBAL_ERROR_MESSAGE_TYPE> & { error: string };
 export type AppAction = InitializedSuccessAction | SetGlobalErrorMessageAction;
-
-// ----- STATE TYPES -----
-export type AppState = {
-  initialized: boolean;
-  globalError: string;
-};

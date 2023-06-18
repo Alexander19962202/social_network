@@ -1,25 +1,19 @@
 import { configureStore } from '@reduxjs/toolkit';
-import authReducer from 'src/redux/reducers/auth/auth.reducer';
-import profilesReducer from 'src/redux/reducers/profiles/profiles.reducer';
-import messagesReducer from 'src/redux/reducers/messages/messages.reducer';
-import newsReducer from 'src/redux/reducers/news/news.reducer';
-import musicReducer from 'src/redux/reducers/music/music.reducer';
-import settingsReducer from 'src/redux/reducers/settings/settings.reducer';
-import usersReducer from 'src/redux/reducers/users/users.reducer';
+import authSlice from 'src/redux/slices/auth/auth.slice';
+import profilesReducer from 'src/redux/slices/profiles/profiles.reducer';
+import messagesReducer from 'src/redux/slices/messages/messages.reducer';
+import usersReducer from 'src/redux/slices/users/users.reducer';
 import { reducer as formReducer } from 'redux-form';
-import appReducer from 'src/redux/reducers/app/app.reducer';
+import appSlice from 'src/redux/slices/app/app.slice';
 
 const store = configureStore({
   reducer: {
-    auth: authReducer,
+    auth: authSlice,
     profilePage: profilesReducer,
     messagesPage: messagesReducer,
-    newsPage: newsReducer,
-    musicPage: musicReducer,
-    settingsPage: settingsReducer,
     usersPage: usersReducer,
     form: formReducer,
-    app: appReducer,
+    app: appSlice,
   },
 });
 

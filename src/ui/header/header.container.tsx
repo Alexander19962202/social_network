@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import Header from 'src/ui/header/header';
-import { logout } from 'src/redux/reducers/auth/auth.thunks';
+import { logout } from 'src/redux/slices/auth/auth.thunks';
 import { RootState } from 'src/redux/redux-store';
 
 type OwnProps = {

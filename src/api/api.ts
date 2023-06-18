@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { IProfile } from 'src/redux/reducers/profiles/profiles.types';
+import { IProfile } from 'src/redux/slices/profiles/profiles.types';
 import {
   AuthMeResponse,
   FollowResponse,

@@ -2,7 +2,7 @@ import React from 'react';
 import classes from 'src/ui/pages/users-page/users-page.module.css';
 import userPhoto from 'src/assets/images/ic_person_24px.svg';
 import { NavLink } from 'react-router-dom';
-import { IUser } from 'src/redux/reducers/users/users.types';
+import { IUser } from 'src/redux/slices/users/users.types';
 
 type Props = {
   user: IUser;

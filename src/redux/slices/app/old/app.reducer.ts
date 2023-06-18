@@ -1,7 +1,11 @@
-import { AppAction, AppState, INITIALIZED_SUCCESS, SET_GLOBAL_ERROR_MESSAGE } from './app.types';
-import { initialState } from './app.initial-state';
+import { AppAction, INITIALIZED_SUCCESS, SET_GLOBAL_ERROR_MESSAGE } from 'src/redux/slices/app/old/app.types';
 
-const appReducer = (state = initialState, action: AppAction): AppState => {
+export const initialState = {
+  initialized: false,
+  globalError: '',
+};
+
+const appReducer = (state = initialState, action: AppAction) => {
   switch (action.type) {
     case INITIALIZED_SUCCESS: {
       return {

@@ -1,4 +1,4 @@
-import { addPost } from 'src/redux/reducers/profiles/profiles.action-creators';
+import { addPost } from 'src/redux/slices/profiles/profiles.action-creators';
 import UserPostsList from './user-posts-list';
 import { connect, ConnectedProps } from 'react-redux';
 import { RootState } from 'src/redux/redux-store';

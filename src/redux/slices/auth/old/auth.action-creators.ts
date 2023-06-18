@@ -4,8 +4,8 @@ import {
   SET_AUTH_USER_DATA,
   SetAuthUserDataAction,
   IAuthData,
-} from './auth.types';
-import { initialState } from './auth.initial-state';
+} from '../auth.types';
+import { initialState } from '../auth.initial-state';
 
 export const setAuthUserDataAC = (authUserData: IAuthData | null, isAuth: boolean): SetAuthUserDataAction => {
   return {

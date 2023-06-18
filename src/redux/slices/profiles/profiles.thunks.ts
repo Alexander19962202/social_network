@@ -1,16 +1,16 @@
 import { profileAPI } from 'src/api/api';
-import { savePhotoSuccess, setStatus, setUserProfile } from 'src/redux/reducers/profiles/profiles.action-creators';
-import { setGlobalErrorAC } from 'src/redux/reducers/app/app.action-creators';
+import { savePhotoSuccess, setStatus, setUserProfile } from 'src/redux/slices/profiles/profiles.action-creators';
+import { setGlobalErrorMessage } from 'src/redux/slices/app/app.slice';
 import { FormAction, stopSubmit } from 'redux-form';
 import {
   IProfile,
   SavePhotoAction,
   SetStatusAction,
   SetUserProfileAction,
-} from 'src/redux/reducers/profiles/profiles.types';
-import { SetGlobalErrorMessageAction } from 'src/redux/reducers/app/app.types';
+} from 'src/redux/slices/profiles/profiles.types';
 import { ResultCode } from 'src/api/api.types';
-import { AppAsyncThunkAction } from 'src/redux/reducers/common/common.types';
+import { AppAsyncThunkAction } from 'src/redux/slices/common/common.types';
+import { AnyAction } from 'redux';
 
 export const getProfile =
   (userID: number): AppAsyncThunkAction<SetUserProfileAction> =>
@@ -29,7 +29,7 @@ export const getProfileStatus =
   };
 
 export const updateProfileStatus =
-  (newStatus: string): AppAsyncThunkAction<SetStatusAction | SetGlobalErrorMessageAction> =>
+  (newStatus: string): AppAsyncThunkAction<AnyAction> =>
   async dispatch => {
     try {
       const response = await profileAPI.setProfileStatus(newStatus);
@@ -37,7 +37,7 @@ export const updateProfileStatus =
         dispatch(setStatus(newStatus));
       }
     } catch (error) {
-      dispatch(setGlobalErrorAC('ERROR UPDATE STATUS FAILED'));
+      dispatch(setGlobalErrorMessage({ error: 'ERROR UPDATE STATUS FAILED' }));
     }
   };
 

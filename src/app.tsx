@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom';
 import React, { useEffect } from 'react';
 import Preloader from './ui/common/components/preloader/preloader';
 import { connect, ConnectedProps, Provider } from 'react-redux';
-import { initializeApp, resetGlobalError } from './redux/reducers/app/app.thunks';
+import { initializeApp } from 'src/redux/slices/app/app.thunks';
 import store, { RootState } from './redux/redux-store';
 import * as Sentry from '@sentry/react';
 import FallbackPage from 'src/ui/common/components/fallback-page/fallback-page';
@@ -14,7 +14,7 @@ const mapStateToProps = (state: RootState) => ({
   initialized: state.app.initialized,
   globalError: state.app.globalError,
 });
-const connector = connect(mapStateToProps, { initializeApp, resetGlobalError });
+const connector = connect(mapStateToProps, { initializeApp });
 type Props = ConnectedProps<typeof connector>;
 
 const App = ({ initialized, initializeApp, globalError }: Props) => {

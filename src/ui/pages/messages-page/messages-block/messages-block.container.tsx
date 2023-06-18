@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import MessagesBlock from 'src/ui/pages/messages-page/messages-block/messages-block';
-import { sendMessage } from 'src/redux/reducers/messages/messages.action-creators';
+import { sendMessage } from 'src/redux/slices/messages/messages.action-creators';
 import { RootState } from 'src/redux/redux-store';
 
 let mapStateToProps = (state: RootState) => {

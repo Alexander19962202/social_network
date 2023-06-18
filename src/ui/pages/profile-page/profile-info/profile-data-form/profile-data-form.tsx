@@ -3,7 +3,7 @@ import s from 'src/ui/pages/profile-page/profile-info/profile-info.module.css';
 import { createField, Input, Textarea } from 'src/ui/common/components/form-control/form-control';
 import { InjectedFormProps, reduxForm } from 'redux-form';
 import style from 'src/ui/common/components/form-control/form-control.module.css';
-import { IProfile } from 'src/redux/reducers/profiles/profiles.types';
+import { IProfile } from 'src/redux/slices/profiles/profiles.types';
 
 export type Profile = IProfile;
 

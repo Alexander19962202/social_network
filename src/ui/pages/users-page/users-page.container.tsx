@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import UsersPage from 'src/ui/pages/users-page/users-page';
-import { follow, unfollow, requestUsers } from 'src/redux/reducers/users/users.thunks';
+import { follow, unfollow, requestUsers } from 'src/redux/slices/users/users.thunks';
 import {
   getCurrentPage,
   getFollowingInProgress,

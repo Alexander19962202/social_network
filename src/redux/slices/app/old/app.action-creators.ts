@@ -3,7 +3,7 @@ import {
   InitializedSuccessAction,
   SET_GLOBAL_ERROR_MESSAGE,
   SetGlobalErrorMessageAction,
-} from './app.types';
+} from 'src/redux/slices/app/old/app.types';
 
 export const initializedSuccessAC = (): InitializedSuccessAction => ({ type: INITIALIZED_SUCCESS });
 export const setGlobalErrorAC = (error: string): SetGlobalErrorMessageAction => ({
