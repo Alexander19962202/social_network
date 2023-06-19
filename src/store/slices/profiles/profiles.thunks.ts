@@ -1,30 +1,25 @@
 import { profileAPI } from 'src/api/api';
-import { savePhotoSuccess, setStatus, setUserProfile } from 'src/store/slices/profiles/profiles.action-creators';
 import { setGlobalErrorMessage } from 'src/store/slices/app/app.slice';
-import { FormAction, stopSubmit } from 'redux-form';
-import {
-  IProfile,
-  SavePhotoAction,
-  SetStatusAction,
-  SetUserProfileAction,
-} from 'src/store/slices/profiles/profiles.types';
+import { stopSubmit } from 'redux-form';
+import { IProfile } from 'src/store/slices/profiles/profiles.types';
 import { ResultCode } from 'src/api/api.types';
 import { AppAsyncThunkAction } from 'src/store/slices/common/common.types';
 import { AnyAction } from 'redux';
+import { setProfilePhoto, setProfileStatus, setUserProfile } from 'src/store/slices/profiles/profiles.slice';
 
 export const getProfile =
-  (userID: number): AppAsyncThunkAction<SetUserProfileAction> =>
+  (userID: number): AppAsyncThunkAction<AnyAction> =>
   dispatch => {
     return profileAPI.getProfile(userID).then(data => {
-      dispatch(setUserProfile(data));
+      dispatch(setUserProfile({ profile: data }));
     });
   };
 
 export const getProfileStatus =
-  (userID: number): AppAsyncThunkAction<SetStatusAction> =>
+  (userID: number): AppAsyncThunkAction<AnyAction> =>
   dispatch => {
     return profileAPI.getProfileStatus(userID).then(status => {
-      dispatch(setStatus(status));
+      dispatch(setProfileStatus({ status }));
     });
   };
 
@@ -34,7 +29,7 @@ export const updateProfileStatus =
     try {
       const response = await profileAPI.setProfileStatus(newStatus);
       if (response.resultCode === ResultCode.OK) {
-        dispatch(setStatus(newStatus));
+        dispatch(setProfileStatus({ status: newStatus }));
       }
     } catch (error) {
       dispatch(setGlobalErrorMessage({ error: 'ERROR UPDATE STATUS FAILED' }));
@@ -42,16 +37,16 @@ export const updateProfileStatus =
   };
 
 export const savePhoto =
-  (file: File): AppAsyncThunkAction<SavePhotoAction> =>
+  (file: File): AppAsyncThunkAction<AnyAction> =>
   async dispatch => {
     let response = await profileAPI.setProfilePhoto(file);
     if (response.resultCode === ResultCode.OK) {
-      dispatch(savePhotoSuccess(response.data.photos));
+      dispatch(setProfilePhoto({ photos: response.data.photos }));
     }
   };
 
 export const saveProfile =
-  (profile: IProfile): AppAsyncThunkAction<FormAction> =>
+  (profile: IProfile): AppAsyncThunkAction<AnyAction> =>
   async (dispatch, getState) => {
     const userId = getState().auth.authUserData.id;
     const response = await profileAPI.setProfile(profile);

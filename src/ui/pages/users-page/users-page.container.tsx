@@ -11,7 +11,7 @@ import {
   getTotalUsersCount,
   getUsers,
 } from 'src/store/selectors/users.selector';
-import { RootState } from 'src/store/redux-store';
+import { RootState } from 'src/store/store';
 
 let mapStateToProps = (state: RootState) => {
   return {

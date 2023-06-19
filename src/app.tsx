@@ -6,7 +6,7 @@ import React, { useEffect } from 'react';
 import Preloader from './ui/common/components/preloader/preloader';
 import { connect, ConnectedProps, Provider } from 'react-redux';
 import { initializeApp } from 'src/store/slices/app/app.thunks';
-import store, { RootState } from 'src/store/redux-store';
+import store, { RootState } from 'src/store/store';
 import * as Sentry from '@sentry/react';
 import FallbackPage from 'src/ui/common/components/fallback-page/fallback-page';
 

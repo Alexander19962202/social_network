@@ -11,7 +11,7 @@ import { UserPostsListProps } from 'src/ui/pages/profile-page/user-posts/user-po
  * @constructor
  */
 const UserPostsList = React.memo<UserPostsListProps>(props => {
-  let myPostItems = [...props.myPostsData.myPostStateItems]
+  let myPostItems = [...props.userPosts]
     .reverse()
     .map(post => <Post id={post.id} text={post.text} likeCount={post.likeCount} key={post.id} />);
 

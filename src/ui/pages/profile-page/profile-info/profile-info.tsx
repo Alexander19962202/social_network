@@ -3,32 +3,40 @@ import classes from 'src/ui/pages/profile-page/profile-info/profile-info.module.
 import Preloader from 'src/ui/common/components/preloader/preloader';
 import ProfileStatus from 'src/ui/pages/profile-page/profile-info/profile-status/profile-status';
 import defaultPhoto from 'src/assets/images/ic_person_24px.svg';
-import ProfileDataForm, { Profile } from 'src/ui/pages/profile-page/profile-info/profile-data-form/profile-data-form';
+import ProfileDataForm from 'src/ui/pages/profile-page/profile-info/profile-data-form/profile-data-form';
 import ProfileData from 'src/ui/pages/profile-page/profile-info/profile-data/profile-data';
-import { IProfile, ProfileInfoData } from 'src/store/slices/profiles/profiles.types';
+import { IProfile } from 'src/store/slices/profiles/profiles.types';
 
 export type Props = {
-  profileInfoData: ProfileInfoData;
+  userProfile: IProfile | null;
+  profileStatus: string;
   updateProfileStatus: (newStatus: string) => Promise<void>;
   isOwner: boolean;
   savePhoto: (file: File) => Promise<void>;
   saveProfile: (profile: IProfile) => Promise<void>;
 };
 
-const ProfileInfo: React.FC<Props> = props => {
+const ProfileInfo: React.FC<Props> = ({
+  userProfile,
+  profileStatus,
+  updateProfileStatus,
+  saveProfile,
+  savePhoto,
+  isOwner,
+}) => {
   const [editMode, setEditMode] = useState(false);
 
-  const { profileInfoData, updateProfileStatus, saveProfile } = props;
-
-  if (!profileInfoData.userProfile) return <Preloader />;
+  if (!userProfile) {
+    return <Preloader />;
+  }
 
   const onMainPhotoSelected = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files?.length) {
-      props.savePhoto(e.target.files[0]);
+      savePhoto(e.target.files[0]);
     }
   };
 
-  const on_saveProfile = (profile: Profile) => {
+  const onSveProfile = (profile: IProfile) => {
     saveProfile(profile).then(() => {
       setEditMode(false);
     });
@@ -37,28 +45,20 @@ const ProfileInfo: React.FC<Props> = props => {
   return (
     <div>
       <div>
-        <img alt="" src={profileInfoData.userProfile.photos.large || defaultPhoto} className={classes.mainPhoto} />
-        {props.isOwner && <input type={'file'} onChange={onMainPhotoSelected} />}
+        <img alt="" src={userProfile.photos.large || defaultPhoto} className={classes.mainPhoto} />
+        {isOwner && <input type={'file'} onChange={onMainPhotoSelected} />}
       </div>
       <div className={classes.descriptionBlock}>
-        <ProfileStatus
-          status={profileInfoData.status}
-          updateProfileStatus={updateProfileStatus}
-          isOwner={props.isOwner}
-        />
+        <ProfileStatus status={profileStatus} updateProfileStatus={updateProfileStatus} isOwner={isOwner} />
       </div>
       <div className={classes.descriptionBlock}>
-        <img alt="" src={profileInfoData.userProfile.photos.small || defaultPhoto} className={classes.secondPhoto} />
+        <img alt="" src={userProfile.photos.small || defaultPhoto} className={classes.secondPhoto} />
         {editMode ? (
-          <ProfileDataForm
-            initialValues={profileInfoData.userProfile}
-            profile={profileInfoData.userProfile}
-            onSubmit={on_saveProfile}
-          />
+          <ProfileDataForm initialValues={userProfile} profile={userProfile} onSubmit={onSveProfile} />
         ) : (
           <ProfileData
-            profile={profileInfoData.userProfile}
-            isOwner={props.isOwner}
+            profile={userProfile}
+            isOwner={isOwner}
             goToEditMode={() => {
               setEditMode(true);
             }}

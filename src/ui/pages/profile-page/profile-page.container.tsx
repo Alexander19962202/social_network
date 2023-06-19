@@ -12,11 +12,12 @@ import withAuthRedirect, { WithAuthRedirectProps } from 'src/ui/common/hoc/with-
 import { compose } from 'redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import usePrevious from 'src/ui/common/hook/use-previous';
-import { RootState } from 'src/store/redux-store';
+import { RootState } from 'src/store/store';
 
 let mapStateToProps = (state: RootState) => ({
-  profileInfoData: state.profilePage.profilePageData.profileInfoData,
-  myPostsData: state.profilePage.profilePageData.myPostsData,
+  userProfile: state.profilePage.userProfile,
+  profileStatus: state.profilePage.profileStatus,
+  userPosts: state.profilePage.userPosts,
   isAuth: state.auth.authUserData.isAuth,
   userID: state.auth.authUserData.id,
 });
@@ -66,7 +67,8 @@ const ProfilePageContainer: React.FC<Props> = props => {
   return (
     <div>
       <ProfilePage
-        profileInfoData={props.profileInfoData}
+        userProfile={props.userProfile}
+        profileStatus={props.profileStatus}
         updateProfileStatus={props.updateProfileStatus}
         isOwner={!params?.userID}
         savePhoto={props.savePhoto}

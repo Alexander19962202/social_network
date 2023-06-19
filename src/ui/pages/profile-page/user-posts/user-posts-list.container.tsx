@@ -1,15 +1,15 @@
-import { addPost } from 'src/store/slices/profiles/profiles.action-creators';
 import UserPostsList from './user-posts-list';
 import { connect, ConnectedProps } from 'react-redux';
-import { RootState } from 'src/store/redux-store';
+import { RootState } from 'src/store/store';
+import { addPost } from 'src/store/slices/profiles/profiles.slice';
 
 let mapStateToProps = (state: RootState) => {
   return {
-    myPostsData: state.profilePage.profilePageData.myPostsData,
+    userPosts: state.profilePage.userPosts,
   };
 };
 
-const connector = connect(mapStateToProps, { addPost });
+const connector = connect(mapStateToProps, { addPost: (postText: string) => addPost({ postText }) });
 
 export type UserPostsListProps = ConnectedProps<typeof connector>;
 

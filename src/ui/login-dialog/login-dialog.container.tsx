@@ -3,7 +3,7 @@ import { connect, ConnectedProps } from 'react-redux';
 import { login } from 'src/store/slices/auth/auth.thunks';
 import { Navigate } from 'react-router-dom';
 import LoginDialog, { LoginData } from 'src/ui/login-dialog/login-dialog';
-import { RootState } from 'src/store/redux-store';
+import { RootState } from 'src/store/store';
 
 const mapStateToProps = (state: RootState) => ({
   isAuth: state.auth.authUserData.isAuth,

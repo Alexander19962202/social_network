@@ -1,19 +1,19 @@
 import { configureStore } from '@reduxjs/toolkit';
-import authSlice from 'src/store/slices/auth/auth.slice';
-import profilesReducer from 'src/store/slices/profiles/profiles.reducer';
-import messengerSlice from 'src/store/slices/messenger/messenger.slice';
+import authReducer from 'src/store/slices/auth/auth.slice';
+import profilesReducer from 'src/store/slices/profiles/profiles.slice';
+import messengerReducer from 'src/store/slices/messenger/messenger.slice';
 import usersReducer from 'src/store/slices/users/users.reducer';
 import { reducer as formReducer } from 'redux-form';
-import appSlice from 'src/store/slices/app/app.slice';
+import appReducer from 'src/store/slices/app/app.slice';
 
 const store = configureStore({
   reducer: {
-    auth: authSlice,
+    auth: authReducer,
     profilePage: profilesReducer,
-    messenger: messengerSlice,
+    messenger: messengerReducer,
     usersPage: usersReducer,
     form: formReducer,
-    app: appSlice,
+    app: appReducer,
   },
 });
 
