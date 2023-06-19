@@ -1,11 +1,11 @@
 import {
-  SET_CAPTCHA_URL,
-  SetCaptchaUrlAction,
   SET_AUTH_USER_DATA,
+  SET_CAPTCHA_URL,
   SetAuthUserDataAction,
-  IAuthData,
-} from '../auth.types';
-import { initialState } from '../auth.initial-state';
+  SetCaptchaUrlAction,
+} from 'src/redux/slices/auth/old/auth.types';
+import { IAuthData } from 'src/redux/slices/auth/auth.types';
+import { initialState } from 'src/redux/slices/auth/auth.initial-state';
 
 export const setAuthUserDataAC = (authUserData: IAuthData | null, isAuth: boolean): SetAuthUserDataAction => {
   return {

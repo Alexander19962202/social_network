@@ -7,11 +7,9 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     setAuthUserData(state, action: { payload: IAuthUserData }) {
-      debugger;
       state.authUserData = action.payload;
     },
     setCaptchaURL(state, action: { payload: { captchaURL: string } }) {
-      debugger;
       state.authUserData.captchaURL = action.payload.captchaURL;
     },
   },

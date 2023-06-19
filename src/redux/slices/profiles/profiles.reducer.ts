@@ -2,15 +2,15 @@ import {
   ADD_POST,
   DELETE_POST,
   IProfile,
-  ProfilesAction,
   ProfilesState,
   SAVE_PHOTO,
   SET_STATUS,
   SET_USER_PROFILE,
 } from './profiles.types';
 import { initialState } from './profiles.initial-state';
+import { AnyAction } from 'redux';
 
-const profilesReducer = (state = initialState, action: ProfilesAction): ProfilesState => {
+const profilesReducer = (state = initialState, action: AnyAction): ProfilesState => {
   switch (action.type) {
     case ADD_POST: {
       let text = action.postText;

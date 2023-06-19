@@ -43,7 +43,7 @@ it('message of new post should be correct', () => {
   expect(newState.profilePageData.myPostsData.myPostStateItems[postLength].text).toBe(postTest);
 });
 
-it('after deleting length of messages should be decrement', () => {
+it('after deleting length of messenger should be decrement', () => {
   // 1. test data
   let action = deletePost(1);
 

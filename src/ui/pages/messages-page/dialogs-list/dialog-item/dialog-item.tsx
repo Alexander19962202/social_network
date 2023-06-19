@@ -9,7 +9,7 @@ type Props = {
 };
 
 const DialogItem: React.FC<Props> = props => {
-  let path = '/messages-page/' + props.id;
+  let path = '/messenger-page/' + props.id;
   return (
     <div className={classes.dialog}>
       <div>

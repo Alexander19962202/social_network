@@ -4,8 +4,8 @@ import withAuthRedirect from 'src/ui/common/hoc/with-auth-redirect';
 import { compose } from 'redux';
 import { RootState } from 'src/redux/redux-store';
 
-let mapStateToProps = (state: RootState) => ({
-  dialogsData: state.messagesPage.messagesPageData.dialogsData,
+const mapStateToProps = (state: RootState) => ({
+  dialogs: state.messenger.dialogs,
 });
 
 const DialogsListContainer = compose(connect(mapStateToProps), withAuthRedirect)(DialogsList);

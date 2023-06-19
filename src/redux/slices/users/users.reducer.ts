@@ -7,12 +7,12 @@ import {
   TOGGLE_IS_FETCHING,
   TOGGLE_IS_FOLLOWING_PROGRESS,
   UNFOLLOW,
-  UsersAction,
   UsersState,
 } from './users.types';
 import { initialState } from './users.initial-state';
+import { AnyAction } from 'redux';
 
-const usersReducer = (state = initialState, action: UsersAction): UsersState => {
+const usersReducer = (state = initialState, action: AnyAction): UsersState => {
   switch (action.type) {
     case FOLLOW: {
       return {

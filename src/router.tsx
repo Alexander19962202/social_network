@@ -38,7 +38,7 @@ const router = createBrowserRouter(
           ],
         },
         {
-          path: '/messages',
+          path: '/messenger',
           element: <MessagesWithSuspense />,
         },
         {

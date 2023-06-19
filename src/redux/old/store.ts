@@ -1,9 +1,5 @@
 import profilesReducer from 'src/redux/slices/profiles/profiles.reducer';
-import messagesReducer from 'src/redux/slices/messages/messages.reducer';
-import newsReducer from 'src/redux/slices/news/news.reducer';
-import musicReducer from 'src/redux/slices/music/music.reducer';
-import settingsReducer from 'src/redux/slices/settings/settings.reducer';
-import sidebarReducer from 'src/redux/slices/sidebar/sidebar.reducer';
+import messagesReducer from 'src/redux/slices/messenger/old/messages.reducer';
 
 let store = {
   _state: {
@@ -80,10 +76,6 @@ let store = {
     this._state.profilePage = profilesReducer(this._state.profilePage, action);
     // @ts-expect-error TS(2322): Type '{ messagesPageData: { messagesData: { messag... Remove this comment to see the full error message
     this._state.messagesPage = messagesReducer(this._state.messagesPage, action);
-    this._state.newsPage = newsReducer(this._state.newsPage, action);
-    this._state.musicPage = musicReducer(this._state.musicPage, action);
-    this._state.settingsPage = settingsReducer(this._state.settingsPage, action);
-    this._state.sideBar = sidebarReducer(this._state.sideBar, action);
 
     // @ts-expect-error TS(2554): Expected 0 arguments, but got 1.
     this.rerenderEntireTree(this._state);

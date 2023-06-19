@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authSlice from 'src/redux/slices/auth/auth.slice';
 import profilesReducer from 'src/redux/slices/profiles/profiles.reducer';
-import messagesReducer from 'src/redux/slices/messages/messages.reducer';
+import messengerSlice from 'src/redux/slices/messenger/messenger.slice';
 import usersReducer from 'src/redux/slices/users/users.reducer';
 import { reducer as formReducer } from 'redux-form';
 import appSlice from 'src/redux/slices/app/app.slice';
@@ -10,7 +10,7 @@ const store = configureStore({
   reducer: {
     auth: authSlice,
     profilePage: profilesReducer,
-    messagesPage: messagesReducer,
+    messenger: messengerSlice,
     usersPage: usersReducer,
     form: formReducer,
     app: appSlice,

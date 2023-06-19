@@ -34,6 +34,7 @@ let UsersPage: React.FC<Props> = props => {
         <div>
           {props.users.map(u => (
             <UserItem
+              key={u.id}
               user={u}
               on_follow={props.on_follow}
               on_unfollow={props.on_unfollow}

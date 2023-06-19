@@ -18,7 +18,6 @@ export const login =
   (email: string, password: string, rememberMe?: boolean, captcha?: string): AppAsyncThunkAction<AnyAction> =>
   async dispatch => {
     const response = await authAPI.login(email, password, rememberMe, captcha);
-    debugger;
     if (response.resultCode === ResultCode.OK) {
       return dispatch(getAuthUserData());
     }
