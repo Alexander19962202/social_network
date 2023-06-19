@@ -1,6 +1,6 @@
-import { IUser } from 'src/redux/slices/users/users.types';
-import { IProfile, ProfilePhotos } from 'src/redux/slices/profiles/profiles.types';
-import { IAuthData } from 'src/redux/slices/auth/auth.types';
+import { IUser } from 'src/store/slices/users/users.types';
+import { IProfile, ProfilePhotos } from 'src/store/slices/profiles/profiles.types';
+import { IAuthData } from 'src/store/slices/auth/auth.types';
 
 export enum ResultCode {
   OK = 0,

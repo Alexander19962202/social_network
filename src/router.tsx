@@ -3,9 +3,6 @@ import { withSuspense } from 'src/ui/common/hoc/with-suspense';
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import SocialNetworkApp from 'src/app';
 import LoginDialogContainer from 'src/ui/login-dialog/login-dialog.container';
-import NewsPage from 'src/ui/pages/news-page/news-page';
-import MusicPage from 'src/ui/pages/music-page/music-page';
-import SettingsPage from 'src/ui/pages/settings-page/settings-page';
 import UsersPageContainer from 'src/ui/pages/users-page/users-page.container';
 import NotFoundPage from 'src/ui/common/components/not-found-page/not-found-page';
 
@@ -42,20 +39,8 @@ const router = createBrowserRouter(
           element: <MessagesWithSuspense />,
         },
         {
-          path: '/news',
-          element: <NewsPage />,
-        },
-        {
-          path: '/music',
-          element: <MusicPage />,
-        },
-        {
           path: '/users',
           element: <UsersPageContainer />,
-        },
-        {
-          path: '/settings',
-          element: <SettingsPage />,
         },
         {
           path: '/',

@@ -2,7 +2,7 @@ import React from 'react';
 import Preloader from 'src/ui/common/components/preloader/preloader';
 import Paginator from 'src/ui/common/components/paginator/paginator';
 import UserItem from 'src/ui/pages/users-page/user-item/user-item';
-import { IUser } from 'src/redux/slices/users/users.types';
+import { IUser } from 'src/store/slices/users/users.types';
 
 type Props = {
   totalUsersCount: number;

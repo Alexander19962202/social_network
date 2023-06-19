@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import UsersPage from 'src/ui/pages/users-page/users-page';
-import { follow, unfollow, requestUsers } from 'src/redux/slices/users/users.thunks';
+import { follow, unfollow, requestUsers } from 'src/store/slices/users/users.thunks';
 import {
   getCurrentPage,
   getFollowingInProgress,
@@ -10,8 +10,8 @@ import {
   getPagesRange,
   getTotalUsersCount,
   getUsers,
-} from 'src/redux/selectors/users.selector';
-import { RootState } from 'src/redux/redux-store';
+} from 'src/store/selectors/users.selector';
+import { RootState } from 'src/store/redux-store';
 
 let mapStateToProps = (state: RootState) => {
   return {

@@ -5,7 +5,7 @@ import ProfileStatus from 'src/ui/pages/profile-page/profile-info/profile-status
 import defaultPhoto from 'src/assets/images/ic_person_24px.svg';
 import ProfileDataForm, { Profile } from 'src/ui/pages/profile-page/profile-info/profile-data-form/profile-data-form';
 import ProfileData from 'src/ui/pages/profile-page/profile-info/profile-data/profile-data';
-import { IProfile, ProfileInfoData } from 'src/redux/slices/profiles/profiles.types';
+import { IProfile, ProfileInfoData } from 'src/store/slices/profiles/profiles.types';
 
 export type Props = {
   profileInfoData: ProfileInfoData;

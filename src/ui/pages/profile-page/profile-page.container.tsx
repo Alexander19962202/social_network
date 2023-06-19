@@ -7,12 +7,12 @@ import {
   updateProfileStatus,
   savePhoto,
   saveProfile,
-} from 'src/redux/slices/profiles/profiles.thunks';
+} from 'src/store/slices/profiles/profiles.thunks';
 import withAuthRedirect, { WithAuthRedirectProps } from 'src/ui/common/hoc/with-auth-redirect';
 import { compose } from 'redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import usePrevious from 'src/ui/common/hook/use-previous';
-import { RootState } from 'src/redux/redux-store';
+import { RootState } from 'src/store/redux-store';
 
 let mapStateToProps = (state: RootState) => ({
   profileInfoData: state.profilePage.profilePageData.profileInfoData,

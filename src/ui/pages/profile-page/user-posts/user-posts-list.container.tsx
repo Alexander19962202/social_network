@@ -1,7 +1,7 @@
-import { addPost } from 'src/redux/slices/profiles/profiles.action-creators';
+import { addPost } from 'src/store/slices/profiles/profiles.action-creators';
 import UserPostsList from './user-posts-list';
 import { connect, ConnectedProps } from 'react-redux';
-import { RootState } from 'src/redux/redux-store';
+import { RootState } from 'src/store/redux-store';
 
 let mapStateToProps = (state: RootState) => {
   return {

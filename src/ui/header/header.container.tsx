@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import Header from 'src/ui/header/header';
-import { logout } from 'src/redux/slices/auth/auth.thunks';
-import { RootState } from 'src/redux/redux-store';
+import { logout } from 'src/store/slices/auth/auth.thunks';
+import { RootState } from 'src/store/redux-store';
 
 type OwnProps = {
   errorMessage: string;
