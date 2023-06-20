@@ -1,25 +1,22 @@
 import 'src/app.css';
-import HeaderContainer from './ui/header/header.container';
-import NavBar from './ui/nav-bar/nav-bar';
+import HeaderContainer from 'src/ui/header/header.container';
+import NavBar from 'src/ui/nav-bar/nav-bar';
 import { Outlet } from 'react-router-dom';
 import React, { useEffect } from 'react';
-import Preloader from './ui/common/components/preloader/preloader';
-import { connect, ConnectedProps, Provider } from 'react-redux';
+import Preloader from 'src/ui/common/components/preloader/preloader';
+import { Provider, useDispatch, useSelector } from 'react-redux';
 import { initializeApp } from 'src/store/slices/app/app.thunks';
-import store, { RootState } from 'src/store/store';
+import store, { AppDispatch, RootState } from 'src/store/store';
 import * as Sentry from '@sentry/react';
 import FallbackPage from 'src/ui/common/components/fallback-page/fallback-page';
 
-const mapStateToProps = (state: RootState) => ({
-  initialized: state.app.initialized,
-  globalError: state.app.globalError,
-});
-const connector = connect(mapStateToProps, { initializeApp });
-type Props = ConnectedProps<typeof connector>;
+const App = () => {
+  const initialized = useSelector((state: RootState) => state.app.initialized);
+  const globalError = useSelector((state: RootState) => state.app.globalError);
+  const dispatch = useDispatch<AppDispatch>();
 
-const App = ({ initialized, initializeApp, globalError }: Props) => {
   useEffect(() => {
-    initializeApp();
+    dispatch(initializeApp());
   }, []);
 
   if (!initialized) {
@@ -37,13 +34,11 @@ const App = ({ initialized, initializeApp, globalError }: Props) => {
   );
 };
 
-const AppContainer = connector(App);
-
 const SocialNetworkApp = () => {
   return (
     <Provider store={store}>
       <Sentry.ErrorBoundary fallback={({ resetError }) => <FallbackPage resetError={resetError} />} showDialog>
-        <AppContainer />
+        <App />
       </Sentry.ErrorBoundary>
     </Provider>
   );
