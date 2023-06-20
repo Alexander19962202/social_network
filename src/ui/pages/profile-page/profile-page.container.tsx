@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { connect, ConnectedProps } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ProfilePage from 'src/ui/pages/profile-page/profile-page';
 import {
   getProfile,
@@ -8,48 +8,45 @@ import {
   savePhoto,
   saveProfile,
 } from 'src/store/slices/profiles/profiles.thunks';
-import withAuthRedirect, { WithAuthRedirectProps } from 'src/ui/common/hoc/with-auth-redirect';
+import withAuthRedirect from 'src/ui/common/hoc/with-auth-redirect';
 import { compose } from 'redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import usePrevious from 'src/ui/common/hook/use-previous';
-import { RootState } from 'src/store/store';
+import { RootState, AppDispatch } from 'src/store/store';
+import { IProfile } from 'src/store/slices/profiles/profiles.types';
 
-let mapStateToProps = (state: RootState) => ({
-  userProfile: state.profilePage.userProfile,
-  profileStatus: state.profilePage.profileStatus,
-  userPosts: state.profilePage.userPosts,
-  isAuth: state.auth.authUserData.isAuth,
-  userID: state.auth.authUserData.id,
-});
+const ProfilePageContainer: React.FC = () => {
+  const userProfile = useSelector((state: RootState) => state.profilePage.userProfile);
+  const profileStatus = useSelector((state: RootState) => state.profilePage.profileStatus);
+  const userId = useSelector((state: RootState) => state.auth.authUserData.id);
+  const dispatch = useDispatch<AppDispatch>();
 
-const connector = connect(mapStateToProps, {
-  getProfile,
-  getProfileStatus,
-  updateProfileStatus,
-  savePhoto,
-  saveProfile,
-});
-
-type Props = ConnectedProps<typeof connector> & WithAuthRedirectProps;
-
-const ProfilePageContainer: React.FC<Props> = props => {
   const params = useParams<{ userID: string }>();
   const navigate = useNavigate();
   const mounted = useRef(false);
 
   const refreshProfile = () => {
-    let userID = params?.userID ? +params.userID : null;
-    if (!userID) {
-      userID = props.userID;
-      if (!userID) {
+    let userIdUrl = params?.userID ? +params.userID : null;
+    if (!userIdUrl) {
+      userIdUrl = userId;
+      if (!userIdUrl) {
         navigate('/login');
       }
     }
-    props.getProfile(userID);
-    props.getProfileStatus(userID);
+    dispatch(getProfile(userIdUrl));
+    dispatch(getProfileStatus(userIdUrl));
   };
-  const prevParams = usePrevious(params, { userID: '' });
+  const onUpdateProfileStatus = (newStatus: string) => {
+    dispatch(updateProfileStatus(newStatus));
+  };
+  const onSavePhoto = (file: File) => {
+    dispatch(savePhoto(file));
+  };
+  const onSaveProfile = (profile: IProfile) => {
+    return dispatch(saveProfile(profile));
+  };
 
+  const prevParams = usePrevious(params, { userID: '' });
   useEffect(() => {
     const userIdChanged = !!(
       ((prevParams?.userID && !isNaN(+prevParams.userID)) || (params?.userID && !isNaN(+params.userID))) &&
@@ -67,15 +64,15 @@ const ProfilePageContainer: React.FC<Props> = props => {
   return (
     <div>
       <ProfilePage
-        userProfile={props.userProfile}
-        profileStatus={props.profileStatus}
-        updateProfileStatus={props.updateProfileStatus}
+        userProfile={userProfile}
+        profileStatus={profileStatus}
+        updateProfileStatus={onUpdateProfileStatus}
         isOwner={!params?.userID}
-        savePhoto={props.savePhoto}
-        saveProfile={props.saveProfile}
+        savePhoto={onSavePhoto}
+        saveProfile={onSaveProfile}
       />
     </div>
   );
 };
 
-export default compose(connector, withAuthRedirect)(ProfilePageContainer);
+export default compose(withAuthRedirect)(ProfilePageContainer);

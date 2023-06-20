@@ -10,9 +10,9 @@ import { IProfile } from 'src/store/slices/profiles/profiles.types';
 export type Props = {
   userProfile: IProfile | null;
   profileStatus: string;
-  updateProfileStatus: (newStatus: string) => Promise<void>;
+  updateProfileStatus: (newStatus: string) => void;
   isOwner: boolean;
-  savePhoto: (file: File) => Promise<void>;
+  savePhoto: (file: File) => void;
   saveProfile: (profile: IProfile) => Promise<void>;
 };
 
@@ -36,7 +36,8 @@ const ProfileInfo: React.FC<Props> = ({
     }
   };
 
-  const onSveProfile = (profile: IProfile) => {
+  const onSaveProfile = (profile: IProfile) => {
+    // TODO refactor without .then
     saveProfile(profile).then(() => {
       setEditMode(false);
     });
@@ -54,7 +55,7 @@ const ProfileInfo: React.FC<Props> = ({
       <div className={classes.descriptionBlock}>
         <img alt="" src={userProfile.photos.small || defaultPhoto} className={classes.secondPhoto} />
         {editMode ? (
-          <ProfileDataForm initialValues={userProfile} profile={userProfile} onSubmit={onSveProfile} />
+          <ProfileDataForm initialValues={userProfile} profile={userProfile} onSubmit={onSaveProfile} />
         ) : (
           <ProfileData
             profile={userProfile}
