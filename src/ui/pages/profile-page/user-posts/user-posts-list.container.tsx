@@ -1,18 +1,17 @@
 import UserPostsList from './user-posts-list';
-import { connect, ConnectedProps } from 'react-redux';
-import { RootState } from 'src/store/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from 'src/store/store';
 import { addPost } from 'src/store/slices/profiles/profiles.slice';
 
-let mapStateToProps = (state: RootState) => {
-  return {
-    userPosts: state.profilePage.userPosts,
+const UserPostsListContainer = () => {
+  const userPosts = useSelector((state: RootState) => state.profilePage.userPosts);
+  const dispatch = useDispatch<AppDispatch>();
+
+  const onAddPost = (postText: string) => {
+    dispatch(addPost({ postText }));
   };
+
+  return <UserPostsList userPosts={userPosts} addPost={onAddPost} />;
 };
-
-const connector = connect(mapStateToProps, { addPost: (postText: string) => addPost({ postText }) });
-
-export type UserPostsListProps = ConnectedProps<typeof connector>;
-
-const UserPostsListContainer = connector(UserPostsList);
 
 export default UserPostsListContainer;

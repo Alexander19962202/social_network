@@ -1,8 +1,8 @@
 import React from 'react';
 import classes from 'src/ui/pages/profile-page/user-posts/user-posts-list.module.css';
-import Post from 'src/ui/pages/profile-page/user-posts/post/post';
+import { Post as UserPost } from 'src/store/slices/profiles/profiles.types';
 import PostsInput, { PostData } from 'src/ui/pages/profile-page/user-posts/posts-input/posts-input';
-import { UserPostsListProps } from 'src/ui/pages/profile-page/user-posts/user-posts-list.container';
+import Post from 'src/ui/pages/profile-page/user-posts/post/post';
 
 /**
  * @details Для оптимизации можно использовать memo, PureComponent или переопределить shouldComponentDidUpdate
@@ -10,13 +10,19 @@ import { UserPostsListProps } from 'src/ui/pages/profile-page/user-posts/user-po
  * @returns {*}
  * @constructor
  */
-const UserPostsList = React.memo<UserPostsListProps>(props => {
-  let myPostItems = [...props.userPosts]
+
+type Props = {
+  userPosts: UserPost[];
+  addPost: (_: string) => void;
+};
+
+const UserPostsList = React.memo<Props>(({ userPosts, addPost }) => {
+  let myPostItems = [...userPosts]
     .reverse()
     .map(post => <Post id={post.id} text={post.text} likeCount={post.likeCount} key={post.id} />);
 
   let on_addPost = (formData: PostData) => {
-    props.addPost(formData.newPostText);
+    addPost(formData.newPostText);
   };
 
   return (
