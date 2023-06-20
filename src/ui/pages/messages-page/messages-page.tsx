@@ -4,7 +4,6 @@ import DialogsListContainer from 'src/ui/pages/messages-page/dialogs-list/dialog
 import MessagesBlockContainer from 'src/ui/pages/messages-page/messages-block/messages-block.container';
 
 const MessagesPage = () => {
-  debugger;
   return (
     <div className={classes.messages}>
       <DialogsListContainer />

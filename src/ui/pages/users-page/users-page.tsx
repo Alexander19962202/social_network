@@ -8,11 +8,11 @@ type Props = {
   totalUsersCount: number;
   pageSize: number;
   currentUsersPage: number;
-  on_currentPageChanged: (pageNumber: number) => void;
+  onCurrentPageChanged: (pageNumber: number) => void;
   pagesRange: number;
   users: IUser[];
-  on_follow: (userId: number) => Promise<void>;
-  on_unfollow: (userId: number) => Promise<void>;
+  onFollow: (userId: number) => void;
+  onUnfollow: (userId: number) => void;
   isFetching: boolean;
   usersFollowing: number[];
 };
@@ -25,7 +25,7 @@ let UsersPage: React.FC<Props> = props => {
         pageSize={props.pageSize}
         pagesRange={props.pagesRange}
         currentItemsPage={props.currentUsersPage}
-        on_currentPageChanged={props.on_currentPageChanged}
+        on_currentPageChanged={props.onCurrentPageChanged}
       />
 
       {props.isFetching ? (
@@ -36,8 +36,8 @@ let UsersPage: React.FC<Props> = props => {
             <UserItem
               key={u.id}
               user={u}
-              on_follow={props.on_follow}
-              on_unfollow={props.on_unfollow}
+              on_follow={props.onFollow}
+              on_unfollow={props.onUnfollow}
               usersFollowing={props.usersFollowing}
             />
           ))}
