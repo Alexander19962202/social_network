@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import authReducer from 'src/store/slices/auth/auth.slice';
 import profilesReducer from 'src/store/slices/profiles/profiles.slice';
 import messengerReducer from 'src/store/slices/messenger/messenger.slice';
-import usersReducer from 'src/store/slices/users/users.reducer';
+import usersReducer from 'src/store/slices/users/users.slice';
 import { reducer as formReducer } from 'redux-form';
 import appReducer from 'src/store/slices/app/app.slice';
 

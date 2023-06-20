@@ -18,16 +18,8 @@ const connector = connect(mapStateToProps, { logout });
 
 type Props = ConnectedProps<typeof connector> & OwnProps;
 
-class HeaderContainer extends React.Component<Props> {
-  render() {
-    return (
-      <Header
-        errorMessage={this.props.errorMessage}
-        authUserData={this.props.authUserData}
-        logout={this.props.logout}
-      />
-    );
-  }
-}
+const HeaderContainer: React.FC<Props> = ({ errorMessage, authUserData, logout }) => {
+  return <Header errorMessage={errorMessage} authUserData={authUserData} logout={logout} />;
+};
 
 export default connector(HeaderContainer);
