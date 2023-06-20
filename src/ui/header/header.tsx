@@ -1,28 +1,25 @@
 import React from 'react';
 import classes from 'src/ui/header/header.module.css';
 import { NavLink } from 'react-router-dom';
-import { IAuthUserData } from 'src/store/slices/auth/auth.types';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from 'src/store/store';
+import { logout } from 'src/store/slices/auth/auth.thunks';
 
-type Props = {
-  authUserData: IAuthUserData;
-  logout: () => Promise<void>;
-  errorMessage: string;
-};
+const Header: React.FC = () => {
+  const authUserData = useSelector((state: RootState) => state.auth.authUserData);
+  const dispatch = useDispatch<AppDispatch>();
 
-const Header: React.FC<Props> = props => {
+  const onLogout = () => {
+    dispatch(logout());
+  };
+
   return (
     <header className={classes.header}>
-      <>
-        <img
-          alt=""
-          src="https://yt3.ggpht.com/a/AATXAJzn-DRRHOx_J9XtPlDYbNjK3eJSVRlvzgZZCMmUmQ=s900-c-k-c0x00ffffff-no-rj"
-        />
-        <span className={classes.error}>{props.errorMessage}</span>
-      </>
+      <label className={classes.appName}>SOWA</label>
       <div className={classes.loginBlock}>
-        {props.authUserData.isAuth ? (
+        {authUserData.isAuth ? (
           <div>
-            {props.authUserData.login} - <button onClick={props.logout}>Log out</button>
+            {authUserData.login} - <button onClick={onLogout}>Log out</button>
           </div>
         ) : (
           <NavLink to={'/login'}>LOGIN</NavLink>

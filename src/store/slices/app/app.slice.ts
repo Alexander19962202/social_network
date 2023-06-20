@@ -8,14 +8,8 @@ const appSlice = createSlice({
     appInitialized(state) {
       state.initialized = true;
     },
-    setGlobalErrorMessage(state, action: { payload: { error: string } }) {
-      state.globalError = action.payload.error;
-    },
-    resetGlobalErrorMessage(state) {
-      state.globalError = '';
-    },
   },
 });
-export const { appInitialized, setGlobalErrorMessage, resetGlobalErrorMessage } = appSlice.actions;
+export const { appInitialized } = appSlice.actions;
 
 export default appSlice.reducer;

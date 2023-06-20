@@ -1,5 +1,4 @@
 import { profileAPI } from 'src/api/api';
-import { setGlobalErrorMessage } from 'src/store/slices/app/app.slice';
 import { stopSubmit } from 'redux-form';
 import { IProfile } from 'src/store/slices/profiles/profiles.types';
 import { ResultCode } from 'src/api/api.types';
@@ -32,7 +31,7 @@ export const updateProfileStatus =
         dispatch(setProfileStatus({ status: newStatus }));
       }
     } catch (error) {
-      dispatch(setGlobalErrorMessage({ error: 'ERROR UPDATE STATUS FAILED' }));
+      // TODO add toaster
     }
   };
 

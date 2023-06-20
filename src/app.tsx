@@ -1,5 +1,4 @@
 import 'src/app.css';
-import HeaderContainer from 'src/ui/header/header.container';
 import NavBar from 'src/ui/nav-bar/nav-bar';
 import { Outlet } from 'react-router-dom';
 import React, { useEffect } from 'react';
@@ -9,10 +8,10 @@ import { initializeApp } from 'src/store/slices/app/app.thunks';
 import store, { AppDispatch, RootState } from 'src/store/store';
 import * as Sentry from '@sentry/react';
 import FallbackPage from 'src/ui/common/components/fallback-page/fallback-page';
+import Header from 'src/ui/header/header';
 
 const App = () => {
   const initialized = useSelector((state: RootState) => state.app.initialized);
-  const globalError = useSelector((state: RootState) => state.app.globalError);
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
@@ -24,11 +23,13 @@ const App = () => {
   }
 
   return (
-    <div className="app-wrapper">
-      <HeaderContainer errorMessage={globalError} />
-      <NavBar />
-      <div className="app-wrapper-content">
-        <Outlet />
+    <div className="app">
+      <Header />
+      <div className="app-content">
+        <NavBar />
+        <div className="app-content-page">
+          <Outlet />
+        </div>
       </div>
     </div>
   );
