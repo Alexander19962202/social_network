@@ -1,11 +1,12 @@
 import React from 'react';
-import { AppDispatch, RootState } from 'src/store/store';
+import { AppDispatch } from 'src/store/store';
 import MessagesBlock from 'src/ui/pages/messages-page/messages-block/messages-block';
 import { useDispatch, useSelector } from 'react-redux';
 import { sendMessage } from 'src/store/slices/messenger/messenger.slice';
+import { messengerStateMessages } from 'src/store/slices/messenger/messenger.selectors';
 
 const MessagesBlockContainer: React.FC = () => {
-  const messages = useSelector((state: RootState) => state.messenger.messages);
+  const messages = useSelector(messengerStateMessages);
   const dispatch = useDispatch<AppDispatch>();
 
   const onSendMessage = (message: string) => {

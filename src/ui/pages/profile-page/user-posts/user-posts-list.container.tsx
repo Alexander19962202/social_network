@@ -1,10 +1,11 @@
 import UserPostsList from './user-posts-list';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from 'src/store/store';
+import { AppDispatch } from 'src/store/store';
 import { addPost } from 'src/store/slices/profiles/profiles.slice';
+import { profilesStateUserPosts } from 'src/store/slices/profiles/profiles.selectors';
 
 const UserPostsListContainer = () => {
-  const userPosts = useSelector((state: RootState) => state.profilePage.userPosts);
+  const userPosts = useSelector(profilesStateUserPosts);
   const dispatch = useDispatch<AppDispatch>();
 
   const onAddPost = (postText: string) => {

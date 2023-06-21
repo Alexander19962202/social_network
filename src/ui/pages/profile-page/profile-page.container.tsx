@@ -12,13 +12,15 @@ import withAuthRedirect from 'src/ui/common/hoc/with-auth-redirect';
 import { compose } from 'redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import usePrevious from 'src/ui/common/hook/use-previous';
-import { RootState, AppDispatch } from 'src/store/store';
+import { AppDispatch } from 'src/store/store';
 import { IProfile } from 'src/store/slices/profiles/profiles.types';
+import { authStateCurrentUserId } from 'src/store/slices/auth/auth.selectors';
+import { profilesStateProfileStatus, profilesStateUserProfile } from 'src/store/slices/profiles/profiles.selectors';
 
 const ProfilePageContainer: React.FC = () => {
-  const userProfile = useSelector((state: RootState) => state.profilePage.userProfile);
-  const profileStatus = useSelector((state: RootState) => state.profilePage.profileStatus);
-  const userId = useSelector((state: RootState) => state.auth.authUserData.id);
+  const userProfile = useSelector(profilesStateUserProfile);
+  const profileStatus = useSelector(profilesStateProfileStatus);
+  const userId = useSelector(authStateCurrentUserId);
   const dispatch = useDispatch<AppDispatch>();
 
   const params = useParams<{ userID: string }>();

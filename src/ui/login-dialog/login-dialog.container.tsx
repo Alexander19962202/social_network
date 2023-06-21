@@ -3,11 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { login } from 'src/store/slices/auth/auth.thunks';
 import { Navigate } from 'react-router-dom';
 import LoginDialog, { LoginData } from 'src/ui/login-dialog/login-dialog';
-import { AppDispatch, RootState } from 'src/store/store';
+import { AppDispatch } from 'src/store/store';
+import { authStateCaptchaURL, authStateIsAuth } from 'src/store/slices/auth/auth.selectors';
 
 const LoginDialogContainer: React.FC = () => {
-  const isAuth = useSelector((state: RootState) => state.auth.authUserData.isAuth);
-  const captchaURL = useSelector((state: RootState) => state.auth.authUserData.captchaURL);
+  const isAuth = useSelector(authStateIsAuth);
+  const captchaURL = useSelector(authStateCaptchaURL);
   const dispatch = useDispatch<AppDispatch>();
 
   const onSubmit = (formData: LoginData) => {

@@ -5,10 +5,11 @@ import React, { useEffect } from 'react';
 import Preloader from 'src/ui/common/components/preloader/preloader';
 import { Provider, useDispatch, useSelector } from 'react-redux';
 import { initializeApp } from 'src/store/slices/app/app.thunks';
-import store, { AppDispatch, RootState } from 'src/store/store';
+import store, { AppDispatch } from 'src/store/store';
 import * as Sentry from '@sentry/react';
 import FallbackPage from 'src/ui/common/components/fallback-page/fallback-page';
 import HeaderContainer from 'src/ui/header/header.container';
+import { appStateIsInitialized } from 'src/store/slices/app/app.selectors';
 
 const App: React.FC = () => (
   <div className="app">
@@ -23,7 +24,7 @@ const App: React.FC = () => (
 );
 
 const AppContainer: React.FC = () => {
-  const initialized = useSelector((state: RootState) => state.app.initialized);
+  const initialized = useSelector(appStateIsInitialized);
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
