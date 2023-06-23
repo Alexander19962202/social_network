@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { initialState } from 'src/store/slices/auth/auth.initial-state';
 import { IAuthUserData } from 'src/store/slices/auth/auth.types';
 
@@ -6,10 +6,10 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    setAuthUserData(state, action: { payload: IAuthUserData }) {
+    setAuthUserData(state, action: PayloadAction<IAuthUserData>) {
       state.authUserData = action.payload;
     },
-    setCaptchaURL(state, action: { payload: { captchaURL: string } }) {
+    setCaptchaURL(state, action: PayloadAction<{ captchaURL: string }>) {
       state.authUserData.captchaURL = action.payload.captchaURL;
     },
   },

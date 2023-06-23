@@ -1,26 +1,7 @@
 import { usersAPI } from 'src/api/api';
 import { AppAsyncThunkAction } from 'src/store/slices/common/common.types';
 import { AnyAction } from 'redux';
-import {
-  setFollowState,
-  setCurrentUsersPage,
-  setFetchingMode,
-  setFollowingProgress,
-  setTotalUsersCount,
-  setUsers,
-} from 'src/store/slices/users/users.slice';
-
-export const requestUsers =
-  (currentUsersPage: number, pageSize: number): AppAsyncThunkAction<AnyAction> =>
-  dispatch => {
-    dispatch(setFetchingMode({ isFetching: true }));
-    dispatch(setCurrentUsersPage({ page: currentUsersPage }));
-    return usersAPI.getUsers(currentUsersPage, pageSize).then(data => {
-      dispatch(setUsers({ users: data.items }));
-      dispatch(setTotalUsersCount({ count: data.totalCount }));
-      dispatch(setFetchingMode({ isFetching: false }));
-    });
-  };
+import { setFollowState, setFollowingProgress } from 'src/store/slices/users/users.slice';
 
 export const follow =
   (userId: number): AppAsyncThunkAction<AnyAction> =>

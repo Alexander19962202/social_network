@@ -15,6 +15,5 @@ export type UsersState = {
   pagesRange: number;
   totalUsersCount: number;
   currentUsersPage: number;
-  isFetching: boolean;
   usersFollowing: number[];
 };

@@ -1,4 +1,3 @@
-import { IUser } from 'src/store/slices/users/users.types';
 import { IProfile, ProfilePhotos } from 'src/store/slices/profiles/profiles.types';
 import { IAuthData } from 'src/store/slices/auth/auth.types';
 
@@ -17,14 +16,6 @@ export type CommonResponse<T> = {
   messages: string[];
   resultCode: ResultCode;
 };
-// Users API
-export type GetUsersResponse = {
-  items: IUser[];
-  totalCount: number;
-  error: string;
-};
-export type FollowResponse = CommonResponse<{}>;
-export type UnfollowResponse = CommonResponse<{}>;
 
 // Profiles API
 export type GetProfileResponse = IProfile;

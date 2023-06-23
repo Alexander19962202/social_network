@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { initialState } from 'src/store/slices/profiles/profiles.initial-state';
 import { IProfile, ProfilePhotos } from 'src/store/slices/profiles/profiles.types';
 
@@ -6,7 +6,7 @@ const profilesSlice = createSlice({
   name: 'profiles',
   initialState,
   reducers: {
-    addPost(state, action: { payload: { postText: string } }) {
+    addPost(state, action: PayloadAction<{ postText: string }>) {
       state.userPosts = [
         ...state.userPosts,
         {
@@ -16,16 +16,16 @@ const profilesSlice = createSlice({
         },
       ];
     },
-    deletePost(state, action: { payload: { postId: number } }) {
+    deletePost(state, action: PayloadAction<{ postId: number }>) {
       state.userPosts = state.userPosts.filter(post => post.id !== action.payload.postId);
     },
-    setUserProfile(state, action: { payload: { profile: IProfile } }) {
+    setUserProfile(state, action: PayloadAction<{ profile: IProfile }>) {
       state.userProfile = action.payload.profile;
     },
-    setProfileStatus(state, action: { payload: { status: string } }) {
+    setProfileStatus(state, action: PayloadAction<{ status: string }>) {
       state.profileStatus = action.payload.status;
     },
-    setProfilePhoto(state, action: { payload: { photos: ProfilePhotos } }) {
+    setProfilePhoto(state, action: PayloadAction<{ photos: ProfilePhotos }>) {
       const profile = state.userProfile;
       if (profile !== null) {
         profile.photos = action.payload.photos;

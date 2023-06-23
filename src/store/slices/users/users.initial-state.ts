@@ -6,6 +6,5 @@ export const initialState: UsersState = {
   pagesRange: 10,
   totalUsersCount: 0,
   currentUsersPage: 1,
-  isFetching: false,
   usersFollowing: [],
 };

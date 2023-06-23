@@ -8,6 +8,5 @@ export const getUsers = createSelector(getUsersSelector, users => {
 export const usersStatePageSize = (state: RootState) => state.users.pageSize;
 export const usersStateTotalUsersCount = (state: RootState) => state.users.totalUsersCount;
 export const usersStateCurrentPage = (state: RootState) => state.users.currentUsersPage;
-export const usersStateIsFetching = (state: RootState) => state.users.isFetching;
 export const usersStateUsersFollowing = (state: RootState) => state.users.usersFollowing;
 export const usersStatePagesRange = (state: RootState) => state.users.pagesRange;

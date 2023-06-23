@@ -41,7 +41,10 @@ const AppContainer: React.FC = () => {
 const SocialNetworkApp = () => {
   return (
     <Provider store={store}>
-      <Sentry.ErrorBoundary fallback={({ resetError }) => <FallbackPage resetError={resetError} />} showDialog>
+      <Sentry.ErrorBoundary
+        fallback={({ resetError, error }) => <FallbackPage error={error} resetError={resetError} />}
+        showDialog
+      >
         <AppContainer />
       </Sentry.ErrorBoundary>
     </Provider>
