@@ -1,7 +1,7 @@
 import { initialState } from 'src/store/slices/users/users.initial-state';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { isUndefined } from 'src/common/helpers/type-guards.helper';
-import { usersApi } from 'src/api/users/users.api';
+import { IUser } from 'src/store/slices/users/users.types';
 
 const usersSlice = createSlice({
   name: 'users',
@@ -22,20 +22,25 @@ const usersSlice = createSlice({
         ? [...state.usersFollowing, userId]
         : state.usersFollowing.filter(id => id !== userId);
     },
-  },
-  extraReducers: builder => {
-    builder
-      .addMatcher(usersApi.endpoints.getUsers.matchFulfilled, (state, { payload }) => {
-        state.users = payload.items;
-        state.totalUsersCount = payload.totalCount;
-      })
-      .addMatcher(usersApi.endpoints.getUsers.matchRejected, (state, { payload }) => {
-        state.users = [];
-        state.totalUsersCount = 0;
-      });
+    setUsers(state, action: PayloadAction<{ users: IUser[] }>) {
+      state.users = action.payload.users;
+    },
+    setTotalUsersCount(state, action: PayloadAction<{ count: number }>) {
+      state.totalUsersCount = action.payload.count;
+    },
+    setFetchingMode(state, action: PayloadAction<{ isFetching: boolean }>) {
+      state.isFetching = action.payload.isFetching;
+    },
   },
 });
 
-export const { setFollowState, setCurrentUsersPage, setFollowingProgress } = usersSlice.actions;
+export const {
+  setFollowState,
+  setCurrentUsersPage,
+  setFollowingProgress,
+  setUsers,
+  setTotalUsersCount,
+  setFetchingMode,
+} = usersSlice.actions;
 
 export default usersSlice.reducer;

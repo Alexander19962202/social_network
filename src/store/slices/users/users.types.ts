@@ -16,4 +16,5 @@ export type UsersState = {
   totalUsersCount: number;
   currentUsersPage: number;
   usersFollowing: number[];
+  isFetching: boolean;
 };

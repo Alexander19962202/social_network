@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import UsersPage from 'src/ui/pages/users-page/users-page';
-import { follow, unfollow } from 'src/store/slices/users/users.thunks';
 import {
   usersStatePagesRange,
   getUsers,
@@ -9,12 +8,13 @@ import {
   usersStatePageSize,
   usersStateTotalUsersCount,
   usersStateCurrentPage,
+  usersStateIsFetching,
 } from 'src/store/slices/users/users.selectors';
 import { AppDispatch } from 'src/store/store';
-import { useGetUsersQuery } from 'src/api/users/users.api';
-import { setCurrentUsersPage } from 'src/store/slices/users/users.slice';
+import { loadUsers, follow, unfollow } from 'src/store/slices/users/users.thunks';
 
 const UsersPageContainer: React.FC = () => {
+  const isFetching = useSelector(usersStateIsFetching);
   const users = useSelector(getUsers);
   const pageSize = useSelector(usersStatePageSize);
   const totalUsersCount = useSelector(usersStateTotalUsersCount);
@@ -22,22 +22,19 @@ const UsersPageContainer: React.FC = () => {
   const usersFollowing = useSelector(usersStateUsersFollowing);
   const currentUsersPage = useSelector(usersStateCurrentPage);
   const dispatch = useDispatch<AppDispatch>();
-  const { isFetching, refetch } = useGetUsersQuery({ currentPage: currentUsersPage, pageSize });
 
   useEffect(() => {
-    if (!isFetching) {
-      refetch();
-    }
-  }, [currentUsersPage]);
+    dispatch(loadUsers({ currentUsersPage, pageSize }));
+  }, []);
 
   const onCurrentPageChanged = (page: number) => {
-    dispatch(setCurrentUsersPage({ page }));
+    dispatch(loadUsers({ currentUsersPage: page, pageSize }));
   };
   const onFollow = (userId: number) => {
-    dispatch(follow(userId));
+    dispatch(follow({ userId }));
   };
   const onUnfollow = (userId: number) => {
-    dispatch(unfollow(userId));
+    dispatch(unfollow({ userId }));
   };
 
   return (

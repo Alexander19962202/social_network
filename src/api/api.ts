@@ -12,7 +12,7 @@ import {
   SetProfileResponse,
   SetProfileStatusResponse,
 } from 'src/api/api.types';
-import { FollowResponse, GetUsersResponse, UnfollowResponse } from 'src/api/users/users.api.types';
+import { FollowResponse, GetUsersResponse, UnfollowResponse } from 'src/api/api.types';
 
 const instance = axios.create({
   withCredentials: true,

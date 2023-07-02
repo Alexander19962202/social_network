@@ -10,3 +10,4 @@ export const usersStateTotalUsersCount = (state: RootState) => state.users.total
 export const usersStateCurrentPage = (state: RootState) => state.users.currentUsersPage;
 export const usersStateUsersFollowing = (state: RootState) => state.users.usersFollowing;
 export const usersStatePagesRange = (state: RootState) => state.users.pagesRange;
+export const usersStateIsFetching = (state: RootState) => state.users.isFetching;

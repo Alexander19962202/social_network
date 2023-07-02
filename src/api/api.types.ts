@@ -1,5 +1,6 @@
 import { IProfile, ProfilePhotos } from 'src/store/slices/profiles/profiles.types';
 import { IAuthData } from 'src/store/slices/auth/auth.types';
+import { IUser } from 'src/store/slices/users/users.types';
 
 export enum ResultCode {
   OK = 0,
@@ -29,3 +30,12 @@ export type AuthMeResponse = CommonResponse<IAuthData>;
 export type LoginResponse = CommonResponse<{ userId: string }>;
 export type GetCaptchaUrlResponse = { url: string };
 export type LogoutResponse = CommonResponse<{}>;
+
+//Users API
+export type GetUsersResponse = {
+  items: IUser[];
+  totalCount: number;
+  error: string;
+};
+export type FollowResponse = CommonResponse<{}>;
+export type UnfollowResponse = CommonResponse<{}>;
