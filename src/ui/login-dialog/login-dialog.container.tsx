@@ -12,7 +12,14 @@ const LoginDialogContainer: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   const onSubmit = (formData: LoginData) => {
-    dispatch(login(formData.email, formData.password, formData?.rememberMe, formData?.captcha));
+    dispatch(
+      login({
+        email: formData.email,
+        password: formData.password,
+        rememberMe: formData?.rememberMe,
+        captcha: formData?.captcha,
+      }),
+    );
   };
   if (isAuth) {
     return <Navigate to={'/profile'} />;

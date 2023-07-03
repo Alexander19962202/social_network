@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import classes from 'src/ui/pages/profile-page/profile-info/profile-info.module.css';
 import Preloader from 'src/ui/common/components/preloader/preloader';
 import ProfileStatus from 'src/ui/pages/profile-page/profile-info/profile-status/profile-status';
@@ -13,7 +13,7 @@ export type Props = {
   updateProfileStatus: (newStatus: string) => void;
   isOwner: boolean;
   savePhoto: (file: File) => void;
-  saveProfile: (profile: IProfile) => Promise<void>;
+  saveProfile: (profile: IProfile) => Promise<boolean>;
 };
 
 const ProfileInfo: React.FC<Props> = ({
@@ -37,9 +37,10 @@ const ProfileInfo: React.FC<Props> = ({
   };
 
   const onSaveProfile = (profile: IProfile) => {
-    // TODO refactor without .then
-    saveProfile(profile).then(() => {
-      setEditMode(false);
+    saveProfile(profile).then(isSuccess => {
+      if (isSuccess) {
+        setEditMode(false);
+      }
     });
   };
 

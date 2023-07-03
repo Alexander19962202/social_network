@@ -4,9 +4,6 @@ import { IUser } from 'src/store/slices/users/users.types';
 
 export enum ResultCode {
   OK = 0,
-}
-
-export enum LoginResultCode {
   NEED_TO_GET_CAPTCHA_URL = 10,
 }
 

@@ -1,17 +1,17 @@
 import { getAuthUserData } from '../auth/auth.thunks';
 import { initializeApp } from './app.thunks';
 import { appInitialized } from './app.slice';
-import clearAllMocks = jest.clearAllMocks;
 
 jest.mock('src/store/slices/auth/auth.thunks');
 
 describe('App Thunks', () => {
   const dispatchMock = jest.fn();
   const getState = jest.fn();
-  const getAuthUserDataMockFn = getAuthUserData as jest.MockedFn<any>;
+  const getAuthUserDataMockFn = getAuthUserData as unknown as jest.MockedFn<any>;
 
   beforeEach(() => {
-    clearAllMocks();
+    jest.clearAllMocks();
+    getAuthUserDataMockFn.mockClear();
   });
 
   describe('App Thunk - initializeApp', () => {
@@ -21,8 +21,8 @@ describe('App Thunks', () => {
       getAuthUserDataMockFn.mockReturnValue(getAuthUserDataReturnData);
       const initializedAction = appInitialized();
       await thunk(dispatchMock, getState, {});
-
-      expect(dispatchMock).toBeCalledTimes(2);
+      
+      expect(dispatchMock).toBeCalledTimes(4);
       expect(dispatchMock).toBeCalledWith(getAuthUserDataReturnData);
       expect(dispatchMock).toBeCalledWith(initializedAction);
     });

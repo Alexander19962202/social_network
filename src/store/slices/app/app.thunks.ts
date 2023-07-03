@@ -1,10 +1,9 @@
 import { getAuthUserData } from 'src/store/slices/auth/auth.thunks';
-import { AppAsyncThunkAction } from 'src/store/slices/common/common.types';
 import { appInitialized } from 'src/store/slices/app/app.slice';
-import { AnyAction } from 'redux';
+import { createAppAsyncThunk } from 'src/store/store';
 
-export const initializeApp = (): AppAsyncThunkAction<AnyAction> => dispatch => {
-  return Promise.all([dispatch(getAuthUserData())]).then(() => {
+export const initializeApp = createAppAsyncThunk('app/initializeApp', async (_, { dispatch }) => {
+  Promise.all([dispatch(getAuthUserData())]).then(() => {
     dispatch(appInitialized());
   });
-};
+});

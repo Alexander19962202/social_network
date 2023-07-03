@@ -45,7 +45,9 @@ const ProfilePageContainer: React.FC = () => {
     dispatch(savePhoto(file));
   };
   const onSaveProfile = (profile: IProfile) => {
-    return dispatch(saveProfile(profile));
+    return dispatch(saveProfile(profile)).then(r => {
+      return Promise.resolve(r.meta.requestStatus === 'fulfilled');
+    });
   };
 
   const prevParams = usePrevious(params, { userID: '' });
