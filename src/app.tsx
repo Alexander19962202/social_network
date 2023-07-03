@@ -1,48 +1,50 @@
 import 'src/app.css';
-import HeaderContainer from './ui/header/header.container';
-import NavBar from './ui/nav-bar/nav-bar';
+import NavBar from 'src/ui/nav-bar/nav-bar';
 import { Outlet } from 'react-router-dom';
 import React, { useEffect } from 'react';
-import Preloader from './ui/common/components/preloader/preloader';
-import { connect, ConnectedProps, Provider } from 'react-redux';
-import { initializeApp, resetGlobalError } from './redux/reducers/app/app.thunks';
-import store, { RootState } from './redux/redux-store';
+import Preloader from 'src/ui/common/components/preloader/preloader';
+import { Provider, useDispatch, useSelector } from 'react-redux';
+import { initializeApp } from 'src/store/slices/app/app.thunks';
+import store, { AppDispatch } from 'src/store/store';
 import * as Sentry from '@sentry/react';
 import FallbackPage from 'src/ui/common/components/fallback-page/fallback-page';
+import HeaderContainer from 'src/ui/header/header.container';
+import { appStateIsInitialized } from 'src/store/slices/app/app.selectors';
 
-const mapStateToProps = (state: RootState) => ({
-  initialized: state.app.initialized,
-  globalError: state.app.globalError,
-});
-const connector = connect(mapStateToProps, { initializeApp, resetGlobalError });
-type Props = ConnectedProps<typeof connector>;
+const App: React.FC = () => (
+  <div className="app">
+    <HeaderContainer />
+    <div className="app-content">
+      <NavBar />
+      <div className="app-content-page">
+        <Outlet />
+      </div>
+    </div>
+  </div>
+);
 
-const App = ({ initialized, initializeApp, globalError }: Props) => {
+const AppContainer: React.FC = () => {
+  const initialized = useSelector(appStateIsInitialized);
+  const dispatch = useDispatch<AppDispatch>();
+
   useEffect(() => {
-    initializeApp();
+    dispatch(initializeApp());
   }, []);
 
   if (!initialized) {
     return <Preloader />;
   }
 
-  return (
-    <div className="app-wrapper">
-      <HeaderContainer errorMessage={globalError} />
-      <NavBar />
-      <div className="app-wrapper-content">
-        <Outlet />
-      </div>
-    </div>
-  );
+  return <App />;
 };
-
-const AppContainer = connector(App);
 
 const SocialNetworkApp = () => {
   return (
     <Provider store={store}>
-      <Sentry.ErrorBoundary fallback={({ resetError }) => <FallbackPage resetError={resetError} />} showDialog>
+      <Sentry.ErrorBoundary
+        fallback={({ resetError, error }) => <FallbackPage error={error} resetError={resetError} />}
+        showDialog
+      >
         <AppContainer />
       </Sentry.ErrorBoundary>
     </Provider>

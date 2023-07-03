@@ -1,14 +1,16 @@
-.app-wrapper {
-  display: grid;
-
-  grid-template-rows: 60px 1fr;
-  grid-template-columns: 2fr 10fr;
-  grid-template-areas: 'h h' 'n c';
+.app {
   width: 1200px;
+  min-width: 1200px;
   margin: 0 auto;
 }
 
-.app-wrapper-content {
+.app-content {
+  display: grid;
+  grid-template-columns: 2fr 10fr;
+  grid-template-areas: 'n c';
+}
+
+.app-content-page {
   grid-area: c;
   background-color: lightgray;
 }

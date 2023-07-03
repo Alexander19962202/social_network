@@ -2,7 +2,7 @@ import React from 'react';
 import classes from 'src/ui/pages/users-page/users-page.module.css';
 import userPhoto from 'src/assets/images/ic_person_24px.svg';
 import { NavLink } from 'react-router-dom';
-import { IUser } from 'src/redux/reducers/users/users.types';
+import { IUser } from 'src/store/slices/users/users.types';
 
 type Props = {
   user: IUser;
@@ -17,7 +17,11 @@ const UserItem: React.FC<Props> = ({ user, on_follow, on_unfollow, usersFollowin
       <span>
         <div>
           <NavLink to={'/profile/' + user.id}>
-            <img alt='' className={classes.userPhoto} src={user.photos.small === null ? userPhoto : user.photos.small} />
+            <img
+              alt=""
+              className={classes.userPhoto}
+              src={user.photos.small === null ? userPhoto : user.photos.small}
+            />
           </NavLink>
         </div>
         <div>{user.name}</div>

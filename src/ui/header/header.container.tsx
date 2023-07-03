@@ -1,33 +1,20 @@
 import React from 'react';
-import { connect, ConnectedProps } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch } from 'src/store/store';
+import { logout } from 'src/store/slices/auth/auth.thunks';
 import Header from 'src/ui/header/header';
-import { logout } from 'src/redux/reducers/auth/auth.thunks';
-import { RootState } from 'src/redux/redux-store';
+import { authStateIsAuth, authStateLogin } from 'src/store/slices/auth/auth.selectors';
 
-type OwnProps = {
-  errorMessage: string;
-};
+const HeaderContainer: React.FC = () => {
+  const login = useSelector(authStateLogin);
+  const isAuth = useSelector(authStateIsAuth);
+  const dispatch = useDispatch<AppDispatch>();
 
-let mapStateToProps = (state: RootState) => {
-  return {
-    authUserData: state.auth.authUserData,
+  const onLogout = () => {
+    dispatch(logout());
   };
+
+  return <Header isAuth={isAuth} login={login} logout={onLogout} />;
 };
 
-const connector = connect(mapStateToProps, { logout });
-
-type Props = ConnectedProps<typeof connector> & OwnProps;
-
-class HeaderContainer extends React.Component<Props> {
-  render() {
-    return (
-      <Header
-        errorMessage={this.props.errorMessage}
-        authUserData={this.props.authUserData}
-        logout={this.props.logout}
-      />
-    );
-  }
-}
-
-export default connector(HeaderContainer);
+export default HeaderContainer;

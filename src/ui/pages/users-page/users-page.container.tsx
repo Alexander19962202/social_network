@@ -1,61 +1,56 @@
-import React from 'react';
-import { connect, ConnectedProps } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import UsersPage from 'src/ui/pages/users-page/users-page';
-import { follow, unfollow, requestUsers } from 'src/redux/reducers/users/users.thunks';
 import {
-  getCurrentPage,
-  getFollowingInProgress,
-  getIsFetching,
-  getPageSize,
-  getPagesRange,
-  getTotalUsersCount,
+  usersStatePagesRange,
   getUsers,
-} from 'src/redux/selectors/users.selector';
-import { RootState } from 'src/redux/redux-store';
+  usersStateUsersFollowing,
+  usersStatePageSize,
+  usersStateTotalUsersCount,
+  usersStateCurrentPage,
+  usersStateIsFetching,
+} from 'src/store/slices/users/users.selectors';
+import { AppDispatch } from 'src/store/store';
+import { loadUsers, follow, unfollow } from 'src/store/slices/users/users.thunks';
 
-let mapStateToProps = (state: RootState) => {
-  return {
-    users: getUsers(state),
-    pageSize: getPageSize(state),
-    totalUsersCount: getTotalUsersCount(state),
-    currentUsersPage: getCurrentPage(state),
-    pagesRange: getPagesRange(state),
-    isFetching: getIsFetching(state),
-    usersFollowing: getFollowingInProgress(state),
+const UsersPageContainer: React.FC = () => {
+  const isFetching = useSelector(usersStateIsFetching);
+  const users = useSelector(getUsers);
+  const pageSize = useSelector(usersStatePageSize);
+  const totalUsersCount = useSelector(usersStateTotalUsersCount);
+  const pagesRange = useSelector(usersStatePagesRange);
+  const usersFollowing = useSelector(usersStateUsersFollowing);
+  const currentUsersPage = useSelector(usersStateCurrentPage);
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    dispatch(loadUsers({ currentUsersPage, pageSize }));
+  }, []);
+
+  const onCurrentPageChanged = (page: number) => {
+    dispatch(loadUsers({ currentUsersPage: page, pageSize }));
   };
+  const onFollow = (userId: number) => {
+    dispatch(follow({ userId }));
+  };
+  const onUnfollow = (userId: number) => {
+    dispatch(unfollow({ userId }));
+  };
+
+  return (
+    <UsersPage
+      pageSize={pageSize}
+      totalUsersCount={totalUsersCount}
+      currentUsersPage={currentUsersPage}
+      pagesRange={pagesRange}
+      users={users}
+      onFollow={onFollow}
+      onUnfollow={onUnfollow}
+      onCurrentPageChanged={onCurrentPageChanged}
+      isFetching={isFetching}
+      usersFollowing={usersFollowing}
+    />
+  );
 };
 
-const connector = connect(mapStateToProps, { follow, unfollow, requestUsers });
-
-type Props = ConnectedProps<typeof connector>;
-
-class UsersPageContainer extends React.Component<Props> {
-  componentDidMount() {
-    const { currentUsersPage, pageSize } = this.props;
-    this.props.requestUsers(currentUsersPage, pageSize);
-  }
-
-  on_currentPageChanged = (pageNumber: number) => {
-    const { pageSize } = this.props;
-    this.props.requestUsers(pageNumber, pageSize);
-  };
-
-  render() {
-    return (
-      <UsersPage
-        pageSize={this.props.pageSize}
-        totalUsersCount={this.props.totalUsersCount}
-        currentUsersPage={this.props.currentUsersPage}
-        pagesRange={this.props.pagesRange}
-        users={this.props.users}
-        on_follow={this.props.follow}
-        on_unfollow={this.props.unfollow}
-        on_currentPageChanged={this.on_currentPageChanged}
-        isFetching={this.props.isFetching}
-        usersFollowing={this.props.usersFollowing}
-      />
-    );
-  }
-}
-
-export default connector(UsersPageContainer);
+export default UsersPageContainer;

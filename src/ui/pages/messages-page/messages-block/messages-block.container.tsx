@@ -1,14 +1,19 @@
-import { connect } from 'react-redux';
+import React from 'react';
+import { AppDispatch } from 'src/store/store';
 import MessagesBlock from 'src/ui/pages/messages-page/messages-block/messages-block';
-import { sendMessage } from 'src/redux/reducers/messages/messages.action-creators';
-import { RootState } from 'src/redux/redux-store';
+import { useDispatch, useSelector } from 'react-redux';
+import { sendMessage } from 'src/store/slices/messenger/messenger.slice';
+import { messengerStateMessages } from 'src/store/slices/messenger/messenger.selectors';
 
-let mapStateToProps = (state: RootState) => {
-  return {
-    messagesData: state.messagesPage.messagesPageData.messagesData,
+const MessagesBlockContainer: React.FC = () => {
+  const messages = useSelector(messengerStateMessages);
+  const dispatch = useDispatch<AppDispatch>();
+
+  const onSendMessage = (message: string) => {
+    dispatch(sendMessage({ message }));
   };
-};
 
-const MessagesBlockContainer = connect(mapStateToProps, { sendMessage })(MessagesBlock);
+  return <MessagesBlock messages={messages} sendMessage={onSendMessage} />;
+};
 
 export default MessagesBlockContainer;

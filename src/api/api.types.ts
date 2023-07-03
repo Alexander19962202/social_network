@@ -1,12 +1,9 @@
-import { IUser } from 'src/redux/reducers/users/users.types';
-import { IProfile, ProfilePhotos } from 'src/redux/reducers/profiles/profiles.types';
-import { IAuthData } from 'src/redux/reducers/auth/auth.types';
+import { IProfile, ProfilePhotos } from 'src/store/slices/profiles/profiles.types';
+import { IAuthData } from 'src/store/slices/auth/auth.types';
+import { IUser } from 'src/store/slices/users/users.types';
 
 export enum ResultCode {
   OK = 0,
-}
-
-export enum LoginResultCode {
   NEED_TO_GET_CAPTCHA_URL = 10,
 }
 
@@ -17,14 +14,6 @@ export type CommonResponse<T> = {
   messages: string[];
   resultCode: ResultCode;
 };
-// Users API
-export type GetUsersResponse = {
-  items: IUser[];
-  totalCount: number;
-  error: string;
-};
-export type FollowResponse = CommonResponse<{}>;
-export type UnfollowResponse = CommonResponse<{}>;
 
 // Profiles API
 export type GetProfileResponse = IProfile;
@@ -38,3 +27,12 @@ export type AuthMeResponse = CommonResponse<IAuthData>;
 export type LoginResponse = CommonResponse<{ userId: string }>;
 export type GetCaptchaUrlResponse = { url: string };
 export type LogoutResponse = CommonResponse<{}>;
+
+//Users API
+export type GetUsersResponse = {
+  items: IUser[];
+  totalCount: number;
+  error: string;
+};
+export type FollowResponse = CommonResponse<{}>;
+export type UnfollowResponse = CommonResponse<{}>;

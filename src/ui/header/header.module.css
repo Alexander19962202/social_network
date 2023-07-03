@@ -1,23 +1,19 @@
 .header {
-  grid-area: h;
+  display: flex;
+  flex-direction: row;
   background-color: silver;
+  align-items: center;
 }
 
-.header img {
-  width: 50px;
-  margin: 5px 5px;
+.appName {
+  flex: 1;
 }
 
 .loginBlock {
-  float: right;
+
 }
 
 .loginBlock a {
   color: black;
   margin: 20px 20px 20px 20px;
-}
-
-.error {
-  color: red;
-  padding: 10px;
 }

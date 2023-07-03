@@ -9,11 +9,11 @@ type Props = {
 };
 
 const DialogItem: React.FC<Props> = props => {
-  let path = '/messages-page/' + props.id;
+  let path = '/messenger-page/' + props.id;
   return (
     <div className={classes.dialog}>
       <div>
-        <img alt='' src={props.avatar} />
+        <img alt="" src={props.avatar} />
       </div>
       <div>
         <NavLink to={path} className={navData => (navData.isActive ? classes.active : '')}>

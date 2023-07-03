@@ -1,19 +1,18 @@
+import { fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 import axios from 'axios';
-import { IProfile } from 'src/redux/reducers/profiles/profiles.types';
+import { IProfile } from 'src/store/slices/profiles/profiles.types';
 import {
   AuthMeResponse,
-  FollowResponse,
   GetCaptchaUrlResponse,
   GetProfileResponse,
   GetProfileStatus,
-  GetUsersResponse,
   LoginResponse,
   LogoutResponse,
   SetProfilePhotoResponse,
   SetProfileResponse,
   SetProfileStatusResponse,
-  UnfollowResponse,
 } from 'src/api/api.types';
+import { FollowResponse, GetUsersResponse, UnfollowResponse } from 'src/api/api.types';
 
 const instance = axios.create({
   withCredentials: true,
@@ -101,3 +100,11 @@ export const securityAPI = {
     return instance.get<GetCaptchaUrlResponse>(`security/get-captcha-url`).then(response => response.data);
   },
 };
+
+export const apiBaseQuery = fetchBaseQuery({
+  baseUrl: process.env.REACT_APP_BASE_URL,
+  credentials: 'include',
+  headers: {
+    'API-KEY': `${process.env.REACT_APP_API_KEY}`,
+  },
+});

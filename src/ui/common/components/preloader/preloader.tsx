@@ -5,7 +5,7 @@ import preloader from 'src/assets/images/preloader.svg';
 let Preloader: React.FC = () => {
   return (
     <div className={classes.preloader}>
-      <img alt='' src={preloader} />
+      <img alt="" src={preloader} />
     </div>
   );
 };

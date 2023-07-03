@@ -1,13 +1,12 @@
-import { connect } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import DialogsList from 'src/ui/pages/messages-page/dialogs-list/dialogs-list';
-import withAuthRedirect from 'src/ui/common/hoc/with-auth-redirect';
-import { compose } from 'redux';
-import { RootState } from 'src/redux/redux-store';
+import { messengerStateDialogs } from 'src/store/slices/messenger/messenger.selectors';
 
-let mapStateToProps = (state: RootState) => ({
-  dialogsData: state.messagesPage.messagesPageData.dialogsData,
-});
+const DialogsListContainer: React.FC = () => {
+  const dialogs = useSelector(messengerStateDialogs);
 
-const DialogsListContainer = compose(connect(mapStateToProps), withAuthRedirect)(DialogsList);
+  return <DialogsList dialogs={dialogs} />;
+};
 
 export default DialogsListContainer;

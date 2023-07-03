@@ -11,28 +11,13 @@ const NavBar: React.FC = () => {
         </NavLink>
       </div>
       <div className={classes.item}>
-        <NavLink to="/messages" className={navData => (navData.isActive ? classes.activeLink : '')}>
-          Messages
-        </NavLink>
-      </div>
-      <div className={classes.item}>
-        <NavLink to="/news" className={navData => (navData.isActive ? classes.activeLink : '')}>
-          News
-        </NavLink>
-      </div>
-      <div className={classes.item}>
-        <NavLink to="/music" className={navData => (navData.isActive ? classes.activeLink : '')}>
-          Music
+        <NavLink to="/messenger" className={navData => (navData.isActive ? classes.activeLink : '')}>
+          Messenger
         </NavLink>
       </div>
       <div className={classes.item}>
         <NavLink to="/users" className={navData => (navData.isActive ? classes.activeLink : '')}>
           Users
-        </NavLink>
-      </div>
-      <div className={classes.item}>
-        <NavLink to="/settings" className={navData => (navData.isActive ? classes.activeLink : '')}>
-          Settings
         </NavLink>
       </div>
     </nav>

@@ -3,17 +3,15 @@ import s from 'src/ui/pages/profile-page/profile-info/profile-info.module.css';
 import { createField, Input, Textarea } from 'src/ui/common/components/form-control/form-control';
 import { InjectedFormProps, reduxForm } from 'redux-form';
 import style from 'src/ui/common/components/form-control/form-control.module.css';
-import { IProfile } from 'src/redux/reducers/profiles/profiles.types';
+import { IProfile } from 'src/store/slices/profiles/profiles.types';
 
-export type Profile = IProfile;
-
-export type ProfileKeys = Extract<keyof Profile, string>;
+export type ProfileKeys = Extract<keyof IProfile, string>;
 
 type OwnProps = {
-  profile: Profile;
+  profile: IProfile;
 };
 
-type Props = OwnProps & InjectedFormProps<Profile, OwnProps>;
+type Props = OwnProps & InjectedFormProps<IProfile, OwnProps>;
 
 const ProfileDataForm: React.FC<Props> = ({ handleSubmit, profile, error }) => {
   return (
@@ -51,6 +49,6 @@ const ProfileDataForm: React.FC<Props> = ({ handleSubmit, profile, error }) => {
   );
 };
 
-const decorator = reduxForm<Profile, OwnProps>({ form: 'edit-profile' });
+const decorator = reduxForm<IProfile, OwnProps>({ form: 'edit-profile' });
 
 export default decorator(ProfileDataForm);

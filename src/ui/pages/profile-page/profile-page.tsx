@@ -8,7 +8,8 @@ const ProfilePage: React.FC<Props> = props => {
   return (
     <div>
       <ProfileInfo
-        profileInfoData={props.profileInfoData}
+        userProfile={props.userProfile}
+        profileStatus={props.profileStatus}
         updateProfileStatus={props.updateProfileStatus}
         isOwner={props.isOwner}
         savePhoto={props.savePhoto}
