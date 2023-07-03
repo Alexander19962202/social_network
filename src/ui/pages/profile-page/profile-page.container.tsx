@@ -9,7 +9,7 @@ import {
   saveProfile,
 } from 'src/store/slices/profiles/profiles.thunks';
 import withAuthRedirect from 'src/ui/common/hoc/with-auth-redirect';
-import { compose } from 'redux';
+import { compose } from '@reduxjs/toolkit';
 import { useNavigate, useParams } from 'react-router-dom';
 import usePrevious from 'src/ui/common/hook/use-previous';
 import { AppDispatch } from 'src/store/store';
