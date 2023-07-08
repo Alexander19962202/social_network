@@ -2,7 +2,7 @@ import 'src/app.scss';
 import * as Sentry from '@sentry/react';
 import React, { useEffect } from 'react';
 import { Provider, useDispatch, useSelector } from 'react-redux';
-import {Outlet} from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
 import { appStateIsInitialized } from 'src/store/slices/app/app.selectors';
 import { initializeApp } from 'src/store/slices/app/app.thunks';
