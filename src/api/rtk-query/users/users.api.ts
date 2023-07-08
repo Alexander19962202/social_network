@@ -1,6 +1,7 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
-import { FollowResponse, GetUsersResponse, UnfollowResponse } from 'src/api/api.types';
+
 import { apiBaseQuery } from 'src/api/api';
+import { FollowResponse, GetUsersResponse, UnfollowResponse } from 'src/api/api.types';
 
 /**
  * Example of using RTK Query

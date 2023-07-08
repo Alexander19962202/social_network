@@ -1,10 +1,11 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { login } from 'src/store/slices/auth/auth.thunks';
 import { Navigate } from 'react-router-dom';
-import LoginDialog, { LoginData } from 'src/ui/login-dialog/login-dialog';
-import { AppDispatch } from 'src/store/store';
+
 import { authStateCaptchaURL, authStateIsAuth } from 'src/store/slices/auth/auth.selectors';
+import { login } from 'src/store/slices/auth/auth.thunks';
+import { AppDispatch } from 'src/store/store';
+import LoginDialog, { LoginData } from 'src/ui/login-dialog/login-dialog';
 
 const LoginDialogContainer: React.FC = () => {
   const isAuth = useSelector(authStateIsAuth);

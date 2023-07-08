@@ -1,10 +1,11 @@
 import { configureStore, createAsyncThunk } from '@reduxjs/toolkit';
-import authReducer from 'src/store/slices/auth/auth.slice';
-import profilesReducer from 'src/store/slices/profiles/profiles.slice';
-import messengerReducer from 'src/store/slices/messenger/messenger.slice';
-import usersReducer from 'src/store/slices/users/users.slice';
 import { reducer as formReducer } from 'redux-form';
+
 import appReducer from 'src/store/slices/app/app.slice';
+import authReducer from 'src/store/slices/auth/auth.slice';
+import messengerReducer from 'src/store/slices/messenger/messenger.slice';
+import profilesReducer from 'src/store/slices/profiles/profiles.slice';
+import usersReducer from 'src/store/slices/users/users.slice';
 
 const store = configureStore({
   reducer: {
@@ -29,6 +30,6 @@ export const createAppAsyncThunk = <InputParam = void, ReturnValues = void>(
 ) => createAsyncThunk<ReturnValues, InputParam, AsyncThunkConfig>(...arg);
 
 // @ts-expect-error TS(2339): Property '__store__' does not exist on type 'Windo... Remove this comment to see the full error message
-window.__store__ = store;
+window.reactStore = store;
 
 export default store;

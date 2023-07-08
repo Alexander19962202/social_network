@@ -1,0 +1,16 @@
+.app {
+  width: 1200px;
+  min-width: 1200px;
+  margin: 0 auto;
+
+  &__content {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+    grid-template-areas: 'n c';
+  }
+
+  &__content-page {
+    grid-area: c;
+    background-color: lightgray;
+  }
+}

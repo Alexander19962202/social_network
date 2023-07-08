@@ -1,11 +1,12 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
-import classes from 'src/ui/pages/profile-page/profile-info/profile-info.module.css';
-import Preloader from 'src/ui/common/components/preloader/preloader';
-import ProfileStatus from 'src/ui/pages/profile-page/profile-info/profile-status/profile-status';
+import React, { ChangeEvent, useState } from 'react';
+
 import defaultPhoto from 'src/assets/images/ic_person_24px.svg';
-import ProfileDataForm from 'src/ui/pages/profile-page/profile-info/profile-data-form/profile-data-form';
-import ProfileData from 'src/ui/pages/profile-page/profile-info/profile-data/profile-data';
 import { IProfile } from 'src/store/slices/profiles/profiles.types';
+import Preloader from 'src/ui/common/components/preloader/preloader';
+import ProfileData from 'src/ui/pages/profile-page/profile-info/profile-data/profile-data';
+import ProfileDataForm from 'src/ui/pages/profile-page/profile-info/profile-data-form/profile-data-form';
+import classes from 'src/ui/pages/profile-page/profile-info/profile-info.module.scss';
+import ProfileStatus from 'src/ui/pages/profile-page/profile-info/profile-status/profile-status';
 
 export type Props = {
   userProfile: IProfile | null;
@@ -45,16 +46,16 @@ const ProfileInfo: React.FC<Props> = ({
   };
 
   return (
-    <div>
+    <div className={classes.profileInfo}>
       <div>
-        <img alt="" src={userProfile.photos.large || defaultPhoto} className={classes.mainPhoto} />
+        <img alt="" src={userProfile.photos.large || defaultPhoto} className={classes.profileInfo__mainPhoto} />
         {isOwner && <input type={'file'} onChange={onMainPhotoSelected} />}
       </div>
-      <div className={classes.descriptionBlock}>
+      <div className={classes.profileInfo__descriptionBlock}>
         <ProfileStatus status={profileStatus} updateProfileStatus={updateProfileStatus} isOwner={isOwner} />
       </div>
-      <div className={classes.descriptionBlock}>
-        <img alt="" src={userProfile.photos.small || defaultPhoto} className={classes.secondPhoto} />
+      <div className={classes.profileInfo__descriptionBlock}>
+        <img alt="" src={userProfile.photos.small || defaultPhoto} className={classes.profileInfo__secondPhoto} />
         {editMode ? (
           <ProfileDataForm initialValues={userProfile} profile={userProfile} onSubmit={onSaveProfile} />
         ) : (

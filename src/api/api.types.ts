@@ -1,5 +1,5 @@
-import { IProfile, ProfilePhotos } from 'src/store/slices/profiles/profiles.types';
 import { IAuthData } from 'src/store/slices/auth/auth.types';
+import { IProfile, ProfilePhotos } from 'src/store/slices/profiles/profiles.types';
 import { IUser } from 'src/store/slices/users/users.types';
 
 export enum ResultCode {
@@ -8,7 +8,7 @@ export enum ResultCode {
 }
 
 // ----- Responses types -----
-export type CommonResponse<T> = {
+export type CommonResponse<T = Record<string, never>> = {
   data: T;
   fieldsErrors: string[];
   messages: string[];
@@ -18,21 +18,21 @@ export type CommonResponse<T> = {
 // Profiles API
 export type GetProfileResponse = IProfile;
 export type GetProfileStatus = string;
-export type SetProfileStatusResponse = CommonResponse<{}>;
+export type SetProfileStatusResponse = CommonResponse;
 export type SetProfilePhotoResponse = CommonResponse<{ photos: ProfilePhotos }>;
-export type SetProfileResponse = CommonResponse<{}>;
+export type SetProfileResponse = CommonResponse;
 
-//Auth API
+// Auth API
 export type AuthMeResponse = CommonResponse<IAuthData>;
 export type LoginResponse = CommonResponse<{ userId: string }>;
 export type GetCaptchaUrlResponse = { url: string };
-export type LogoutResponse = CommonResponse<{}>;
+export type LogoutResponse = CommonResponse;
 
-//Users API
+// Users API
 export type GetUsersResponse = {
   items: IUser[];
   totalCount: number;
   error: string;
 };
-export type FollowResponse = CommonResponse<{}>;
-export type UnfollowResponse = CommonResponse<{}>;
+export type FollowResponse = CommonResponse;
+export type UnfollowResponse = CommonResponse;

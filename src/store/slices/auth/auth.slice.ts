@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
 import { initialState } from 'src/store/slices/auth/auth.initial-state';
 import { IAuthUserData } from 'src/store/slices/auth/auth.types';
 

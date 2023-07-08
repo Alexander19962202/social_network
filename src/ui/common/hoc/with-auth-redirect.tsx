@@ -1,9 +1,10 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
+
 import { authStateIsAuth } from 'src/store/slices/auth/auth.selectors';
 
-function withAuthRedirect(WrappedComponent: React.ComponentType<any>) {
+function withAuthRedirect(WrappedComponent: React.ComponentType) {
   const RedirectComponent: React.FC<React.ComponentProps<typeof WrappedComponent>> = props => {
     const isAuth = useSelector(authStateIsAuth);
     if (!isAuth) {

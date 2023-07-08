@@ -1,30 +1,22 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom/client';
+import { render, screen, waitFor } from '@testing-library/react';
 import mockAxios from 'jest-mock-axios';
-import router from './router';
+import * as React from 'react';
 import { RouterProvider } from 'react-router-dom';
-import { act } from 'react-test-renderer';
+
+import router from 'src/router';
 
 describe('App', () => {
-  let container;
-
-  beforeEach(() => {
-    container = document.createElement('div');
-    document.body.appendChild(container);
-  });
-
   afterEach(() => {
-    document.body.removeChild(container);
-    container = null;
     mockAxios.reset();
   });
 
-  it('renders without crashing', () => {
+  it('should render without crashing and has App name', async () => {
     mockAxios.get.mockResolvedValue({ data: { resultCode: 0 }, resultCode: 0 });
     mockAxios.post.mockResolvedValue({ data: {}, resultCode: 0 });
-
-    act(() => {
-      ReactDOM.createRoot(container).render(<RouterProvider router={router} />);
+    render(<RouterProvider router={router} />);
+    await waitFor(() => {
+      const linkElement = screen.getByText('SOWA');
+      expect(linkElement).toBeInTheDocument();
     });
   });
 });
