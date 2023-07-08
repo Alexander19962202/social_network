@@ -1,9 +1,10 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch } from 'src/store/store';
-import { logout } from 'src/store/slices/auth/auth.thunks';
-import Header from 'src/ui/header/header';
+
 import { authStateIsAuth, authStateLogin } from 'src/store/slices/auth/auth.selectors';
+import { logout } from 'src/store/slices/auth/auth.thunks';
+import { AppDispatch } from 'src/store/store';
+import Header from 'src/ui/header/header';
 
 const HeaderContainer: React.FC = () => {
   const login = useSelector(authStateLogin);

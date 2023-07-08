@@ -1,5 +1,6 @@
 import React from 'react';
-import classes from 'src/ui/pages/messages-page/messages-block/message-item/message-item.module.css';
+
+import classes from 'src/ui/pages/messages-page/messages-block/message-item/message-item.module.scss';
 
 type Props = {
   id?: number;
@@ -7,8 +8,6 @@ type Props = {
   message: string;
 };
 
-const MessageItem: React.FC<Props> = props => {
-  return <div className={classes.message}>{props.message}</div>;
-};
+const MessageItem: React.FC<Props> = props => <div className={classes.message}>{props.message}</div>;
 
 export default MessageItem;

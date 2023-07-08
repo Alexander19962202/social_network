@@ -1,6 +1,7 @@
-import { initialState } from 'src/store/slices/users/users.initial-state';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
 import { isUndefined } from 'src/common/helpers/type-guards.helper';
+import { initialState } from 'src/store/slices/users/users.initial-state';
 import { IUser } from 'src/store/slices/users/users.types';
 
 const usersSlice = createSlice({

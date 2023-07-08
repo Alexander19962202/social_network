@@ -21,7 +21,7 @@ describe('App Thunks', () => {
       getAuthUserDataMockFn.mockReturnValue(getAuthUserDataReturnData);
       const initializedAction = appInitialized();
       await thunk(dispatchMock, getState, {});
-      
+
       expect(dispatchMock).toBeCalledTimes(4);
       expect(dispatchMock).toBeCalledWith(getAuthUserDataReturnData);
       expect(dispatchMock).toBeCalledWith(initializedAction);

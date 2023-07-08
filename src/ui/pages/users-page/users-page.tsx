@@ -1,8 +1,9 @@
 import React from 'react';
-import Preloader from 'src/ui/common/components/preloader/preloader';
-import Paginator from 'src/ui/common/components/paginator/paginator';
-import UserItem from 'src/ui/pages/users-page/user-item/user-item';
+
 import { IUser } from 'src/store/slices/users/users.types';
+import Paginator from 'src/ui/common/components/paginator/paginator';
+import Preloader from 'src/ui/common/components/preloader/preloader';
+import UserItem from 'src/ui/pages/users-page/user-item/user-item';
 
 type Props = {
   totalUsersCount: number;
@@ -17,34 +18,32 @@ type Props = {
   usersFollowing: number[];
 };
 
-let UsersPage: React.FC<Props> = props => {
-  return (
-    <div>
-      <Paginator
-        totalItemsCount={props.totalUsersCount}
-        pageSize={props.pageSize}
-        pagesRange={props.pagesRange}
-        currentItemsPage={props.currentUsersPage}
-        on_currentPageChanged={props.onCurrentPageChanged}
-      />
+const UsersPage: React.FC<Props> = props => (
+  <div>
+    <Paginator
+      totalItemsCount={props.totalUsersCount}
+      pageSize={props.pageSize}
+      pagesRange={props.pagesRange}
+      currentItemsPage={props.currentUsersPage}
+      onCurrentPageChanged={props.onCurrentPageChanged}
+    />
 
-      {props.isFetching ? (
-        <Preloader />
-      ) : (
-        <div>
-          {props.users.map(u => (
-            <UserItem
-              key={u.id}
-              user={u}
-              on_follow={props.onFollow}
-              on_unfollow={props.onUnfollow}
-              usersFollowing={props.usersFollowing}
-            />
-          ))}
-        </div>
-      )}
-    </div>
-  );
-};
+    {props.isFetching ? (
+      <Preloader />
+    ) : (
+      <div>
+        {props.users.map(u => (
+          <UserItem
+            key={u.id}
+            user={u}
+            onFollow={props.onFollow}
+            onUnfollow={props.onUnfollow}
+            usersFollowing={props.usersFollowing}
+          />
+        ))}
+      </div>
+    )}
+  </div>
+);
 
 export default UsersPage;

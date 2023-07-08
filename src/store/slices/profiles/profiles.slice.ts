@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
 import { initialState } from 'src/store/slices/profiles/profiles.initial-state';
 import { IProfile, ProfilePhotos } from 'src/store/slices/profiles/profiles.types';
 

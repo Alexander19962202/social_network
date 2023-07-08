@@ -1,5 +1,6 @@
-import ContactItem from './contact-item/contact-item';
 import React from 'react';
+
+import ContactItem from './contact-item/contact-item';
 import { IProfile, IProfileContacts } from 'src/store/slices/profiles/profiles.types';
 
 type Props = {
@@ -8,38 +9,34 @@ type Props = {
   goToEditMode: () => void;
 };
 
-const ProfileData: React.FC<Props> = ({ profile, isOwner, goToEditMode }) => {
-  return (
+const ProfileData: React.FC<Props> = ({ profile, isOwner, goToEditMode }) => (
+  <div>
+    {isOwner && (
+      <div>
+        <button onClick={goToEditMode}>Edit</button>
+      </div>
+    )}
     <div>
-      {isOwner && (
-        <div>
-          <button onClick={goToEditMode}>Edit</button>
-        </div>
-      )}
-      <div>
-        <b>Full name</b>: {profile.fullName}
-      </div>
-      <div>
-        <b>Looking for a job</b>: {profile.lookingForAJob ? 'yes' : 'no'}
-      </div>
-      {profile.lookingForAJob && (
-        <div>
-          <b>My professional skills</b>: {profile.lookingForAJobDescription}
-        </div>
-      )}
-      <div>
-        <b>About me</b>: {profile.aboutMe}
-      </div>
-      <div>
-        <b>Contacts</b>:
-        {Object.keys(profile.contacts).map(key => {
-          return (
-            <ContactItem key={key} contactTitle={key} contactValue={profile.contacts[key as keyof IProfileContacts]} />
-          );
-        })}
-      </div>
+      <b>Full name</b>: {profile.fullName}
     </div>
-  );
-};
+    <div>
+      <b>Looking for a job</b>: {profile.lookingForAJob ? 'yes' : 'no'}
+    </div>
+    {profile.lookingForAJob && (
+      <div>
+        <b>My professional skills</b>: {profile.lookingForAJobDescription}
+      </div>
+    )}
+    <div>
+      <b>About me</b>: {profile.aboutMe}
+    </div>
+    <div>
+      <b>Contacts</b>:
+      {Object.keys(profile.contacts).map(key => (
+        <ContactItem key={key} contactTitle={key} contactValue={profile.contacts[key as keyof IProfileContacts]} />
+      ))}
+    </div>
+  </div>
+);
 
 export default ProfileData;

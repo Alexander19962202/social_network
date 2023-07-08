@@ -1,8 +1,9 @@
 import React from 'react';
-import classes from 'src/ui/pages/messages-page/messages-block/messages-block.module.css';
-import MessageItem from 'src/ui/pages/messages-page/messages-block/message-item/message-item';
+
 import { Message } from 'src/store/slices/messenger/messenger.types';
 import MessageInputWrapper from 'src/ui/pages/messages-page/messages-block/message-imput/message-input.wrapper';
+import MessageItem from 'src/ui/pages/messages-page/messages-block/message-item/message-item';
+import classes from 'src/ui/pages/messages-page/messages-block/messages-block.module.scss';
 
 type Props = {
   messages: Message[];
@@ -10,7 +11,7 @@ type Props = {
 };
 
 const MessagesBlock: React.FC<Props> = props => {
-  let messageItems = props.messages.map(m => <MessageItem message={m.message} id={m.id} key={m.id} />);
+  const messageItems = props.messages.map(m => <MessageItem message={m.message} id={m.id} key={m.id} />);
 
   return (
     <div className={classes.messageBlock}>

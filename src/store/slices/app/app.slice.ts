@@ -1,5 +1,6 @@
-import { initialState } from 'src/store/slices/app/app.initial-state';
 import { createSlice } from '@reduxjs/toolkit';
+
+import { initialState } from 'src/store/slices/app/app.initial-state';
 
 const appSlice = createSlice({
   name: 'app',

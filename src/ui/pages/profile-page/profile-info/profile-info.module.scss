@@ -1,0 +1,19 @@
+.profileInfo {
+  &__descriptionBlock {
+    padding: 10px;
+  }
+
+  &__mainPhoto {
+    max-width: 200px;
+    min-width: 150px;
+  }
+
+  &__secondPhoto {
+    max-width: 150px;
+    min-width: 100px;
+  }
+
+  &__contact {
+    padding-left: 10px;
+  }
+}

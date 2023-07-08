@@ -1,6 +1,7 @@
 import React from 'react';
-import classes from 'src/ui/pages/messages-page/dialogs-list/dialog-item/dialog-item.module.css';
 import { NavLink } from 'react-router-dom';
+
+import classes from 'src/ui/pages/messages-page/dialogs-list/dialog-item/dialog-item.module.scss';
 
 type Props = {
   id: number;
@@ -9,7 +10,7 @@ type Props = {
 };
 
 const DialogItem: React.FC<Props> = props => {
-  let path = '/messenger-page/' + props.id;
+  const path = `/messenger-page/${props.id}`;
   return (
     <div className={classes.dialog}>
       <div>

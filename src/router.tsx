@@ -1,15 +1,16 @@
 import React from 'react';
-import { withSuspense } from 'src/ui/common/hoc/with-suspense';
 import { createBrowserRouter, Navigate } from 'react-router-dom';
+
 import SocialNetworkApp from 'src/app';
+import NotFoundPage from 'src/ui/common/components/not-found-page/not-found-page';
+import { withSuspense } from 'src/ui/common/hoc/with-suspense';
 import LoginDialogContainer from 'src/ui/login-dialog/login-dialog.container';
 import UsersPageContainer from 'src/ui/pages/users-page/users-page.container';
-import NotFoundPage from 'src/ui/common/components/not-found-page/not-found-page';
 
-let ProfilePage = React.lazy(() => import('./ui/pages/profile-page/profile-page.container'));
-let MessagesPage = React.lazy(() => import('./ui/pages/messages-page/messages-page'));
-let ProfileContainerWithSuspense = withSuspense(ProfilePage);
-let MessagesWithSuspense = withSuspense(MessagesPage);
+const ProfilePage = React.lazy(() => import('./ui/pages/profile-page/profile-page.container'));
+const MessagesPage = React.lazy(() => import('./ui/pages/messages-page/messages-page'));
+const ProfileContainerWithSuspense = withSuspense(ProfilePage);
+const MessagesWithSuspense = withSuspense(MessagesPage);
 
 const BASE_NAME = '';
 

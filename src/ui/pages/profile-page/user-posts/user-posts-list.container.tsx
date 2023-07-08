@@ -1,8 +1,9 @@
-import UserPostsList from './user-posts-list';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch } from 'src/store/store';
-import { addPost } from 'src/store/slices/profiles/profiles.slice';
+
+import UserPostsList from './user-posts-list';
 import { profilesStateUserPosts } from 'src/store/slices/profiles/profiles.selectors';
+import { addPost } from 'src/store/slices/profiles/profiles.slice';
+import { AppDispatch } from 'src/store/store';
 
 const UserPostsListContainer = () => {
   const userPosts = useSelector(profilesStateUserPosts);

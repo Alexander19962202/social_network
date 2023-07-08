@@ -1,17 +1,18 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import UsersPage from 'src/ui/pages/users-page/users-page';
+
 import {
-  usersStatePagesRange,
   getUsers,
-  usersStateUsersFollowing,
-  usersStatePageSize,
-  usersStateTotalUsersCount,
   usersStateCurrentPage,
   usersStateIsFetching,
+  usersStatePageSize,
+  usersStatePagesRange,
+  usersStateTotalUsersCount,
+  usersStateUsersFollowing,
 } from 'src/store/slices/users/users.selectors';
+import { follow, loadUsers, unfollow } from 'src/store/slices/users/users.thunks';
 import { AppDispatch } from 'src/store/store';
-import { loadUsers, follow, unfollow } from 'src/store/slices/users/users.thunks';
+import UsersPage from 'src/ui/pages/users-page/users-page';
 
 const UsersPageContainer: React.FC = () => {
   const isFetching = useSelector(usersStateIsFetching);

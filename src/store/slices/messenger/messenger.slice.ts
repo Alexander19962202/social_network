@@ -1,5 +1,6 @@
-import { initialState } from 'src/store/slices/messenger/messenger.initial-state';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+import { initialState } from 'src/store/slices/messenger/messenger.initial-state';
 
 const messengerSlice = createSlice({
   name: 'messenger',

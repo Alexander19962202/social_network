@@ -1,0 +1,17 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  background-color: silver;
+  align-items: center;
+
+  &__appName {
+    flex: 1;
+  }
+
+  &__loginBlock {
+    a {
+      color: black;
+      margin: 20px 20px 20px 20px;
+    }
+  }
+}

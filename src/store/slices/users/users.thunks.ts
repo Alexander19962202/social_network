@@ -1,11 +1,11 @@
 import { usersAPI } from 'src/api/api';
 import {
-  setFollowState,
-  setFollowingProgress,
   setCurrentUsersPage,
-  setUsers,
-  setTotalUsersCount,
   setFetchingMode,
+  setFollowingProgress,
+  setFollowState,
+  setTotalUsersCount,
+  setUsers,
 } from 'src/store/slices/users/users.slice';
 import { createAppAsyncThunk } from 'src/store/store';
 

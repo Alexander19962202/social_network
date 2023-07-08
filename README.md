@@ -1,8 +1,10 @@
-# Web-resume
+# SNOwl
 
 # Description
 
-The project is a web resume for easy demonstration of the basic skills of a software engineer.
+This project is not an attempt to copy Facebook or VKontakte.
+It is rather a platform for solving medium and large tasks, simulating real problems during development (for example,
+migration to updated technologies, support, etc.).
 
 # Getting Started with Create React App
 
@@ -48,6 +50,8 @@ Runs prettier, linter, tests, then builds the app (via `yarn run build:prod`). N
 Deploys app on Github Pages.
 
 ### `yarn run test`
+
+### `yarn run test:coverage`
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more

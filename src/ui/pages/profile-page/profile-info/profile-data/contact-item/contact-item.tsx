@@ -1,12 +1,11 @@
 import React from 'react';
-import classes from '../../profile-info.module.css';
 
-const ContactItem: React.FC<{ contactTitle: string; contactValue: string }> = ({ contactTitle, contactValue }) => {
-  return (
-    <div className={classes.contact}>
-      <b>{contactTitle}</b>: {contactValue}
-    </div>
-  );
-};
+import classes from '../../profile-info.module.scss';
+
+const ContactItem: React.FC<{ contactTitle: string; contactValue: string }> = ({ contactTitle, contactValue }) => (
+  <div className={classes.contact}>
+    <b>{contactTitle}</b>: {contactValue}
+  </div>
+);
 
 export default ContactItem;

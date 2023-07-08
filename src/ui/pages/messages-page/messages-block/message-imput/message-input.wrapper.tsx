@@ -1,4 +1,5 @@
 import React from 'react';
+
 import MessageInput, { MessageData } from './message-input';
 
 type Props = {
@@ -6,7 +7,7 @@ type Props = {
 };
 
 const MessageInputWrapper: React.FC<Props> = props => {
-  let onSendMessage = (formData: MessageData) => {
+  const onSendMessage = (formData: MessageData) => {
     props.onSendMessage(formData.messageText);
   };
 

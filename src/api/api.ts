@@ -1,18 +1,21 @@
 import { fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 import axios from 'axios';
-import { IProfile } from 'src/store/slices/profiles/profiles.types';
+
 import {
   AuthMeResponse,
+  FollowResponse,
   GetCaptchaUrlResponse,
   GetProfileResponse,
   GetProfileStatus,
+  GetUsersResponse,
   LoginResponse,
   LogoutResponse,
   SetProfilePhotoResponse,
   SetProfileResponse,
   SetProfileStatusResponse,
+  UnfollowResponse,
 } from 'src/api/api.types';
-import { FollowResponse, GetUsersResponse, UnfollowResponse } from 'src/api/api.types';
+import { IProfile } from 'src/store/slices/profiles/profiles.types';
 
 const instance = axios.create({
   withCredentials: true,
@@ -24,29 +27,23 @@ const instance = axios.create({
 
 export const usersAPI = {
   getUsers(currentPage = 1, pageSize = 10) {
-    return instance.get<GetUsersResponse>(`users?page=${currentPage}&count=${pageSize}`).then(response => {
-      return response.data;
-    });
+    return instance
+      .get<GetUsersResponse>(`users?page=${currentPage}&count=${pageSize}`)
+      .then(response => response.data);
   },
 
   follow(userId: number) {
-    return instance.post<FollowResponse>(`follow/${userId}`, {}).then(response => {
-      return response.data;
-    });
+    return instance.post<FollowResponse>(`follow/${userId}`, {}).then(response => response.data);
   },
 
   unFollow(userId: number) {
-    return instance.delete<UnfollowResponse>(`follow/${userId}`).then(response => {
-      return response.data;
-    });
+    return instance.delete<UnfollowResponse>(`follow/${userId}`).then(response => response.data);
   },
 };
 
 export const profileAPI = {
   getProfile(userId: number) {
-    return instance.get<GetProfileResponse>(`profile/${userId}`).then(response => {
-      return response.data;
-    });
+    return instance.get<GetProfileResponse>(`profile/${userId}`).then(response => response.data);
   },
 
   getProfileStatus(userId: number) {
@@ -64,7 +61,7 @@ export const profileAPI = {
     formData.append('image', photoFile);
 
     return instance
-      .put<SetProfilePhotoResponse>(`profile/photo`, formData, {
+      .put<SetProfilePhotoResponse>('profile/photo', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -73,20 +70,23 @@ export const profileAPI = {
   },
 
   setProfile(profile: IProfile) {
-    return instance.put<SetProfileResponse>(`profile`, profile).then(response => response.data);
+    return instance.put<SetProfileResponse>('profile', profile).then(response => response.data);
   },
 };
 
 export const authAPI = {
   authMe() {
-    return instance.get<AuthMeResponse>('auth/me').then(response => {
-      return response.data;
-    });
+    return instance.get<AuthMeResponse>('auth/me').then(response => response.data);
   },
 
   login(email: string, password: string, rememberMe = false, captcha: string | null = null) {
     return instance
-      .post<LoginResponse>('auth/login/', { email, password, rememberMe, captcha })
+      .post<LoginResponse>('auth/login/', {
+        email,
+        password,
+        rememberMe,
+        captcha,
+      })
       .then(response => response.data);
   },
 
@@ -97,7 +97,7 @@ export const authAPI = {
 
 export const securityAPI = {
   getCaptchaUrl() {
-    return instance.get<GetCaptchaUrlResponse>(`security/get-captcha-url`).then(response => response.data);
+    return instance.get<GetCaptchaUrlResponse>('security/get-captcha-url').then(response => response.data);
   },
 };
 
