@@ -1,10 +1,12 @@
-import { stopSubmit } from 'redux-form';
+import { FORM_ERROR } from 'final-form';
 
 import { authAPI, securityAPI } from 'src/api/api';
 import { ResultCode } from 'src/api/api.types';
+import { isUndefined } from 'src/common/helpers/type-guards.helper';
 import { initialState } from 'src/store/slices/auth/auth.initial-state';
 import { setAuthUserData, setCaptchaURL } from 'src/store/slices/auth/auth.slice';
 import { createAppAsyncThunk } from 'src/store/store';
+import { FormSetErrorsFn } from 'src/ui/common/validators/validators';
 
 export const getAuthUserData = createAppAsyncThunk('auth/getAuthUserData', async (_, { dispatch }) => {
   const response = await authAPI.authMe();
@@ -33,7 +35,8 @@ export const login = createAppAsyncThunk<{
   password: string;
   rememberMe?: boolean;
   captcha?: string;
-}>('auth/login', async ({ email, password, rememberMe, captcha }, { dispatch }) => {
+  setErrors: FormSetErrorsFn;
+}>('auth/login', async ({ email, password, rememberMe, captcha, setErrors }, { dispatch }) => {
   const response = await authAPI.login(email, password, rememberMe, captcha);
   if (response.resultCode === ResultCode.OK) {
     dispatch(getAuthUserData());
@@ -45,8 +48,10 @@ export const login = createAppAsyncThunk<{
     return;
   }
 
-  const message = response.messages.length > 0 ? response.messages[0] : 'Some error';
-  dispatch(stopSubmit('Login', { _error: message }));
+  const errorMessage = response.messages.length > 0 ? response.messages[0] : 'Some error';
+  if (!isUndefined(setErrors)) {
+    setErrors({ [FORM_ERROR]: errorMessage });
+  }
 });
 
 export const logout = createAppAsyncThunk('auth/logout', async (_, { dispatch }) => {

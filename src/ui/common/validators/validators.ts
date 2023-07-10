@@ -1,6 +1,10 @@
-import { Validator } from 'redux-form';
+import { FieldState, FieldValidator, SubmissionErrors } from 'final-form';
 
-export const required: Validator = value => {
+type FieldValueType = string | number;
+
+export type FormSetErrorsFn = ((errors: SubmissionErrors) => void) | undefined;
+
+export const required: FieldValidator<FieldValueType> = value => {
   if (value) {
     return undefined;
   }
@@ -8,10 +12,15 @@ export const required: Validator = value => {
 };
 
 export const maxLengthCreator =
-  (maxLength: number): Validator =>
+  (maxLength: number): FieldValidator<string | number> =>
   value => {
-    if (value?.length && value.length > maxLength) {
+    if (value.toString()?.length && value.toString().length > maxLength) {
       return `Max length is ${maxLength} symbols`;
     }
     return undefined;
   };
+
+export const composeValidators =
+  (...validators: FieldValidator<string | number>[]) =>
+  (value: string | number, allValues: object, meta?: FieldState<FieldValueType>) =>
+    validators.reduce((error, validator) => error || validator(value, allValues, meta), undefined);

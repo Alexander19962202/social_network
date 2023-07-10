@@ -16,6 +16,7 @@ import { IProfile } from 'src/store/slices/profiles/profiles.types';
 import { AppDispatch } from 'src/store/store';
 import withAuthRedirect from 'src/ui/common/hoc/with-auth-redirect';
 import usePrevious from 'src/ui/common/hook/use-previous';
+import { FormSetErrorsFn } from 'src/ui/common/validators/validators';
 import ProfilePage from 'src/ui/pages/profile-page/profile-page';
 
 const ProfilePageContainer: React.FC = () => {
@@ -45,8 +46,9 @@ const ProfilePageContainer: React.FC = () => {
   const onSavePhoto = (file: File) => {
     dispatch(savePhoto(file));
   };
-  const onSaveProfile = (profile: IProfile) =>
-    dispatch(saveProfile(profile)).then(r => Promise.resolve(r.meta.requestStatus === 'fulfilled'));
+  const onSaveProfile = (profile: IProfile, setErrors: FormSetErrorsFn): Promise<boolean> => {
+    return dispatch(saveProfile({ profile, setErrors })).then(r => r.meta.requestStatus === 'fulfilled');
+  };
 
   const prevParams = usePrevious(params, { userID: '' });
   useEffect(() => {
