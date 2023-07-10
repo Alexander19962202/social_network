@@ -1,24 +1,21 @@
+import { FieldValidator } from 'final-form';
 import React from 'react';
-import { Field, Validator, WrappedFieldMetaProps, WrappedFieldProps } from 'redux-form';
+import { Field, FieldRenderProps } from 'react-final-form';
 
-import styles from 'src/ui/common/components/form-control/form-control.module.scss';
+import classes from 'src/ui/common/components/form-control/form-control.module.scss';
+import { composeValidators } from 'src/ui/common/validators/validators';
 
-type FormControlProps = {
-  meta: WrappedFieldMetaProps;
-  children: React.ReactNode;
-};
-
-const FormControl: React.FC<FormControlProps> = ({ meta: { touched, error }, children }) => {
-  const hasError = touched && error;
+const FormControl: React.FC<FieldRenderProps<string>> = ({ meta: { error, submitError, touched }, children }) => {
+  const hasError = touched && (error || submitError);
   return (
-    <div className={`${styles.formControl} ${hasError ? styles.error : ''}`}>
+    <div className={`${classes.formControl} ${hasError ? classes.error : ''}`}>
       <div>{children}</div>
-      {hasError && <span>{error}</span>}
+      {hasError && <span className={classes.formControl__errorMessage}>{error}</span>}
     </div>
   );
 };
 
-export const Textarea: React.FC<WrappedFieldProps> = props => {
+export const Textarea: React.FC<FieldRenderProps<string>> = props => {
   const { input, ...restProps } = props;
   return (
     <FormControl {...props}>
@@ -27,7 +24,7 @@ export const Textarea: React.FC<WrappedFieldProps> = props => {
   );
 };
 
-export const Input: React.FC<WrappedFieldProps> = props => {
+export const Input: React.FC<FieldRenderProps<string>> = props => {
   const { input, ...restProps } = props;
   return (
     <FormControl {...props}>
@@ -39,15 +36,21 @@ export const Input: React.FC<WrappedFieldProps> = props => {
 export function createField<KeysType extends string>(
   placeholder: string,
   name: KeysType,
-  validators: Validator[],
-  component: React.FC<WrappedFieldProps>,
+  validators: FieldValidator<string | number>[],
+  component: React.FC<FieldRenderProps<string>>,
   props = {},
   text = '',
 ) {
   return (
-    <div>
-      <Field placeholder={placeholder} name={name} validate={validators} component={component} {...props} />
+    <>
+      <Field
+        placeholder={placeholder}
+        name={name}
+        validate={composeValidators(...validators)}
+        component={component}
+        {...props}
+      />
       {text}
-    </div>
+    </>
   );
 }

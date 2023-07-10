@@ -5,6 +5,7 @@ import { Navigate } from 'react-router-dom';
 import { authStateCaptchaURL, authStateIsAuth } from 'src/store/slices/auth/auth.selectors';
 import { login } from 'src/store/slices/auth/auth.thunks';
 import { AppDispatch } from 'src/store/store';
+import { FormSetErrorsFn } from 'src/ui/common/validators/validators';
 import LoginDialog, { LoginData } from 'src/ui/login-dialog/login-dialog';
 
 const LoginDialogContainer: React.FC = () => {
@@ -12,13 +13,14 @@ const LoginDialogContainer: React.FC = () => {
   const captchaURL = useSelector(authStateCaptchaURL);
   const dispatch = useDispatch<AppDispatch>();
 
-  const onSubmit = (formData: LoginData) => {
+  const onSubmit = (formData: LoginData, setErrors: FormSetErrorsFn) => {
     dispatch(
       login({
         email: formData.email,
         password: formData.password,
         rememberMe: formData?.rememberMe,
         captcha: formData?.captcha,
+        setErrors,
       }),
     );
   };

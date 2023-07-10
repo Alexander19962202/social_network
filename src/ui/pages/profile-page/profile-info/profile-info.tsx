@@ -3,6 +3,7 @@ import React, { ChangeEvent, useState } from 'react';
 import defaultPhoto from 'src/assets/images/ic_person_24px.svg';
 import { IProfile } from 'src/store/slices/profiles/profiles.types';
 import Preloader from 'src/ui/common/components/preloader/preloader';
+import { FormSetErrorsFn } from 'src/ui/common/validators/validators';
 import ProfileData from 'src/ui/pages/profile-page/profile-info/profile-data/profile-data';
 import ProfileDataForm from 'src/ui/pages/profile-page/profile-info/profile-data-form/profile-data-form';
 import classes from 'src/ui/pages/profile-page/profile-info/profile-info.module.scss';
@@ -14,7 +15,7 @@ export type Props = {
   updateProfileStatus: (newStatus: string) => void;
   isOwner: boolean;
   savePhoto: (file: File) => void;
-  saveProfile: (profile: IProfile) => Promise<boolean>;
+  saveProfile: (profile: IProfile, setErrors: FormSetErrorsFn) => Promise<boolean>;
 };
 
 const ProfileInfo: React.FC<Props> = ({
@@ -37,8 +38,8 @@ const ProfileInfo: React.FC<Props> = ({
     }
   };
 
-  const onSaveProfile = (profile: IProfile) => {
-    saveProfile(profile).then(isSuccess => {
+  const onSaveProfile = (profile: IProfile, setErrors: FormSetErrorsFn) => {
+    return saveProfile(profile, setErrors).then(isSuccess => {
       if (isSuccess) {
         setEditMode(false);
       }

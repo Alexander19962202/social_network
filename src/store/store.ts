@@ -1,5 +1,4 @@
 import { configureStore, createAsyncThunk } from '@reduxjs/toolkit';
-import { reducer as formReducer } from 'redux-form';
 
 import appReducer from 'src/store/slices/app/app.slice';
 import authReducer from 'src/store/slices/auth/auth.slice';
@@ -13,7 +12,6 @@ const store = configureStore({
     profiles: profilesReducer,
     messenger: messengerReducer,
     users: usersReducer,
-    form: formReducer,
     app: appReducer,
   },
 });
